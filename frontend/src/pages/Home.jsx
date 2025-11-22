@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Truck, Shield, Headphones, Tag } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
+import CategorySidebar from '../components/CategorySidebar';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { products, categories, banners } from '../mock/mockData';
@@ -32,13 +33,54 @@ const Home = () => {
     });
   };
 
-  const offerProducts = products.filter(p => p.discount > 0).slice(0, 4);
-  const newProducts = products.filter(p => p.isNew).slice(0, 4);
+  const offerProducts = products.filter(p => p.discount > 0).slice(0, 3);
+  const newProducts = products.filter(p => p.isNew).slice(0, 3);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Banner Carousel */}
-      <section className="relative h-[500px] overflow-hidden rounded-3xl mx-4 mt-4">
+      <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="flex gap-6">
+          {/* Left Sidebar - Categories */}
+          <aside className="w-64 flex-shrink-0">
+            <CategorySidebar />
+          </aside>
+
+          {/* Main Content */}
+          <div className="flex-1">
+            {/* Features as Banners */}
+            <section className="grid grid-cols-4 gap-3 mb-4">
+              <div className="bg-gradient-to-r from-green-600 to-green-500 text-white p-4 rounded-xl flex items-center space-x-3">
+                <Truck className="h-8 w-8 flex-shrink-0" />
+                <div>
+                  <div className="font-bold text-sm">Livrare Gratuită</div>
+                  <div className="text-xs opacity-90">Peste 300 Lei</div>
+                </div>
+              </div>
+              <div className="bg-gradient-to-r from-green-600 to-green-500 text-white p-4 rounded-xl flex items-center space-x-3">
+                <Shield className="h-8 w-8 flex-shrink-0" />
+                <div>
+                  <div className="font-bold text-sm">Garanție Extinsă</div>
+                  <div className="text-xs opacity-90">Pe toate produsele</div>
+                </div>
+              </div>
+              <div className="bg-gradient-to-r from-green-600 to-green-500 text-white p-4 rounded-xl flex items-center space-x-3">
+                <Headphones className="h-8 w-8 flex-shrink-0" />
+                <div>
+                  <div className="font-bold text-sm">Suport 24/7</div>
+                  <div className="text-xs opacity-90">Mereu disponibil</div>
+                </div>
+              </div>
+              <div className="bg-gradient-to-r from-green-600 to-green-500 text-white p-4 rounded-xl flex items-center space-x-3">
+                <Tag className="h-8 w-8 flex-shrink-0" />
+                <div>
+                  <div className="font-bold text-sm">Prețuri Competitive</div>
+                  <div className="text-xs opacity-90">Cele mai bune oferte</div>
+                </div>
+              </div>
+            </section>
+
+            {/* Hero Banner Carousel */}
+            <section className="relative h-[400px] overflow-hidden rounded-2xl mb-6">
         {banners.map((banner, index) => (
           <div
             key={banner.id}
