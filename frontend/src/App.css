@@ -10,3 +10,14 @@
   display: flex;
   flex-direction: column;
 }
+
+/* Hide Emergent Badge */
+a[href*="emergent.sh"],
+a[href*="emergentagent.com"],
+div[class*="emergent"],
+img[alt*="Emergent"],
+[class*="badge"][class*="emergent"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
