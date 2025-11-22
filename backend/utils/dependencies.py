@@ -6,14 +6,14 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import os
 
 # Security
-security = HTTPBearer()
+security = HTTPBearer(auto_error=False)
 
 # Database
 mongo_url = os.environ.get('MONGO_URL')
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ.get('DB_NAME', 'r32_ecommerce')]
 
-async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+async def get_current_user(credentials: Optional[HTTPAuthorizationCredentials] = Depends(security)):
     """Get current authenticated user"""
     token = credentials.credentials
     payload = decode_access_token(token)
