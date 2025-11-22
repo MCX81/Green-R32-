@@ -50,8 +50,13 @@ async def register(user_data: UserCreate):
 @router.post("/login", response_model=Token)
 async def login(credentials: UserLogin):
     """Login user"""
+    import logging
+    logger = logging.getLogger(__name__)
+    
     # Find user by email
     user = await db.users.find_one({"email": credentials.email})
+    logger.info(f"Login attempt for {credentials.email}, user found: {user is not None}")
+    
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -59,7 +64,10 @@ async def login(credentials: UserLogin):
         )
     
     # Verify password
-    if not verify_password(credentials.password, user["password"]):
+    password_valid = verify_password(credentials.password, user["password"])
+    logger.info(f"Password verification result: {password_valid}")
+    
+    if not password_valid:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password"
