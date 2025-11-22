@@ -12,6 +12,9 @@ import Wishlist from "./pages/Wishlist";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import AdminLayout from "./pages/admin/AdminLayout";
+import Dashboard from "./pages/admin/Dashboard";
+import Products from "./pages/admin/Products";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -26,6 +29,12 @@ function App() {
             {/* Auth routes without header/footer */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            
+            {/* Admin routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="products" element={<Products />} />
+            </Route>
             
             {/* Main routes with header/footer */}
             <Route path="/*" element={
