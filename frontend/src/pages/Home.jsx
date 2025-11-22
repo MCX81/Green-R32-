@@ -124,49 +124,52 @@ const Home = () => {
 
             {/* Offer Products */}
             <section className="py-8">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Oferte Speciale</h2>
-          <Link to="/catalog?filter=oferte">
-            <Button variant="ghost" className="text-green-600 hover:text-green-700 rounded-xl">
-              Vezi Toate
-              <ChevronRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {offerProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={handleAddToCart}
-              onAddToWishlist={handleAddToWishlist}
-            />
-          ))}
-        </div>
-      </section>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold">Oferte Speciale</h2>
+                <Link to="/catalog?filter=oferte">
+                  <Button variant="ghost" className="text-green-600 hover:text-green-700 rounded-xl">
+                    Vezi Toate
+                    <ChevronRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {offerProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    onAddToCart={handleAddToCart}
+                    onAddToWishlist={handleAddToWishlist}
+                  />
+                ))}
+              </div>
+            </section>
 
-      {/* New Products */}
-      <section className="max-w-7xl mx-auto px-4 py-12">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Noutăți</h2>
-          <Link to="/catalog?filter=noutati">
-            <Button variant="ghost" className="text-green-600 hover:text-green-700 rounded-xl">
-              Vezi Toate
-              <ChevronRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+            {/* New Products */}
+            <section className="py-8">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold">Noutăți</h2>
+                <Link to="/catalog?filter=noutati">
+                  <Button variant="ghost" className="text-green-600 hover:text-green-700 rounded-xl">
+                    Vezi Toate
+                    <ChevronRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {newProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    onAddToCart={handleAddToCart}
+                    onAddToWishlist={handleAddToWishlist}
+                  />
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {newProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={handleAddToCart}
-              onAddToWishlist={handleAddToWishlist}
-            />
-          ))}
-        </div>
-      </section>
+      </div>
     </div>
   );
 };
