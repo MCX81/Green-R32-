@@ -31,7 +31,7 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
               <div className="bg-gradient-to-br from-green-600 to-green-500 text-white font-bold text-2xl px-4 py-2 rounded-xl shadow-lg">
-                EMAG
+                R32
               </div>
             </Link>
 
