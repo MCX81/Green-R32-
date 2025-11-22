@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -9,6 +10,8 @@ import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
 import Account from "./pages/Account";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -18,17 +21,30 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header cartCount={cartCount} wishlistCount={wishlistCount} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/account" element={<Account />} />
-        </Routes>
-        <Footer />
-        <Toaster />
+        <AuthProvider>
+          <Routes>
+            {/* Auth routes without header/footer */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            
+            {/* Main routes with header/footer */}
+            <Route path="/*" element={
+              <>
+                <Header cartCount={cartCount} wishlistCount={wishlistCount} />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/catalog" element={<Catalog />} />
+                  <Route path="/product/:id" element={<ProductDetail />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/wishlist" element={<Wishlist />} />
+                  <Route path="/account" element={<Account />} />
+                </Routes>
+                <Footer />
+              </>
+            } />
+          </Routes>
+          <Toaster />
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
