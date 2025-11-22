@@ -109,18 +109,26 @@ const Catalog = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold mb-2">
-            {filter === 'oferte' ? 'Oferte Speciale' : 
-             filter === 'noutati' ? 'Noutăți' :
-             search ? `Rezultate pentru: "${search}"` :
-             getCategoryName()}
-          </h1>
-          <p className="text-gray-600">{filteredProducts.length} produse găsite</p>
-        </div>
-
         <div className="flex gap-6">
+          {/* Categories Sidebar */}
+          <aside className="w-64 flex-shrink-0">
+            <CategorySidebar />
+          </aside>
+
+          {/* Main Content */}
+          <div className="flex-1">
+            {/* Header */}
+            <div className="mb-6">
+              <h1 className="text-3xl font-bold mb-2">
+                {filter === 'oferte' ? 'Oferte Speciale' : 
+                 filter === 'noutati' ? 'Noutăți' :
+                 search ? `Rezultate pentru: "${search}"` :
+                 getCategoryName()}
+              </h1>
+              <p className="text-gray-600">{filteredProducts.length} produse găsite</p>
+            </div>
+
+            <div className="flex gap-6">
           {/* Filters Sidebar */}
           <aside className={`${showFilters ? 'w-64' : 'w-0'} transition-all duration-300 overflow-hidden flex-shrink-0`}>
             <Card className="p-6 rounded-2xl border-2 border-gray-100 sticky top-24">
