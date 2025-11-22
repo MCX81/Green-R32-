@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ChevronDown, SlidersHorizontal } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
+import CategorySidebar from '../components/CategorySidebar';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Checkbox } from '../components/ui/checkbox';
