@@ -80,11 +80,28 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
                 </Button>
               </Link>
 
-              <Link to="/account">
-                <Button variant="ghost" className="rounded-xl hover:bg-gray-100">
-                  <User className="h-6 w-6" />
-                </Button>
-              </Link>
+              {isAuthenticated ? (
+                <>
+                  <Link to="/account">
+                    <Button variant="ghost" className="rounded-xl hover:bg-gray-100">
+                      <User className="h-6 w-6" />
+                    </Button>
+                  </Link>
+                  <Button 
+                    variant="ghost" 
+                    onClick={logout}
+                    className="rounded-xl hover:bg-gray-100"
+                  >
+                    <LogOut className="h-6 w-6" />
+                  </Button>
+                </>
+              ) : (
+                <Link to="/login">
+                  <Button className="bg-green-600 hover:bg-green-700 rounded-xl">
+                    Autentificare
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
