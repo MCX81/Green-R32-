@@ -115,7 +115,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
-          <p>&copy; 2024 EMAG. Toate drepturile rezervate.</p>
+          <p>&copy; 2024 R32. Toate drepturile rezervate.</p>
         </div>
       </div>
     </footer>
