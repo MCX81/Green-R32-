@@ -219,51 +219,53 @@ const Catalog = () => {
 
               {/* Products Grid */}
               <div className="flex-1">
-            {/* Sort and Filter Toggle */}
-            <div className="flex items-center justify-between mb-6">
-              <Button
-                variant="outline"
-                onClick={() => setShowFilters(!showFilters)}
-                className="rounded-xl border-2"
-              >
-                <SlidersHorizontal className="h-5 w-5 mr-2" />
-                {showFilters ? 'Ascunde Filtre' : 'Afișează Filtre'}
-              </Button>
+                {/* Sort and Filter Toggle */}
+                <div className="flex items-center justify-between mb-6">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowFilters(!showFilters)}
+                    className="rounded-xl border-2"
+                  >
+                    <SlidersHorizontal className="h-5 w-5 mr-2" />
+                    {showFilters ? 'Ascunde Filtre' : 'Afișează Filtre'}
+                  </Button>
 
-              <div className="flex items-center space-x-2">
-                <span className="text-sm text-gray-600">Sortează după:</span>
-                <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-48 rounded-xl border-2">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="default">Implicit</SelectItem>
-                    <SelectItem value="price-asc">Preț crescator</SelectItem>
-                    <SelectItem value="price-desc">Preț descrescator</SelectItem>
-                    <SelectItem value="rating">Rating</SelectItem>
-                    <SelectItem value="name">Nume A-Z</SelectItem>
-                  </SelectContent>
-                </Select>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm text-gray-600">Sortează după:</span>
+                    <Select value={sortBy} onValueChange={setSortBy}>
+                      <SelectTrigger className="w-48 rounded-xl border-2">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="default">Implicit</SelectItem>
+                        <SelectItem value="price-asc">Preț crescator</SelectItem>
+                        <SelectItem value="price-desc">Preț descrescator</SelectItem>
+                        <SelectItem value="rating">Rating</SelectItem>
+                        <SelectItem value="name">Nume A-Z</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                {/* Products */}
+                {filteredProducts.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {filteredProducts.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        onAddToCart={handleAddToCart}
+                        onAddToWishlist={handleAddToWishlist}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <Card className="p-12 text-center rounded-2xl">
+                    <p className="text-gray-500 text-lg">Nu au fost găsite produse.</p>
+                  </Card>
+                )}
               </div>
             </div>
-
-            {/* Products */}
-            {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {filteredProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    onAddToCart={handleAddToCart}
-                    onAddToWishlist={handleAddToWishlist}
-                  />
-                ))}
-              </div>
-            ) : (
-              <Card className="p-12 text-center rounded-2xl">
-                <p className="text-gray-500 text-lg">Nu au fost găsite produse.</p>
-              </Card>
-            )}
           </div>
         </div>
       </div>
