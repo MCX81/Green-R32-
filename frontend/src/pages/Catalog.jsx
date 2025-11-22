@@ -215,10 +215,10 @@ const Catalog = () => {
                 </div>
               </div>
             </Card>
-          </aside>
+              </aside>
 
-          {/* Products Grid */}
-          <div className="flex-1">
+              {/* Products Grid */}
+              <div className="flex-1">
             {/* Sort and Filter Toggle */}
             <div className="flex items-center justify-between mb-6">
               <Button
