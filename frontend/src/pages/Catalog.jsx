@@ -130,9 +130,9 @@ const Catalog = () => {
             </div>
 
             <div className="flex gap-6">
-          {/* Filters Sidebar */}
-          <aside className={`${showFilters ? 'w-64' : 'w-0'} transition-all duration-300 overflow-hidden flex-shrink-0`}>
-            <Card className="p-6 rounded-2xl border-2 border-gray-100 sticky top-24">
+              {/* Filters Sidebar */}
+              <aside className={`${showFilters ? 'w-64' : 'w-0'} transition-all duration-300 overflow-hidden flex-shrink-0`}>
+                <Card className="p-6 rounded-2xl border-2 border-gray-100 sticky top-24">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="font-bold text-lg">Filtre</h2>
                 <Button
