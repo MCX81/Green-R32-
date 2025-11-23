@@ -272,6 +272,83 @@ const Backup = () => {
         </Button>
       </Card>
 
+      {/* Restore Backup Card */}
+      <Card className="rounded-2xl border-2 border-gray-100 p-6 mb-6">
+        <div className="flex items-center space-x-3 mb-6">
+          <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+            <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            </svg>
+          </div>
+          <div>
+            <h2 className="text-xl font-bold">Restaurează Backup</h2>
+            <p className="text-sm text-gray-600">
+              Încarcă un fișier JSON de backup pentru a restaura datele
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 mb-6">
+          <div className="flex items-start space-x-3">
+            <AlertCircle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
+            <div className="text-sm text-orange-800">
+              <p className="font-semibold mb-2">⚠️ ATENȚIE - Acțiune Periculoasă!</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Toate categoriile curente vor fi ȘTERSE și înlocuite</li>
+                <li>Toate produsele curente vor fi ȘTERSE și înlocuite</li>
+                <li>Toate review-urile curente vor fi ȘTERSE și înlocuite</li>
+                <li>Comenzile noi vor fi păstrate (nu se șterg)</li>
+                <li>Creați un backup înainte de restaurare!</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* File Input */}
+        <div className="mb-6">
+          <label className="block text-sm font-semibold mb-2">
+            Selectează fișierul de backup (JSON)
+          </label>
+          <input
+            type="file"
+            accept=".json,application/json"
+            onChange={handleFileSelect}
+            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none"
+          />
+          {selectedFile && (
+            <div className="mt-3 p-3 bg-blue-50 rounded-xl flex items-center space-x-2">
+              <CheckCircle className="h-5 w-5 text-blue-600" />
+              <span className="text-sm text-blue-800">
+                <strong>{selectedFile.name}</strong> ({(selectedFile.size / 1024).toFixed(2)} KB)
+              </span>
+            </div>
+          )}
+        </div>
+
+        <Button
+          onClick={handleRestore}
+          disabled={restoring || !selectedFile}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-6 text-lg font-semibold disabled:opacity-50"
+        >
+          {restoring ? (
+            <>
+              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Se restaurează backup-ul...
+            </>
+          ) : (
+            <>
+              <svg className="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+              </svg>
+              Restaurează Backup Acum
+            </>
+          )}
+        </Button>
+      </Card>
+
       {/* Instructions Card */}
       <Card className="rounded-2xl border-2 border-gray-100 p-6">
         <div className="flex items-center space-x-3 mb-4">
