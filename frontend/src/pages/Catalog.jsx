@@ -112,8 +112,11 @@ const Catalog = () => {
   };
 
   const getCategoryName = () => {
-    const cat = categories.find(c => c.slug === category);
-    return cat ? cat.name : 'Toate Produsele';
+    if (category) {
+      // Try to get category name from URL parameter
+      return category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+    return 'Toate Produsele';
   };
 
   return (
