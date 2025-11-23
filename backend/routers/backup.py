@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import StreamingResponse
-from utils.dependencies import get_current_user, admin_required
-from database import db
+from utils.dependencies import get_current_admin_user, db
 from datetime import datetime
 import json
 import io
+import os
 
 router = APIRouter(prefix="/api/admin/backup", tags=["Backup"])
 
