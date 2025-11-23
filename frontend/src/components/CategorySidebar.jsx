@@ -36,8 +36,9 @@ const CategorySidebar = () => {
     }
   };
 
-  const handleCategoryHover = (categoryId, element) => {
-    const subcategories = getSubcategories(categoryId);
+  // Memoized handlers to prevent stale closures
+  const handleCategoryHover = useCallback((categoryId, element) => {
+    const subcategories = categories.filter(cat => cat.parentId === categoryId);
     if (subcategories.length === 0) return;
     
     setHoveredCategory(categoryId);
@@ -50,7 +51,11 @@ const CategorySidebar = () => {
         left: rect.right + 2
       });
     }
-  };
+  }, [categories]);
+
+  const handleCategoryLeave = useCallback(() => {
+    setHoveredCategory(null);
+  }, []);
 
   // Get only main categories (no parentId)
   const mainCategories = categories.filter(cat => !cat.parentId);
