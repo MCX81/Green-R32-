@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { User, Package, Heart, Settings, LogOut } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { useAuth } from '../context/AuthContext';
 
 const Account = () => {
-  const [user] = useState({
-    name: 'Ion Popescu',
-    email: 'ion.popescu@email.com',
-    phone: '0712345678',
-    address: 'Str. Exemplu nr. 123, București'
-  });
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
+
+  if (!user) {
+    return <div className="min-h-screen bg-gray-50 flex items-center justify-center">Se încarcă...</div>;
+  }
 
   const mockOrders = [
     {
