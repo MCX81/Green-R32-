@@ -20,15 +20,19 @@ db = client[os.environ.get('DB_NAME', 'r32_ecommerce')]
 async def seed_database():
     print("Starting database seeding...")
     
-    # Clear existing data
-    print("Clearing existing data...")
-    await db.users.delete_many({})
-    await db.products.delete_many({})
-    await db.categories.delete_many({})
-    await db.carts.delete_many({})
-    await db.orders.delete_many({})
-    await db.reviews.delete_many({})
-    await db.wishlists.delete_many({})
+    # Check if data already exists
+    existing_categories = await db.categories.count_documents({})
+    existing_products = await db.products.count_documents({})
+    
+    if existing_categories > 0 or existing_products > 0:
+        print(f"⚠️  Database already contains data:")
+        print(f"   - Categories: {existing_categories}")
+        print(f"   - Products: {existing_products}")
+        print("   Skipping seed to preserve existing data.")
+        print("   To force re-seed, manually delete data first.")
+        return
+    
+    print("Database is empty. Proceeding with seeding...")
     
     # Create admin user
     print("Creating admin user...")
