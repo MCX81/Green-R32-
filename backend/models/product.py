@@ -33,6 +33,7 @@ class ProductUpdate(BaseModel):
     stock: Optional[int] = None
     isNew: Optional[bool] = None
     discount: Optional[int] = None
+    featured: Optional[bool] = None
 
 class Product(ProductBase):
     id: str = Field(alias="_id")
