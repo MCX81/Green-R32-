@@ -8,13 +8,15 @@ import { Card } from '../components/ui/card';
 import { Checkbox } from '../components/ui/checkbox';
 import { Slider } from '../components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { products, categories, brands, priceRanges } from '../mock/mockData';
+import { brands, priceRanges } from '../mock/mockData';
+import { productsAPI } from '../services/api';
 import { useToast } from '../hooks/use-toast';
 
 const Catalog = () => {
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedPriceRange, setSelectedPriceRange] = useState(null);
   const [sortBy, setSortBy] = useState('default');
@@ -25,60 +27,67 @@ const Catalog = () => {
   const search = searchParams.get('search');
 
   useEffect(() => {
-    let result = [...products];
-
-    // Filter by category
-    if (category) {
-      result = result.filter(p => p.category === category);
-    }
-
-    // Filter by special filters
-    if (filter === 'oferte') {
-      result = result.filter(p => p.discount > 0);
-    } else if (filter === 'noutati') {
-      result = result.filter(p => p.isNew);
-    }
-
-    // Search filter
-    if (search) {
-      result = result.filter(p => 
-        p.name.toLowerCase().includes(search.toLowerCase()) ||
-        p.brand.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-
-    // Brand filter
-    if (selectedBrands.length > 0) {
-      result = result.filter(p => selectedBrands.includes(p.brand));
-    }
-
-    // Price range filter
-    if (selectedPriceRange) {
-      result = result.filter(p => 
-        p.price >= selectedPriceRange.min && p.price <= selectedPriceRange.max
-      );
-    }
-
-    // Sorting
-    switch (sortBy) {
-      case 'price-asc':
-        result.sort((a, b) => a.price - b.price);
-        break;
-      case 'price-desc':
-        result.sort((a, b) => b.price - a.price);
-        break;
-      case 'rating':
-        result.sort((a, b) => b.rating - a.rating);
-        break;
-      case 'name':
-        result.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      default:
-        break;
-    }
-
-    setFilteredProducts(result);
+    loadProducts();
   }, [category, filter, search, selectedBrands, selectedPriceRange, sortBy]);
+
+  const loadProducts = async () => {
+    try {
+      setLoading(true);
+      const params = {};
+      
+      // Apply filters
+      if (category) params.category = category;
+      if (search) params.search = search;
+      
+      // Special filters
+      if (filter === 'oferte') {
+        params.discount = true;
+      } else if (filter === 'noutati') {
+        params.is_new = true;
+      }
+      
+      // Brand filter (client-side for now, can be moved to backend)
+      if (selectedBrands.length > 0) {
+        params.brand = selectedBrands[0]; // Backend supports single brand, we'll filter rest client-side
+      }
+      
+      // Price range
+      if (selectedPriceRange) {
+        params.min_price = selectedPriceRange.min;
+        params.max_price = selectedPriceRange.max;
+      }
+      
+      // Sorting
+      const sortMapping = {
+        'price-asc': 'price_asc',
+        'price-desc': 'price_desc',
+        'rating': 'rating',
+        'name': 'name'
+      };
+      if (sortBy && sortBy !== 'default') {
+        params.sort_by = sortMapping[sortBy];
+      }
+      
+      const response = await productsAPI.getAll(params);
+      let products = response.data;
+      
+      // Additional client-side filtering for multiple brands
+      if (selectedBrands.length > 1) {
+        products = products.filter(p => selectedBrands.includes(p.brand));
+      }
+      
+      setFilteredProducts(products);
+    } catch (error) {
+      console.error('Error loading products:', error);
+      toast({
+        title: 'Eroare',
+        description: 'Nu s-au putut încărca produsele.',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleAddToCart = (product) => {
     toast({
