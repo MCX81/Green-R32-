@@ -5,7 +5,56 @@ from bson import ObjectId
 from datetime import datetime, timedelta
 from typing import List, Optional
 
+from models.user import UserLogin, Token
+from utils.auth import verify_password, create_access_token
+
 router = APIRouter(prefix="/api/admin", tags=["Admin"])
+
+@router.post("/login", response_model=Token)
+async def admin_login(credentials: UserLogin):
+    """Admin login - ONLY for admin users"""
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    # Find user by email
+    user = await db.users.find_one({"email": credentials.email})
+    logger.info(f"Admin login attempt for {credentials.email}, user found: {user is not None}")
+    
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password"
+        )
+    
+    # SECURITY: Only allow admin users to login through this endpoint
+    if user.get("role") != "admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Access denied. Admin privileges required."
+        )
+    
+    # Verify password
+    password_valid = verify_password(credentials.password, user["password"])
+    logger.info(f"Admin password verification result: {password_valid}")
+    
+    if not password_valid:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password"
+        )
+    
+    # Create access token
+    access_token = create_access_token(data={"sub": str(user["_id"])})
+    
+    # Prepare user response
+    user["_id"] = str(user["_id"])
+    user.pop("password", None)
+    
+    return {
+        "access_token": access_token,
+        "token_type": "bearer",
+        "user": user
+    }
 
 @router.get("/stats")
 async def get_dashboard_stats(current_admin: dict = Depends(get_current_admin_user)):
