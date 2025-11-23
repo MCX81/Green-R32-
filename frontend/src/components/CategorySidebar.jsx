@@ -6,6 +6,7 @@ import { categoriesAPI } from '../services/api';
 
 const CategorySidebar = () => {
   const [categories, setCategories] = useState([]);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
   
   const iconMap = {
     'Smartphone': Smartphone,
