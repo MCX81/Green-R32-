@@ -2,13 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ChevronDown, SlidersHorizontal } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
-import CategorySidebar from '../components/CategorySidebar';
+import CatalogSidebar from '../components/CatalogSidebar';
 import { Button } from '../components/ui/button';
-import { Card } from '../components/ui/card';
-import { Checkbox } from '../components/ui/checkbox';
-import { Slider } from '../components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { brands, priceRanges } from '../mock/mockData';
 import { productsAPI } from '../services/api';
 import { useToast } from '../hooks/use-toast';
 
