@@ -8,6 +8,7 @@ import {
   Users, 
   FolderTree,
   MessageSquare,
+  Database,
   LogOut,
   Home
 } from 'lucide-react';
