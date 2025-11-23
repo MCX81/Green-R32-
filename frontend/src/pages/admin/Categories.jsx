@@ -238,72 +238,175 @@ const Categories = () => {
         </Dialog>
       </div>
 
-      {/* Categories Table */}
+      {/* Filter Tabs */}
+      <div className="mb-4 flex space-x-2">
+        <Button
+          variant={filterType === 'all' ? 'default' : 'outline'}
+          onClick={() => setFilterType('all')}
+          className={`rounded-xl ${filterType === 'all' ? 'bg-green-600 hover:bg-green-700' : ''}`}
+        >
+          Toate ({categories.length})
+        </Button>
+        <Button
+          variant={filterType === 'main' ? 'default' : 'outline'}
+          onClick={() => setFilterType('main')}
+          className={`rounded-xl ${filterType === 'main' ? 'bg-green-600 hover:bg-green-700' : ''}`}
+        >
+          Principale ({categories.filter(c => !c.parentId).length})
+        </Button>
+        <Button
+          variant={filterType === 'sub' ? 'default' : 'outline'}
+          onClick={() => setFilterType('sub')}
+          className={`rounded-xl ${filterType === 'sub' ? 'bg-green-600 hover:bg-green-700' : ''}`}
+        >
+          Subcategorii ({categories.filter(c => c.parentId).length})
+        </Button>
+      </div>
+
+      {/* Categories Hierarchical View */}
       <Card className="rounded-2xl border-2 border-gray-100">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="text-left py-4 px-6 font-semibold text-gray-700">Nume</th>
-                <th className="text-left py-4 px-6 font-semibold text-gray-700">Tip</th>
-                <th className="text-left py-4 px-6 font-semibold text-gray-700">Slug</th>
-                <th className="text-left py-4 px-6 font-semibold text-gray-700">Icon</th>
-                <th className="text-left py-4 px-6 font-semibold text-gray-700">Descriere</th>
-                <th className="text-left py-4 px-6 font-semibold text-gray-700">Acțiuni</th>
-              </tr>
-            </thead>
-            <tbody>
-              {categories.map((category) => {
+        <div className="p-6 space-y-4">
+          {filterType === 'all' ? (
+            // Hierarchical view
+            getMainCategories().map((mainCat) => {
+              const subcats = getSubcategories(mainCat._id);
+              const isExpanded = expandedCategories.has(mainCat._id);
+              
+              return (
+                <div key={mainCat._id} className="border-2 border-gray-100 rounded-xl overflow-hidden">
+                  {/* Main Category */}
+                  <div className="bg-green-50 p-4 flex items-center justify-between">
+                    <div className="flex-1 flex items-center space-x-3">
+                      <button
+                        onClick={() => toggleCategory(mainCat._id)}
+                        className="text-green-600 hover:text-green-700"
+                      >
+                        <svg
+                          className={`w-5 h-5 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                      <div>
+                        <div className="font-bold text-lg">{mainCat.name}</div>
+                        <div className="text-sm text-gray-600">
+                          {mainCat.slug} • {mainCat.icon || 'Fără icon'} • {subcats.length} subcategorii
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex space-x-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleEdit(mainCat)}
+                        className="rounded-xl bg-white"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleDelete(mainCat._id)}
+                        className="rounded-xl bg-white text-red-600 hover:bg-red-50"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Subcategories */}
+                  {isExpanded && subcats.length > 0 && (
+                    <div className="bg-white divide-y divide-gray-100">
+                      {subcats.map((subCat) => (
+                        <div key={subCat._id} className="p-4 pl-12 flex items-center justify-between hover:bg-gray-50">
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2">
+                              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                              </svg>
+                              <span className="font-semibold">{subCat.name}</span>
+                              <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-lg">Subcategorie</span>
+                            </div>
+                            <div className="text-sm text-gray-500 mt-1 ml-6">{subCat.slug}</div>
+                          </div>
+                          <div className="flex space-x-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleEdit(subCat)}
+                              className="rounded-xl"
+                            >
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleDelete(subCat._id)}
+                              className="rounded-xl text-red-600 hover:bg-red-50"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          ) : (
+            // Flat view for filtered results
+            <div className="space-y-2">
+              {getFilteredCategories().map((category) => {
                 const parentCategory = categories.find(cat => cat._id === category.parentId);
                 const isSubcategory = !!category.parentId;
                 
                 return (
-                  <tr key={category._id} className="border-t hover:bg-gray-50">
-                    <td className="py-4 px-6">
-                      <div className={isSubcategory ? 'pl-6' : ''}>
-                        <span className="font-semibold">{category.name}</span>
+                  <div key={category._id} className={`border-2 border-gray-100 rounded-xl p-4 flex items-center justify-between ${
+                    isSubcategory ? 'bg-blue-50' : 'bg-green-50'
+                  }`}>
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-2">
+                        <span className="font-bold text-lg">{category.name}</span>
+                        <span className={`px-2 py-1 text-xs rounded-lg font-semibold ${
+                          isSubcategory ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'
+                        }`}>
+                          {isSubcategory ? 'Subcategorie' : 'Principală'}
+                        </span>
+                      </div>
+                      <div className="text-sm text-gray-600 mt-1">
+                        {category.slug} • {category.icon || 'Fără icon'}
                         {isSubcategory && parentCategory && (
-                          <div className="text-xs text-gray-500 mt-1">
-                            Sub: {parentCategory.name}
-                          </div>
+                          <span> • Sub: {parentCategory.name}</span>
                         )}
                       </div>
-                    </td>
-                    <td className="py-4 px-6">
-                      <span className={`px-3 py-1 rounded-xl text-xs font-semibold ${
-                        isSubcategory ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'
-                      }`}>
-                        {isSubcategory ? 'Subcategorie' : 'Principală'}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6 text-gray-600">{category.slug}</td>
-                    <td className="py-4 px-6 text-gray-600">{category.icon || '-'}</td>
-                    <td className="py-4 px-6 text-gray-600">{category.description || '-'}</td>
-                    <td className="py-4 px-6">
-                      <div className="flex space-x-2">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleEdit(category)}
-                          className="rounded-xl"
-                        >
-                          <Edit className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleDelete(category._id)}
-                          className="rounded-xl text-red-600 hover:bg-red-50"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
+                    </div>
+                    <div className="flex space-x-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleEdit(category)}
+                        className="rounded-xl bg-white"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => handleDelete(category._id)}
+                        className="rounded-xl bg-white text-red-600 hover:bg-red-50"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
                 );
               })}
-            </tbody>
-          </table>
+            </div>
+          )}
         </div>
       </Card>
     </div>
