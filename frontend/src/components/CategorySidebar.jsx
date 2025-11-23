@@ -69,12 +69,12 @@ const CategorySidebar = () => {
         <nav className="divide-y divide-gray-100">
           {mainCategories.map((category) => {
             const Icon = iconMap[category.icon] || Smartphone;
-            const subcategories = getSubcategories(category._id);
             
             return (
               <div
                 key={category._id}
-                onMouseEnter={() => setHoveredCategory(category._id)}
+                ref={(el) => categoryRefs.current[category._id] = el}
+                onMouseEnter={(e) => handleCategoryHover(category._id, e.currentTarget)}
                 onMouseLeave={() => setHoveredCategory(null)}
               >
                 <Link
