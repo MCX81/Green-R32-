@@ -159,31 +159,34 @@ const Catalog = () => {
                     <SelectItem value="price-asc">Preț crescator</SelectItem>
                     <SelectItem value="price-desc">Preț descrescator</SelectItem>
                     <SelectItem value="rating">Rating</SelectItem>
-                        <SelectItem value="name">Nume A-Z</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-
-                {/* Products */}
-                {filteredProducts.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {filteredProducts.map((product) => (
-                      <ProductCard
-                        key={product.id}
-                        product={product}
-                        onAddToCart={handleAddToCart}
-                        onAddToWishlist={handleAddToWishlist}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <Card className="p-12 text-center rounded-2xl">
-                    <p className="text-gray-500 text-lg">Nu au fost găsite produse.</p>
-                  </Card>
-                )}
+                    <SelectItem value="name">Nume A-Z</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
+
+            {/* Products */}
+            {loading ? (
+              <div className="text-center py-12">
+                <p className="text-gray-500">Se încarcă produsele...</p>
+              </div>
+            ) : filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {filteredProducts.map((product) => (
+                  <ProductCard
+                    key={product._id}
+                    product={product}
+                    onAddToCart={handleAddToCart}
+                    onAddToWishlist={handleAddToWishlist}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="p-12 text-center rounded-2xl bg-white border-2 border-gray-100">
+                <p className="text-gray-500 text-lg">Nu au fost găsite produse.</p>
+              </div>
+            )}
+          </div>
           </div>
         </div>
       </div>
