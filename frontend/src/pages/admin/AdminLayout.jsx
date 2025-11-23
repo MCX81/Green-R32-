@@ -16,7 +16,7 @@ import { Button } from '../../components/ui/button';
 const AdminLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, logout, isAdmin, loading } = useAuth();
+  const { user, logout, isAdmin, loading, isAuthenticated } = useAuth();
 
   // Redirect if not admin
   React.useEffect(() => {
