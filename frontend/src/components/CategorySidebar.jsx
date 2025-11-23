@@ -36,6 +36,22 @@ const CategorySidebar = () => {
     }
   };
 
+  const handleCategoryHover = (categoryId, element) => {
+    const subcategories = getSubcategories(categoryId);
+    if (subcategories.length === 0) return;
+    
+    setHoveredCategory(categoryId);
+    
+    // Calculate dynamic position based on element
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      setPanelPosition({
+        top: rect.top,
+        left: rect.right + 2
+      });
+    }
+  };
+
   // Get only main categories (no parentId)
   const mainCategories = categories.filter(cat => !cat.parentId);
   
