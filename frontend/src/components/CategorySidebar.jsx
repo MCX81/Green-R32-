@@ -72,7 +72,7 @@ const CategorySidebar = () => {
               
               {/* Subcategories Panel - CSS hover only */}
               {hasSubcategories && (
-                <div className="absolute left-full top-0 ml-1 w-64 bg-white border-2 border-gray-100 rounded-2xl shadow-2xl p-2 opacity-0 invisible group-hover/category:opacity-100 group-hover/category:visible transition-all duration-200 z-[9999]">
+                <div className="absolute left-full top-0 ml-1 w-64 bg-white border-2 border-gray-100 rounded-2xl shadow-2xl p-2 opacity-0 pointer-events-none group-hover/category:opacity-100 group-hover/category:pointer-events-auto transition-opacity duration-200 z-50">
                   <div className="font-bold text-sm text-gray-900 p-3 border-b">
                     {category.name}
                   </div>
