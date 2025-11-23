@@ -69,6 +69,7 @@ const Categories = () => {
       slug: category.slug,
       icon: category.icon || '',
       description: category.description || '',
+      parentId: category.parentId || '',
     });
     setIsDialogOpen(true);
   };
