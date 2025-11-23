@@ -9,11 +9,14 @@ router = APIRouter(prefix="/api/categories", tags=["Categories"])
 
 @router.get("", response_model=List[Category])
 async def get_categories():
-    """Get all categories"""
-    categories = await db.categories.find().to_list(length=100)
+    """Get all categories with subcategories"""
+    categories = await db.categories.find().to_list(length=200)
     
     for category in categories:
         category["_id"] = str(category["_id"])
+        # Convert parentId if exists
+        if category.get("parentId"):
+            category["parentId"] = str(category["parentId"]) if category["parentId"] else None
     
     return categories
 
