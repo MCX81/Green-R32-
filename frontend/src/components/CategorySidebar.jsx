@@ -73,10 +73,10 @@ const CategorySidebar = () => {
             return (
               <div
                 key={category._id}
-                onMouseEnter={() => setHoveredCategory(category._id)}
+                ref={(el) => categoryRefs.current[category._id] = el}
+                onMouseEnter={() => handleCategoryHover(category._id)}
                 onMouseLeave={() => setHoveredCategory(null)}
                 className="relative"
-                style={{ position: 'relative' }}
               >
                 <Link
                   to={`/catalog?category=${category.slug}`}
