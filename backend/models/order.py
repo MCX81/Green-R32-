@@ -44,6 +44,8 @@ class Order(BaseModel):
     shipping: float
     total: float
     status: OrderStatus = OrderStatus.PENDING
+    paymentMethod: str = "cash"
+    notes: Optional[str] = None
     shippingAddress: ShippingAddress
     createdAt: datetime = Field(default_factory=datetime.utcnow)
     updatedAt: datetime = Field(default_factory=datetime.utcnow)
