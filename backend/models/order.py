@@ -28,6 +28,12 @@ class ShippingAddress(BaseModel):
 class OrderCreate(BaseModel):
     items: List[OrderItem]
     shippingAddress: ShippingAddress
+    paymentMethod: str = "cash"
+    notes: Optional[str] = None
+    subtotal: Optional[float] = None
+    shipping: Optional[float] = None
+    total: Optional[float] = None
+    status: Optional[str] = "pending"
 
 class Order(BaseModel):
     id: str = Field(alias="_id")
