@@ -22,23 +22,7 @@ const CategorySidebar = () => {
 
   useEffect(() => {
     loadCategories();
-    
-    // Cleanup timeout on unmount
-    return () => {
-      if (leaveTimeoutRef.current) {
-        clearTimeout(leaveTimeoutRef.current);
-      }
-    };
   }, []);
-
-  // Reset hover state when location changes (navigation between pages)
-  useEffect(() => {
-    setHoveredCategory(null);
-    if (leaveTimeoutRef.current) {
-      clearTimeout(leaveTimeoutRef.current);
-      leaveTimeoutRef.current = null;
-    }
-  }, [location.pathname]);
 
   const loadCategories = async () => {
     try {
