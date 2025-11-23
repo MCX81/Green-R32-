@@ -22,6 +22,7 @@ import Categories from "./pages/admin/Categories";
 import Orders from "./pages/admin/Orders";
 import Users from "./pages/admin/Users";
 import Reviews from "./pages/admin/Reviews";
+import Backup from "./pages/admin/Backup";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
