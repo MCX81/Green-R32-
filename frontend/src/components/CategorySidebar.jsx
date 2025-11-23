@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Smartphone, Laptop, Tv, Refrigerator, Gamepad2, Shirt, BookOpen, Home as HomeIcon, Dumbbell, Baby } from 'lucide-react';
 import { Card } from './ui/card';
@@ -7,6 +7,8 @@ import { categoriesAPI } from '../services/api';
 const CategorySidebar = () => {
   const [categories, setCategories] = useState([]);
   const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [panelPosition, setPanelPosition] = useState({ top: 0, left: 0 });
+  const categoryRefs = useRef({});
   
   const iconMap = {
     'Smartphone': Smartphone,
