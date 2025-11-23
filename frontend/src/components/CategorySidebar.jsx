@@ -49,19 +49,19 @@ const CategorySidebar = () => {
           Toate Categoriile
         </div>
         <nav className="divide-y divide-gray-100">
-          {mainCategories.map((category, index) => {
+          {mainCategories.map((category) => {
             const Icon = iconMap[category.icon] || Smartphone;
             const subcategories = getSubcategories(category._id);
-            const hasSubcategories = subcategories.length > 0;
             
             return (
               <div
                 key={category._id}
-                className="relative group/category"
+                onMouseEnter={() => setHoveredCategory(category._id)}
+                onMouseLeave={() => setHoveredCategory(null)}
               >
                 <Link
                   to={`/catalog?category=${category.slug}`}
-                  className="flex items-center justify-between p-4 hover:bg-green-50 transition-colors group relative block"
+                  className="flex items-center justify-between p-4 hover:bg-green-50 transition-colors group"
                 >
                   <div className="flex items-center space-x-3">
                     <Icon className="h-5 w-5 text-green-600" />
@@ -77,20 +77,22 @@ const CategorySidebar = () => {
         </nav>
       </Card>
       
-      {/* Subcategories Floating Panels - OUTSIDE Card with FIXED positioning */}
-      {mainCategories.map((category) => {
+      {/* Floating Subcategories Panel - FIXED position OUTSIDE Card */}
+      {hoveredCategory && mainCategories.filter(cat => cat._id === hoveredCategory).map((category) => {
         const subcategories = getSubcategories(category._id);
         if (subcategories.length === 0) return null;
         
         return (
           <div
-            key={`panel-${category._id}`}
-            className="fixed bg-white border-2 border-gray-100 rounded-2xl shadow-2xl p-2 opacity-0 pointer-events-none peer-hover:opacity-100 peer-hover:pointer-events-auto transition-opacity duration-200 z-[9999]"
+            key={`floating-${category._id}`}
+            className="fixed bg-white border-2 border-gray-100 rounded-2xl shadow-2xl p-2 z-[9999]"
             style={{
-              width: '256px',
-              left: 'calc(16rem + 1.5rem + 0.25rem)', // w-64 + px-4 + ml-1
-              top: `calc(6rem + ${category.order || 0} * 3.5rem)` // approximate position
+              left: 'calc(16rem + 2.5rem)',
+              top: '6rem',
+              width: '256px'
             }}
+            onMouseEnter={() => setHoveredCategory(category._id)}
+            onMouseLeave={() => setHoveredCategory(null)}
           >
             <div className="font-bold text-sm text-gray-900 p-3 border-b">
               {category.name}
