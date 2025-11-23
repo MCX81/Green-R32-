@@ -97,6 +97,7 @@ const Categories = () => {
       slug: '',
       icon: '',
       description: '',
+      parentId: '',
     });
   };
 
