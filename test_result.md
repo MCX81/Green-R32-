@@ -166,10 +166,10 @@ backend:
           MINOR FIX APLICAT: Adăugat BackupRestoreRequest model și convert_datetime_fields helper pentru JSON serialization
 
 frontend:
-  - task: "Adăugare UI pentru progres în timp real și feedback detaliat pentru restore"
+  - task: "Fix hover functionality pentru CategorySidebar după navigare Catalog → Home"
     implemented: true
     working: "NA"
-    file: "/app/frontend/src/pages/admin/Backup.jsx"
+    file: "/app/frontend/src/components/CategorySidebar.jsx"
     stuck_count: 0
     priority: "high"
     needs_retesting: true
@@ -177,20 +177,18 @@ frontend:
       - working: "NA"
         agent: "main"
         comment: |
-          Implementat îmbunătățiri UI pentru restore:
-          1. Adăugat state 'restoreProgress' pentru tracking status în timp real
-          2. Crescut timeout la 5 minute (300000ms) pentru fișiere mari
-          3. Afișare progress box colorat în funcție de status (success/error/warning/processing)
-          4. Afișare detalii granulare din backend (lista de progress)
-          5. Îmbunătățit mesajele de eroare cu detalii complete
-          6. Progress box se ascunde automat după 10 secunde
-          7. Indicatori vizuali pentru fiecare status (CheckCircle, AlertCircle, spinner)
+          Implementat fix pentru problema hover-ului pe categorii după navigare:
+          1. Adăugat useLocation hook pentru detectarea schimbărilor de pagină
+          2. Adăugat useEffect care resetează hoveredCategory când se schimbă location.pathname
+          3. Resetat categoryRefs.current când se încarcă categoriile
+          4. Cleanup timeout-uri la schimbarea locației
           
-          UI Progress states:
-          - processing: albastru cu spinner
-          - success: verde cu CheckCircle
-          - warning: portocaliu cu AlertCircle
-          - error: roșu cu AlertCircle
+          Fix-ul ar trebui să rezolve problema unde hover-ul nu mai funcționa după:
+          Home → Catalog → Home navigation
+          
+          Componente afectate:
+          - CategorySidebar.jsx: hover state management și cleanup
+          - Floating panel positioning și event handlers
 
 metadata:
   created_by: "main_agent"
