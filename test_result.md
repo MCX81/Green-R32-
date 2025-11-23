@@ -168,11 +168,11 @@ backend:
 frontend:
   - task: "Fix hover functionality pentru CategorySidebar după navigare Catalog → Home"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/components/CategorySidebar.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
@@ -189,6 +189,32 @@ frontend:
           Componente afectate:
           - CategorySidebar.jsx: hover state management și cleanup
           - Floating panel positioning și event handlers
+      - working: true
+        agent: "testing"
+        comment: |
+          ✅ TESTARE COMPLETĂ - BUG-UL A FOST REZOLVAT CU SUCCES!
+          
+          SCENARII TESTATE:
+          1. ✅ Baseline hover functionality pe Home - FUNCȚIONEAZĂ PERFECT
+          2. ✅ Hover după navigare Catalog → Home - FUNCȚIONEAZĂ PERFECT  
+          3. ✅ Multiple navigări rapide - FUNCȚIONEAZĂ PERFECT
+          
+          REZULTATE DETALIATE:
+          - Step 1 - Initial hover on Home: ✅ PASS (4 subcategorii găsite)
+          - Step 2 - Navigation to Catalog: ✅ PASS 
+          - Step 3 - Navigation back to Home: ✅ PASS
+          - Step 4 - Hover after navigation: ✅ PASS (4 subcategorii găsite)
+          
+          VERIFICĂRI TEHNICE:
+          ✅ CategorySidebar component găsit și funcțional
+          ✅ Floating panel apare cu z-index: 9999
+          ✅ Subcategorii afișate corect (Telefoane Mobile, Tablete, Smartwatch & Wearables)
+          ✅ useLocation hook și useEffect funcționează corect
+          ✅ Cleanup timeout-uri funcționează
+          ✅ Fără erori console
+          
+          CONCLUZIE: Fix-ul implementat cu useLocation hook rezolvă complet problema raportată.
+          Hover functionality funcționează perfect atât inițial cât și după navigare.
 
 metadata:
   created_by: "main_agent"
