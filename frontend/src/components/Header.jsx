@@ -43,7 +43,7 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
                   <img 
                     src="https://customer-assets.emergentagent.com/job_r32-shop/artifacts/woe463o2_generated-image%20%284%29.jpg" 
                     alt="R32 Mascot" 
-                    className="w-20 h-20 object-contain"
+                    className="w-28 h-28 object-contain"
                     style={{ transform: 'scaleX(-1)' }}
                   />
                 </div>
