@@ -46,8 +46,17 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="hidden sm:block">
-                  <p className="text-sm leading-tight" style={{ fontFamily: "'Caveat', cursive" }}>
+                <div className="hidden sm:block" style={{ 
+                  perspective: '300px',
+                  perspectiveOrigin: 'center bottom'
+                }}>
+                  <p className="text-base font-bold leading-tight text-yellow-400" style={{ 
+                    fontFamily: "'Caveat', cursive",
+                    transform: 'rotateX(25deg)',
+                    transformStyle: 'preserve-3d',
+                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                    letterSpacing: '0.05em'
+                  }}>
                     simple
                     <br />
                     as
