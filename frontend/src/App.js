@@ -16,6 +16,10 @@ import AdminLayout from "./pages/admin/AdminLayout";
 import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
+import Categories from "./pages/admin/Categories";
+import Orders from "./pages/admin/Orders";
+import Users from "./pages/admin/Users";
+import Reviews from "./pages/admin/Reviews";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
