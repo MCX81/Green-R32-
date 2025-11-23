@@ -146,118 +146,20 @@ const Catalog = () => {
               <p className="text-gray-600">{filteredProducts.length} produse găsite</p>
             </div>
 
-            <div className="flex gap-6">
-              {/* Filters Sidebar */}
-              <aside className={`${showFilters ? 'w-64' : 'w-0'} transition-all duration-300 overflow-hidden flex-shrink-0`}>
-                <Card className="p-6 rounded-2xl border-2 border-gray-100 sticky top-24">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="font-bold text-lg">Filtre</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    setSelectedBrands([]);
-                    setSelectedPriceRange(null);
-                  }}
-                  className="text-sm text-green-600 hover:text-green-700 rounded-xl"
-                >
-                  Resetează
-                </Button>
-              </div>
-
-              {/* Price Range */}
-              <div className="mb-6">
-                <h3 className="font-semibold mb-3">Preț</h3>
-                <div className="space-y-2">
-                  {priceRanges.map((range) => (
-                    <div key={range.id} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={`price-${range.id}`}
-                        checked={selectedPriceRange?.id === range.id}
-                        onCheckedChange={(checked) => {
-                          setSelectedPriceRange(checked ? range : null);
-                        }}
-                        className="rounded-md"
-                      />
-                      <label
-                        htmlFor={`price-${range.id}`}
-                        className="text-sm cursor-pointer"
-                      >
-                        {range.label}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Brands */}
-              <div className="mb-6">
-                <h3 className="font-semibold mb-3">Brand</h3>
-                <div className="space-y-2 max-h-64 overflow-y-auto">
-                  {brands.map((brand) => (
-                    <div key={brand} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={`brand-${brand}`}
-                        checked={selectedBrands.includes(brand)}
-                        onCheckedChange={() => handleBrandToggle(brand)}
-                        className="rounded-md"
-                      />
-                      <label
-                        htmlFor={`brand-${brand}`}
-                        className="text-sm cursor-pointer"
-                      >
-                        {brand}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Stock Status */}
-              <div>
-                <h3 className="font-semibold mb-3">Disponibilitate</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="in-stock" className="rounded-md" />
-                    <label htmlFor="in-stock" className="text-sm cursor-pointer">
-                      În stoc
-                    </label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="on-sale" className="rounded-md" />
-                    <label htmlFor="on-sale" className="text-sm cursor-pointer">
-                      Cu reducere
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </Card>
-              </aside>
-
-              {/* Products Grid */}
-              <div className="flex-1">
-                {/* Sort and Filter Toggle */}
-                <div className="flex items-center justify-between mb-6">
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowFilters(!showFilters)}
-                    className="rounded-xl border-2"
-                  >
-                    <SlidersHorizontal className="h-5 w-5 mr-2" />
-                    {showFilters ? 'Ascunde Filtre' : 'Afișează Filtre'}
-                  </Button>
-
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-600">Sortează după:</span>
-                    <Select value={sortBy} onValueChange={setSortBy}>
-                      <SelectTrigger className="w-48 rounded-xl border-2">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="default">Implicit</SelectItem>
-                        <SelectItem value="price-asc">Preț crescator</SelectItem>
-                        <SelectItem value="price-desc">Preț descrescator</SelectItem>
-                        <SelectItem value="rating">Rating</SelectItem>
+            {/* Sort */}
+            <div className="flex items-center justify-between mb-6">
+              <div></div>
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-gray-600">Sortează după:</span>
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-48 rounded-xl border-2">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="default">Implicit</SelectItem>
+                    <SelectItem value="price-asc">Preț crescator</SelectItem>
+                    <SelectItem value="price-desc">Preț descrescator</SelectItem>
+                    <SelectItem value="rating">Rating</SelectItem>
                         <SelectItem value="name">Nume A-Z</SelectItem>
                       </SelectContent>
                     </Select>
