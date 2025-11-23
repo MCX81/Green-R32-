@@ -611,10 +611,12 @@ async def seed_database():
             "createdAt": datetime.utcnow(),
             "updatedAt": datetime.utcnow()
         },
+        
+        # Pantofi Sport
         {
             "name": "Nike Air Max 270 React",
             "description": "Adidași Nike Air Max 270 React cu sistem de amortizare Air Max și design modern.",
-            "category": "fashion",
+            "category": "pantofi-sport",
             "brand": "Nike",
             "price": 599,
             "oldPrice": 799,
@@ -626,13 +628,14 @@ async def seed_database():
             "stock": 40,
             "isNew": False,
             "discount": 25,
+            "featured": True,
             "createdAt": datetime.utcnow(),
             "updatedAt": datetime.utcnow()
         },
         {
             "name": "Adidas Ultraboost 22",
             "description": "Adidași Adidas Ultraboost 22 cu tehnologie Boost și talpă Continental pentru aderență maximă.",
-            "category": "fashion",
+            "category": "pantofi-sport",
             "brand": "Adidas",
             "price": 699,
             "oldPrice": None,
@@ -644,6 +647,7 @@ async def seed_database():
             "stock": 35,
             "isNew": True,
             "discount": 0,
+            "featured": False,
             "createdAt": datetime.utcnow(),
             "updatedAt": datetime.utcnow()
         },
