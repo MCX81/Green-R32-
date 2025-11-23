@@ -16,7 +16,6 @@ const Catalog = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedPriceRange, setSelectedPriceRange] = useState(null);
   const [sortBy, setSortBy] = useState('default');
-  const [showFilters, setShowFilters] = useState(true);
 
   const category = searchParams.get('category');
   const filter = searchParams.get('filter');
