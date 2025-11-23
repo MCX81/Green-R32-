@@ -68,27 +68,29 @@ const Checkout = () => {
       // Prepare order data
       const orderData = {
         items: cartItems.map(item => ({
-          productId: item._id || item.id,
-          name: item.name,
-          price: item.price,
-          quantity: item.quantity,
-          image: item.image
+          productId: String(item._id || item.id),
+          name: String(item.name),
+          price: Number(item.price),
+          quantity: Number(item.quantity),
+          image: String(item.image)
         })),
         shippingAddress: {
-          name: formData.name,
-          phone: formData.phone,
-          address: formData.address,
-          city: formData.city,
-          county: formData.county,
-          postalCode: formData.postalCode
+          name: String(formData.name),
+          phone: String(formData.phone),
+          address: String(formData.address),
+          city: String(formData.city),
+          county: String(formData.county),
+          postalCode: formData.postalCode ? String(formData.postalCode) : ''
         },
-        paymentMethod: formData.paymentMethod,
-        subtotal: subtotal,
-        shipping: shipping,
-        total: total,
-        notes: formData.notes,
+        paymentMethod: String(formData.paymentMethod),
+        notes: formData.notes || '',
+        subtotal: Number(subtotal),
+        shipping: Number(shipping),
+        total: Number(total),
         status: 'pending'
       };
+
+      console.log('Sending order data:', orderData);
 
       // Create order
       const response = await ordersAPI.create(orderData);
