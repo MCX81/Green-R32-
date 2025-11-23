@@ -104,7 +104,7 @@ async def restore_database(
     backup_file: str,
     current_user: dict = Depends(get_current_admin_user)
 ):
-    """Restore database from JSON backup - optimized for bulk operations"""
+    """Restore database from JSON backup - highly optimized with batch processing"""
     try:
         # Parse JSON
         backup_data = json.loads(backup_file)
@@ -119,6 +119,10 @@ async def restore_database(
         collections_data = backup_data["collections"]
         restored_stats = {}
         errors = []
+        progress_details = []
+        
+        # Batch size for large collections
+        BATCH_SIZE = 1000
         
         # Helper function to convert datetime strings
         def convert_dates(items):
@@ -131,105 +135,150 @@ async def restore_database(
                             pass
             return items
         
-        # Restore Categories - BULK OPERATION
+        # Helper function for batch insert
+        async def batch_insert(collection, items, collection_name):
+            if not items:
+                return 0
+            
+            total_inserted = 0
+            total_items = len(items)
+            
+            # Process in batches
+            for i in range(0, total_items, BATCH_SIZE):
+                batch = items[i:i + BATCH_SIZE]
+                try:
+                    result = await collection.insert_many(batch, ordered=False)
+                    total_inserted += len(result.inserted_ids)
+                    progress_details.append(
+                        f"{collection_name}: Batch {i//BATCH_SIZE + 1} - {len(result.inserted_ids)} documente inserate"
+                    )
+                except Exception as e:
+                    errors.append(f"{collection_name} batch {i//BATCH_SIZE + 1}: {str(e)}")
+            
+            return total_inserted
+        
+        # Restore Categories - BULK OPERATION WITH BATCHING
         if "categories" in collections_data and collections_data["categories"]:
             try:
                 categories = collections_data["categories"]
+                progress_details.append(f"Categories: Se procesează {len(categories)} documente...")
                 
                 # Clear existing categories
                 delete_result = await db.categories.delete_many({})
+                progress_details.append(f"Categories: {delete_result.deleted_count} documente vechi șterse")
                 
                 # Convert dates
                 categories = convert_dates(categories)
                 
-                # Bulk insert
-                if categories:
-                    result = await db.categories.insert_many(categories, ordered=False)
-                    restored_stats["categories"] = len(result.inserted_ids)
-                else:
-                    restored_stats["categories"] = 0
+                # Batch insert
+                total = await batch_insert(db.categories, categories, "Categories")
+                restored_stats["categories"] = total
+                progress_details.append(f"Categories: ✓ Total {total} documente restaurate")
                     
             except Exception as e:
                 errors.append(f"Categories: {str(e)}")
                 restored_stats["categories"] = 0
+                progress_details.append(f"Categories: ✗ Eroare")
         
-        # Restore Products - BULK OPERATION
+        # Restore Products - BULK OPERATION WITH BATCHING
         if "products" in collections_data and collections_data["products"]:
             try:
                 products = collections_data["products"]
+                progress_details.append(f"Products: Se procesează {len(products)} documente...")
                 
                 # Clear existing products
-                await db.products.delete_many({})
+                delete_result = await db.products.delete_many({})
+                progress_details.append(f"Products: {delete_result.deleted_count} documente vechi șterse")
                 
                 # Convert dates
                 products = convert_dates(products)
                 
-                # Bulk insert
-                if products:
-                    result = await db.products.insert_many(products, ordered=False)
-                    restored_stats["products"] = len(result.inserted_ids)
-                else:
-                    restored_stats["products"] = 0
+                # Batch insert
+                total = await batch_insert(db.products, products, "Products")
+                restored_stats["products"] = total
+                progress_details.append(f"Products: ✓ Total {total} documente restaurate")
                     
             except Exception as e:
                 errors.append(f"Products: {str(e)}")
                 restored_stats["products"] = 0
+                progress_details.append(f"Products: ✗ Eroare")
         
-        # Restore Reviews - BULK OPERATION
+        # Restore Reviews - BULK OPERATION WITH BATCHING
         if "reviews" in collections_data and collections_data["reviews"]:
             try:
                 reviews = collections_data["reviews"]
+                progress_details.append(f"Reviews: Se procesează {len(reviews)} documente...")
                 
                 # Clear existing reviews
-                await db.reviews.delete_many({})
+                delete_result = await db.reviews.delete_many({})
+                progress_details.append(f"Reviews: {delete_result.deleted_count} documente vechi șterse")
                 
                 # Convert dates
                 reviews = convert_dates(reviews)
                 
-                # Bulk insert
-                if reviews:
-                    result = await db.reviews.insert_many(reviews, ordered=False)
-                    restored_stats["reviews"] = len(result.inserted_ids)
-                else:
-                    restored_stats["reviews"] = 0
+                # Batch insert
+                total = await batch_insert(db.reviews, reviews, "Reviews")
+                restored_stats["reviews"] = total
+                progress_details.append(f"Reviews: ✓ Total {total} documente restaurate")
                     
             except Exception as e:
                 errors.append(f"Reviews: {str(e)}")
                 restored_stats["reviews"] = 0
+                progress_details.append(f"Reviews: ✗ Eroare")
         
-        # Restore Orders - Only new orders (don't delete existing)
+        # Restore Orders - Only new orders (don't delete existing) - OPTIMIZED
         if "orders" in collections_data and collections_data["orders"]:
             try:
                 orders = collections_data["orders"]
+                progress_details.append(f"Orders: Se procesează {len(orders)} documente...")
+                
                 orders = convert_dates(orders)
                 
-                new_orders = []
-                for order in orders:
-                    # Check if order exists
-                    existing = await db.orders.find_one({"orderId": order.get("orderId")})
-                    if not existing:
-                        new_orders.append(order)
+                # OPTIMIZATION: Get all order IDs in ONE query instead of looping
+                order_ids_from_backup = [order.get("orderId") for order in orders if order.get("orderId")]
+                
+                if order_ids_from_backup:
+                    # Single query to get all existing orders
+                    existing_orders = await db.orders.find(
+                        {"orderId": {"$in": order_ids_from_backup}}
+                    ).to_list(length=None)
+                    
+                    existing_order_ids = {order.get("orderId") for order in existing_orders}
+                    progress_details.append(f"Orders: {len(existing_order_ids)} comenzi deja existente")
+                    
+                    # Filter out existing orders
+                    new_orders = [
+                        order for order in orders 
+                        if order.get("orderId") not in existing_order_ids
+                    ]
+                else:
+                    new_orders = orders
                 
                 if new_orders:
-                    result = await db.orders.insert_many(new_orders, ordered=False)
-                    restored_stats["orders"] = len(result.inserted_ids)
+                    # Batch insert new orders
+                    total = await batch_insert(db.orders, new_orders, "Orders")
+                    restored_stats["orders"] = total
+                    progress_details.append(f"Orders: ✓ {total} comenzi noi adăugate")
                 else:
                     restored_stats["orders"] = 0
+                    progress_details.append(f"Orders: Nicio comandă nouă de adăugat")
                     
             except Exception as e:
                 errors.append(f"Orders: {str(e)}")
                 restored_stats["orders"] = 0
+                progress_details.append(f"Orders: ✗ Eroare")
         
         # Build response message
         message = "Backup restaurat cu succes!"
         if errors:
-            message += f" Cu erori: {', '.join(errors)}"
+            message += f" Cu {len(errors)} erori."
         
         return {
             "success": len(errors) == 0,
             "message": message,
             "restored": restored_stats,
             "errors": errors if errors else None,
+            "progress": progress_details,
             "backup_info": {
                 "timestamp": backup_data.get("timestamp"),
                 "database": backup_data.get("database")
