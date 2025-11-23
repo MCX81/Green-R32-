@@ -105,8 +105,8 @@ const CategorySidebar = () => {
             key={`floating-${category._id}`}
             className="fixed bg-white border-2 border-gray-100 rounded-2xl shadow-2xl p-2 z-[9999]"
             style={{
-              left: 'calc(16rem + 2.5rem)',
-              top: '6rem',
+              left: `${panelPosition.left}px`,
+              top: `${panelPosition.top}px`,
               width: '256px'
             }}
             onMouseEnter={() => setHoveredCategory(category._id)}
