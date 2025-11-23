@@ -9,7 +9,7 @@ import os
 router = APIRouter(prefix="/api/admin/backup", tags=["Backup"])
 
 @router.get("/export")
-async def export_database(current_user: dict = Depends(admin_required)):
+async def export_database(current_user: dict = Depends(get_current_admin_user)):
     """Export entire database to JSON format"""
     try:
         # Get current timestamp for filename
