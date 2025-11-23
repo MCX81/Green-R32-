@@ -72,8 +72,7 @@ async def export_database(current_user: dict = Depends(get_current_admin_user)):
         reviews = await db.reviews.find({}).to_list(length=None)
         for review in reviews:
             review["_id"] = str(review["_id"])
-            if "createdAt" in review:
-                review["createdAt"] = review["createdAt"].isoformat()
+            convert_datetime_fields(review)
         backup_data["collections"]["reviews"] = reviews
         
         # Add stats
