@@ -147,8 +147,8 @@ const CategorySidebar = () => {
               width: '256px',
               zIndex: 9999
             }}
-            onMouseEnter={() => setHoveredCategory(category._id)}
-            onMouseLeave={() => setHoveredCategory(null)}
+            onMouseEnter={handlePanelEnter}
+            onMouseLeave={handlePanelLeave}
           >
             <div className="font-bold text-sm text-gray-900 p-3 border-b">
               {category.name}
