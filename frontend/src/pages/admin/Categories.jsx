@@ -215,6 +215,7 @@ const Categories = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="text-left py-4 px-6 font-semibold text-gray-700">Nume</th>
+                <th className="text-left py-4 px-6 font-semibold text-gray-700">Tip</th>
                 <th className="text-left py-4 px-6 font-semibold text-gray-700">Slug</th>
                 <th className="text-left py-4 px-6 font-semibold text-gray-700">Icon</th>
                 <th className="text-left py-4 px-6 font-semibold text-gray-700">Descriere</th>
@@ -222,34 +223,55 @@ const Categories = () => {
               </tr>
             </thead>
             <tbody>
-              {categories.map((category) => (
-                <tr key={category._id} className="border-t hover:bg-gray-50">
-                  <td className="py-4 px-6 font-semibold">{category.name}</td>
-                  <td className="py-4 px-6 text-gray-600">{category.slug}</td>
-                  <td className="py-4 px-6 text-gray-600">{category.icon || '-'}</td>
-                  <td className="py-4 px-6 text-gray-600">{category.description || '-'}</td>
-                  <td className="py-4 px-6">
-                    <div className="flex space-x-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleEdit(category)}
-                        className="rounded-xl"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleDelete(category._id)}
-                        className="rounded-xl text-red-600 hover:bg-red-50"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              {categories.map((category) => {
+                const parentCategory = categories.find(cat => cat._id === category.parentId);
+                const isSubcategory = !!category.parentId;
+                
+                return (
+                  <tr key={category._id} className="border-t hover:bg-gray-50">
+                    <td className="py-4 px-6">
+                      <div className={isSubcategory ? 'pl-6' : ''}>
+                        <span className="font-semibold">{category.name}</span>
+                        {isSubcategory && parentCategory && (
+                          <div className="text-xs text-gray-500 mt-1">
+                            Sub: {parentCategory.name}
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-4 px-6">
+                      <span className={`px-3 py-1 rounded-xl text-xs font-semibold ${
+                        isSubcategory ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'
+                      }`}>
+                        {isSubcategory ? 'Subcategorie' : 'Principală'}
+                      </span>
+                    </td>
+                    <td className="py-4 px-6 text-gray-600">{category.slug}</td>
+                    <td className="py-4 px-6 text-gray-600">{category.icon || '-'}</td>
+                    <td className="py-4 px-6 text-gray-600">{category.description || '-'}</td>
+                    <td className="py-4 px-6">
+                      <div className="flex space-x-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleEdit(category)}
+                          className="rounded-xl"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleDelete(category._id)}
+                          className="rounded-xl text-red-600 hover:bg-red-50"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
