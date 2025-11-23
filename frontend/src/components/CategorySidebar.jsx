@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Smartphone, Laptop, Tv, Refrigerator, Gamepad2, Shirt, BookOpen, Home as HomeIcon, Dumbbell, Baby } from 'lucide-react';
 import { Card } from './ui/card';
 import { categoriesAPI } from '../services/api';
@@ -10,6 +10,7 @@ const CategorySidebar = () => {
   const [panelPosition, setPanelPosition] = useState({ top: 0, left: 0 });
   const categoryRefs = useRef({});
   const leaveTimeoutRef = useRef(null);
+  const location = useLocation();
   
   const iconMap = {
     'Smartphone': Smartphone,
@@ -34,6 +35,15 @@ const CategorySidebar = () => {
       }
     };
   }, []);
+
+  // Reset hover state when location changes (navigation between pages)
+  useEffect(() => {
+    setHoveredCategory(null);
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+  }, [location.pathname]);
 
   const loadCategories = async () => {
     try {
