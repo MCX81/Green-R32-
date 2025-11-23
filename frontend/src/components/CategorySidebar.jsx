@@ -9,6 +9,7 @@ const CategorySidebar = () => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [panelPosition, setPanelPosition] = useState({ top: 0, left: 0 });
   const categoryRefs = useRef({});
+  const leaveTimeoutRef = useRef(null);
   
   const iconMap = {
     'Smartphone': Smartphone,
@@ -25,6 +26,13 @@ const CategorySidebar = () => {
 
   useEffect(() => {
     loadCategories();
+    
+    // Cleanup timeout on unmount
+    return () => {
+      if (leaveTimeoutRef.current) {
+        clearTimeout(leaveTimeoutRef.current);
+      }
+    };
   }, []);
 
   const loadCategories = async () => {
@@ -45,6 +53,12 @@ const CategorySidebar = () => {
   };
 
   const handleCategoryHover = (categoryId) => {
+    // Clear any pending leave timeout
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+    
     setHoveredCategory(categoryId);
     
     // Calculate position
@@ -53,9 +67,29 @@ const CategorySidebar = () => {
       const rect = element.getBoundingClientRect();
       setPanelPosition({
         top: rect.top,
-        left: rect.right + 8
+        left: rect.right + 2 // Reduced gap from 8 to 2
       });
     }
+  };
+  
+  const handleCategoryLeave = () => {
+    // Add a delay before hiding the panel
+    leaveTimeoutRef.current = setTimeout(() => {
+      setHoveredCategory(null);
+    }, 150); // 150ms delay
+  };
+  
+  const handlePanelEnter = () => {
+    // Clear the leave timeout when entering the panel
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+  };
+  
+  const handlePanelLeave = () => {
+    // Hide panel immediately when leaving it
+    setHoveredCategory(null);
   };
 
   return (
