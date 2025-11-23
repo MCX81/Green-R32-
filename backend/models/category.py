@@ -7,6 +7,7 @@ class CategoryBase(BaseModel):
     slug: str
     icon: Optional[str] = None
     description: Optional[str] = None
+    parentId: Optional[str] = None
 
 class CategoryCreate(CategoryBase):
     pass
