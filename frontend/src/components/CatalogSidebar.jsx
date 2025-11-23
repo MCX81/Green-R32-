@@ -65,9 +65,9 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
   const title = currentCategory && subcategories.length > 0 ? currentCategory.name : 'Toate Categoriile';
 
   return (
-    <aside className="w-64 flex-shrink-0">
+    <aside className="w-64 flex-shrink-0 sticky top-24 self-start">
       {/* Categories Card */}
-      <Card className="rounded-2xl border-2 border-gray-100 overflow-hidden mb-4 sticky top-24">
+      <Card className="rounded-2xl border-2 border-gray-100 overflow-hidden mb-4">
         <div className="bg-green-600 text-white p-4 font-bold text-lg">
           {title}
         </div>
