@@ -159,9 +159,11 @@ const Cart = () => {
                   </Button>
                 </div>
 
-                <Button className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white rounded-xl py-6 text-lg font-semibold">
-                  Finalizează Comanda
-                </Button>
+                <Link to="/checkout" state={{ cartItems, total, subtotal, shipping }}>
+                  <Button className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white rounded-xl py-6 text-lg font-semibold">
+                    Finalizează Comanda
+                  </Button>
+                </Link>
 
                 <Link to="/catalog">
                   <Button variant="outline" className="w-full mt-3 rounded-xl border-2">
