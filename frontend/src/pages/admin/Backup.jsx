@@ -220,14 +220,14 @@ const Backup = () => {
         </div>
       </Card>
 
-      {/* Backup Action Card */}
+      {/* Download Backup Card */}
       <Card className="rounded-2xl border-2 border-gray-100 p-6 mb-6">
         <div className="flex items-center space-x-3 mb-6">
           <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
             <Download className="h-6 w-6 text-green-600" />
           </div>
           <div>
-            <h2 className="text-xl font-bold">Creează Backup</h2>
+            <h2 className="text-xl font-bold">Descarcă Backup</h2>
             <p className="text-sm text-gray-600">
               Descarcă o copie JSON a întregii baze de date
             </p>
