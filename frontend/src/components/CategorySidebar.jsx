@@ -41,52 +41,7 @@ const CategorySidebar = () => {
     return categories.filter(cat => cat.parentId === parentId);
   };
 
-  const handleCategoryHover = (categoryId) => {
-    // Clear any pending leave timeout
-    if (leaveTimeoutRef.current) {
-      clearTimeout(leaveTimeoutRef.current);
-      leaveTimeoutRef.current = null;
-    }
-    
-    // Check if category has subcategories before showing panel
-    const subcategories = getSubcategories(categoryId);
-    
-    if (subcategories.length === 0) {
-      return; // Don't show panel if no subcategories
-    }
-    
-    setHoveredCategory(categoryId);
-    
-    // Calculate position
-    const element = categoryRefs.current[categoryId];
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      setPanelPosition({
-        top: rect.top,
-        left: rect.right + 2 // Reduced gap from 8 to 2
-      });
-    }
-  };
-  
-  const handleCategoryLeave = () => {
-    // Add a delay before hiding the panel
-    leaveTimeoutRef.current = setTimeout(() => {
-      setHoveredCategory(null);
-    }, 150); // 150ms delay
-  };
-  
-  const handlePanelEnter = () => {
-    // Clear the leave timeout when entering the panel
-    if (leaveTimeoutRef.current) {
-      clearTimeout(leaveTimeoutRef.current);
-      leaveTimeoutRef.current = null;
-    }
-  };
-  
-  const handlePanelLeave = () => {
-    // Hide panel immediately when leaving it
-    setHoveredCategory(null);
-  };
+ 
 
   return (
     <Card className="rounded-2xl border-2 border-gray-100 overflow-visible sticky top-24">
