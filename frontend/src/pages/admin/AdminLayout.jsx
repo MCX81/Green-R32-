@@ -20,11 +20,15 @@ const AdminLayout = () => {
 
   // Redirect if not admin
   React.useEffect(() => {
-    if (!loading && !isAdmin()) {
-      console.log('Not admin, redirecting. User:', user);
-      navigate('/');
+    if (!loading && !isAuthenticated) {
+      // Not logged in at all - redirect to admin login
+      navigate('/admin/login');
+    } else if (!loading && isAuthenticated && !isAdmin()) {
+      // Logged in but not admin - redirect to admin login
+      logout();
+      navigate('/admin/login');
     }
-  }, [isAdmin, navigate, loading, user]);
+  }, [isAdmin, isAuthenticated, navigate, loading, logout]);
 
   // Show loading while checking auth
   if (loading) {
@@ -35,19 +39,9 @@ const AdminLayout = () => {
     );
   }
 
-  // If not admin after loading, show access denied
-  if (!isAdmin()) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Acces interzis</h1>
-          <p className="text-gray-600 mb-4">Nu aveți permisiuni de administrator.</p>
-          <button onClick={() => navigate('/')} className="text-green-600 hover:underline">
-            Înapoi la pagina principală
-          </button>
-        </div>
-      </div>
-    );
+  // If not authenticated or not admin, don't render
+  if (!isAuthenticated || !isAdmin()) {
+    return null;
   }
 
   const menuItems = [
