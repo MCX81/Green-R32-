@@ -198,8 +198,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Optimizare endpoint /api/admin/backup/restore cu operații bulk și batch processing"
-    - "Adăugare UI pentru progres în timp real și feedback detaliat pentru restore"
+    - "Fix hover functionality pentru CategorySidebar după navigare Catalog → Home"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
