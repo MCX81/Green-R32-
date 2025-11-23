@@ -16,7 +16,7 @@ from routers import auth, products, categories, cart, wishlist, orders, reviews,
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ.get('DB_NAME', 'r32_ecommerce')]
+db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
 app = FastAPI(title="R32 E-Commerce API", version="1.0.0")
