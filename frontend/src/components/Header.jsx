@@ -83,14 +83,19 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
               {isAuthenticated ? (
                 <>
                   <Link to="/account">
-                    <Button variant="ghost" className="rounded-xl hover:bg-gray-100">
+                    <Button variant="ghost" className="rounded-xl hover:bg-gray-100 flex items-center space-x-2">
                       <User className="h-6 w-6" />
+                      {user && <span className="hidden md:inline text-sm">{user.name}</span>}
                     </Button>
                   </Link>
                   <Button 
                     variant="ghost" 
-                    onClick={logout}
+                    onClick={() => {
+                      logout();
+                      window.location.href = '/';
+                    }}
                     className="rounded-xl hover:bg-gray-100"
+                    title="Deconectare"
                   >
                     <LogOut className="h-6 w-6" />
                   </Button>
