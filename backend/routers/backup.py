@@ -1,10 +1,14 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
 from utils.dependencies import get_current_admin_user, db
 from datetime import datetime
 import json
 import io
 import os
+
+class BackupRestoreRequest(BaseModel):
+    backup_file: str
 
 router = APIRouter(prefix="/api/admin/backup", tags=["Backup"])
 
