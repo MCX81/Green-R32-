@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { authAPI } from '../../services/api';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -12,7 +12,6 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,23 +19,23 @@ const AdminLogin = () => {
     setLoading(true);
     setError('');
     
-    const result = await login(email, password);
-    
-    if (result.success) {
-      // Check if user has admin role
-      const userData = JSON.parse(localStorage.getItem('user'));
+    try {
+      // Use admin-specific login endpoint
+      const response = await authAPI.adminLogin({ email, password });
       
-      if (userData && userData.role === 'admin') {
-        // Admin login successful
-        window.location.href = '/admin';
-      } else {
-        // Not an admin
+      // Store token and user data
+      localStorage.setItem('token', response.data.access_token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      
+      // Admin login successful - redirect to admin dashboard
+      window.location.href = '/admin';
+    } catch (err) {
+      console.error('Admin login error:', err);
+      if (err.response?.status === 403) {
         setError('Acces interzis. Nu aveți drepturi de administrator.');
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+      } else {
+        setError('Email sau parolă incorectă');
       }
-    } else {
-      setError('Email sau parolă incorectă');
     }
     
     setLoading(false);
