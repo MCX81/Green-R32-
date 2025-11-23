@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Optimizare funcționalitate backup/restore în admin panel - restore-ul este prea lent și dă timeout în producție"
+user_problem_statement: "Testează problema raportată de utilizator: după ce navighezi din Catalog înapoi la Home, subcategoriile nu mai apar la hover pe categorii. Pe pagina Home există un sidebar cu categorii (CategorySidebar) - când faci hover pe o categorie, ar trebui să apară un panou floating în dreapta cu subcategoriile. Problema: după ce mergi în Catalog și te întorci la Home, hover-ul nu mai funcționează."
 
 backend:
   - task: "Optimizare endpoint /api/admin/backup/restore cu operații bulk și batch processing"
