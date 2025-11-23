@@ -11,6 +11,7 @@ const Backup = () => {
   const [backupInfo, setBackupInfo] = useState(null);
   const [loadingInfo, setLoadingInfo] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [restoreProgress, setRestoreProgress] = useState(null);
   const { toast } = useToast();
 
   useEffect(() => {
