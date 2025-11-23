@@ -150,7 +150,25 @@ const Categories = () => {
               </div>
 
               <div>
-                <Label>Icon (Lucide React)</Label>
+                <Label>Categorie Părinte (opțional)</Label>
+                <Select 
+                  value={formData.parentId} 
+                  onValueChange={(value) => setFormData({...formData, parentId: value})}
+                >
+                  <SelectTrigger className="rounded-xl mt-2">
+                    <SelectValue placeholder="Nicio categorie (categorie principală)" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Nicio categorie (categorie principală)</SelectItem>
+                    {categories.filter(cat => !cat.parentId).map(cat => (
+                      <SelectItem key={cat._id} value={cat._id}>{cat.name}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <Label>Icon (Lucide React) - doar pentru categorii principale</Label>
                 <Input
                   value={formData.icon}
                   onChange={(e) => setFormData({...formData, icon: e.target.value})}
