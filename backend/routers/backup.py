@@ -24,10 +24,26 @@ async def export_database(current_user: dict = Depends(get_current_admin_user)):
             "collections": {}
         }
         
+        # Helper function to convert all datetime fields
+        def convert_datetime_fields(item):
+            """Convert all datetime fields in an item to ISO format"""
+            if isinstance(item, dict):
+                for key, value in item.items():
+                    if hasattr(value, 'isoformat'):  # datetime object
+                        item[key] = value.isoformat()
+                    elif isinstance(value, dict):
+                        convert_datetime_fields(value)
+                    elif isinstance(value, list):
+                        for sub_item in value:
+                            if isinstance(sub_item, dict):
+                                convert_datetime_fields(sub_item)
+            return item
+
         # Categories
         categories = await db.categories.find({}).to_list(length=None)
         for cat in categories:
             cat["_id"] = str(cat["_id"])
+            convert_datetime_fields(cat)
         backup_data["collections"]["categories"] = categories
         
         # Products
