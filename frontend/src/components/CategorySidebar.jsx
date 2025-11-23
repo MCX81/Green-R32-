@@ -44,6 +44,20 @@ const CategorySidebar = () => {
     return categories.filter(cat => cat.parentId === parentId);
   };
 
+  const handleCategoryHover = (categoryId) => {
+    setHoveredCategory(categoryId);
+    
+    // Calculate position
+    const element = categoryRefs.current[categoryId];
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      setPanelPosition({
+        top: rect.top,
+        left: rect.right + 8
+      });
+    }
+  };
+
   return (
     <>
       <Card className="rounded-2xl border-2 border-gray-100 overflow-hidden sticky top-24">
