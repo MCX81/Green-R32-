@@ -73,7 +73,14 @@ const Account = () => {
                 <Settings className="h-5 w-5 mr-3" />
                 Setări
               </Button>
-              <Button variant="ghost" className="w-full justify-start rounded-xl text-red-600">
+              <Button 
+                variant="ghost" 
+                className="w-full justify-start rounded-xl text-red-600"
+                onClick={() => {
+                  logout();
+                  navigate('/login');
+                }}
+              >
                 <LogOut className="h-5 w-5 mr-3" />
                 Deconectare
               </Button>
