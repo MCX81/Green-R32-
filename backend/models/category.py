@@ -17,6 +17,7 @@ class CategoryUpdate(BaseModel):
     slug: Optional[str] = None
     icon: Optional[str] = None
     description: Optional[str] = None
+    parentId: Optional[str] = None
 
 class Category(CategoryBase):
     id: str = Field(alias="_id")
