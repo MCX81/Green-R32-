@@ -44,7 +44,7 @@ const CategorySidebar = () => {
 
   return (
     <div className="relative">
-      <Card className="rounded-2xl border-2 border-gray-100 overflow-visible sticky top-24">
+      <Card className="rounded-2xl border-2 border-gray-100 overflow-hidden sticky top-24">
         <div className="bg-green-600 text-white p-4 font-bold text-lg">
           Toate Categoriile
         </div>
@@ -73,38 +73,50 @@ const CategorySidebar = () => {
                   </div>
                   <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-green-600" />
                 </Link>
-
-                {/* Subcategories Panel */}
-                {hasSubcategories && hoveredCategory === category._id && (
-                  <div 
-                    className="absolute left-full top-0 ml-1 w-64 bg-white border-2 border-gray-100 rounded-2xl shadow-2xl"
-                    style={{ zIndex: 9999 }}
-                    onMouseEnter={() => setHoveredCategory(category._id)}
-                    onMouseLeave={() => setHoveredCategory(null)}
-                  >
-                    <div className="p-2">
-                      <div className="font-bold text-sm text-gray-900 p-3 border-b">
-                        {category.name}
-                      </div>
-                      {subcategories.map((subcat) => (
-                        <Link
-                          key={subcat._id}
-                          to={`/catalog?category=${subcat.slug}`}
-                          className="block p-3 hover:bg-green-50 rounded-xl transition-colors"
-                        >
-                          <span className="text-sm text-gray-700 hover:text-green-600">
-                            {subcat.name}
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             );
           })}
         </nav>
       </Card>
+      
+      {/* Subcategories Panels - Outside main card for proper z-index */}
+      {mainCategories.map((category) => {
+        const subcategories = getSubcategories(category._id);
+        const hasSubcategories = subcategories.length > 0;
+        
+        if (!hasSubcategories || hoveredCategory !== category._id) return null;
+        
+        return (
+          <div
+            key={`sub-${category._id}`}
+            className="fixed w-64 bg-white border-2 border-gray-100 rounded-2xl shadow-2xl"
+            style={{ 
+              zIndex: 9999,
+              left: '280px',
+              top: '200px'
+            }}
+            onMouseEnter={() => setHoveredCategory(category._id)}
+            onMouseLeave={() => setHoveredCategory(null)}
+          >
+            <div className="p-2">
+              <div className="font-bold text-sm text-gray-900 p-3 border-b">
+                {category.name}
+              </div>
+              {subcategories.map((subcat) => (
+                <Link
+                  key={subcat._id}
+                  to={`/catalog?category=${subcat.slug}`}
+                  className="block p-3 hover:bg-green-50 rounded-xl transition-colors"
+                >
+                  <span className="text-sm text-gray-700 hover:text-green-600">
+                    {subcat.name}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
