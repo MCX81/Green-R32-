@@ -396,10 +396,12 @@ async def seed_database():
             "createdAt": datetime.utcnow(),
             "updatedAt": datetime.utcnow()
         },
+        
+        # Televizoare
         {
             "name": "Samsung Smart TV 65\" QLED 4K",
             "description": "Televizor Samsung QLED 4K cu ecran de 65 inch, tehnologie Quantum Dot și sistem Smart TV Tizen.",
-            "category": "tv-audio-video",
+            "category": "televizoare",
             "brand": "Samsung",
             "price": 4299,
             "oldPrice": 5199,
@@ -411,13 +413,14 @@ async def seed_database():
             "stock": 20,
             "isNew": False,
             "discount": 17,
+            "featured": True,
             "createdAt": datetime.utcnow(),
             "updatedAt": datetime.utcnow()
         },
         {
             "name": "LG OLED TV 55\" 4K Smart",
             "description": "Televizor LG OLED cu ecran de 55 inch, tehnologie self-lit pixels și suport pentru Dolby Vision IQ.",
-            "category": "tv-audio-video",
+            "category": "televizoare",
             "brand": "LG",
             "price": 5699,
             "oldPrice": None,
@@ -429,6 +432,47 @@ async def seed_database():
             "stock": 12,
             "isNew": True,
             "discount": 0,
+            "featured": True,
+            "createdAt": datetime.utcnow(),
+            "updatedAt": datetime.utcnow()
+        },
+        
+        # Căști & Earbuds
+        {
+            "name": "Sony WH-1000XM5 Wireless",
+            "description": "Căști Sony WH-1000XM5 cu noise cancelling activ, autonomie 30 ore și sunet Hi-Res Audio.",
+            "category": "casti-earbuds",
+            "brand": "Sony",
+            "price": 1499,
+            "oldPrice": 1799,
+            "rating": 4.9,
+            "reviews": 0,
+            "image": "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&q=80",
+            "images": ["https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&q=80"],
+            "inStock": True,
+            "stock": 30,
+            "isNew": False,
+            "discount": 17,
+            "featured": True,
+            "createdAt": datetime.utcnow(),
+            "updatedAt": datetime.utcnow()
+        },
+        {
+            "name": "Apple AirPods Pro 2",
+            "description": "AirPods Pro 2 cu noise cancelling adaptiv, audio spatial personalizat și cip H2.",
+            "category": "casti-earbuds",
+            "brand": "Apple",
+            "price": 1099,
+            "oldPrice": None,
+            "rating": 4.8,
+            "reviews": 0,
+            "image": "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500&q=80",
+            "images": ["https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500&q=80"],
+            "inStock": True,
+            "stock": 45,
+            "isNew": True,
+            "discount": 0,
+            "featured": True,
             "createdAt": datetime.utcnow(),
             "updatedAt": datetime.utcnow()
         },
