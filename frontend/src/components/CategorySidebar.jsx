@@ -135,13 +135,13 @@ const CategorySidebar = () => {
               <div
                 key={category._id}
                 ref={(el) => categoryRefs.current[category._id] = el}
-                onMouseEnter={() => handleCategoryHover(category._id)}
-                onMouseLeave={handleCategoryLeave}
                 className="relative"
               >
                 <Link
                   to={`/catalog?category=${category.slug}`}
                   className="flex items-center justify-between p-4 hover:bg-green-50 transition-colors group relative"
+                  onMouseEnter={() => handleCategoryHover(category._id)}
+                  onMouseLeave={handleCategoryLeave}
                 >
                   <div className="flex items-center space-x-3">
                     <Icon className="h-5 w-5 text-green-600" />
