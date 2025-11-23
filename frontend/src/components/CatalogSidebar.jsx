@@ -65,13 +65,13 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
   const title = currentCategory && subcategories.length > 0 ? currentCategory.name : 'Toate Categoriile';
 
   return (
-    <aside className="w-64 flex-shrink-0 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto">
+    <aside className="w-64 flex-shrink-0 sticky top-24 self-start">
       {/* Categories Card */}
       <Card className="rounded-2xl border-2 border-gray-100 overflow-hidden mb-4">
         <div className="bg-green-600 text-white p-4 font-bold text-lg">
           {title}
         </div>
-        <nav className="divide-y divide-gray-100 max-h-96 overflow-y-auto">
+        <nav className="divide-y divide-gray-100">
           {/* Back button if we're in subcategories */}
           {currentCategory && subcategories.length > 0 && (
             <Link
