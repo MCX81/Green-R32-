@@ -109,7 +109,7 @@ const CategorySidebar = () => {
                 key={category._id}
                 ref={(el) => categoryRefs.current[category._id] = el}
                 onMouseEnter={() => handleCategoryHover(category._id)}
-                onMouseLeave={() => setHoveredCategory(null)}
+                onMouseLeave={handleCategoryLeave}
                 className="relative"
               >
                 <Link
