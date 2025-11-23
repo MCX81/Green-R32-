@@ -115,7 +115,7 @@ const CategorySidebar = () => {
               width: '256px'
             }}
             onMouseEnter={() => setHoveredCategory(category._id)}
-            onMouseLeave={() => setHoveredCategory(null)}
+            onMouseLeave={handleCategoryLeave}
           >
             <div className="font-bold text-sm text-gray-900 p-3 border-b">
               {category.name}
