@@ -32,23 +32,29 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
           <div className="flex items-center justify-between py-4">
             {/* Logo with Robot Mascot */}
             <Link to="/" className="flex items-center space-x-3">
+              {/* Logo */}
+              <div className="bg-gradient-to-br from-green-600 to-green-500 text-white font-bold text-2xl px-4 py-2 rounded-xl shadow-lg">
+                R32
+              </div>
+              
               {/* Robot Mascot with Slogan */}
-              <div className="flex items-center space-x-2">
-                <div className="relative w-12 h-12 rounded-full border-2 border-green-500 bg-white p-1 flex items-center justify-center">
+              <div className="flex items-center space-x-3">
+                <div className="relative w-14 h-14 rounded-full border-2 border-green-500 bg-white p-1 flex items-center justify-center">
                   <img 
-                    src="https://images.unsplash.com/photo-1586374579358-9d19d632b6df?w=100&q=80" 
+                    src="https://cdn.pixabay.com/photo/2016/06/20/22/13/robot-1470102_640.png" 
                     alt="R32 Mascot" 
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <span className="text-xs text-gray-600 font-medium hidden sm:block">
-                  simple as you
-                </span>
-              </div>
-              
-              {/* Logo */}
-              <div className="bg-gradient-to-br from-green-600 to-green-500 text-white font-bold text-2xl px-4 py-2 rounded-xl shadow-lg">
-                R32
+                <div className="hidden sm:block">
+                  <p className="text-sm leading-tight" style={{ fontFamily: "'Caveat', cursive" }}>
+                    simple
+                    <br />
+                    as
+                    <br />
+                    you
+                  </p>
+                </div>
               </div>
             </Link>
 
