@@ -74,20 +74,28 @@ const CategorySidebar = () => {
     
     // Check if category has subcategories before showing panel
     const subcategories = getSubcategories(categoryId);
+    console.log(`CategorySidebar: Hover on category ${categoryId}, found ${subcategories.length} subcategories`);
+    
     if (subcategories.length === 0) {
+      console.log(`CategorySidebar: No subcategories, not showing panel`);
       return; // Don't show panel if no subcategories
     }
     
     setHoveredCategory(categoryId);
+    console.log(`CategorySidebar: Set hoveredCategory to ${categoryId}`);
     
     // Calculate position
     const element = categoryRefs.current[categoryId];
     if (element) {
       const rect = element.getBoundingClientRect();
-      setPanelPosition({
+      const position = {
         top: rect.top,
         left: rect.right + 2 // Reduced gap from 8 to 2
-      });
+      };
+      setPanelPosition(position);
+      console.log(`CategorySidebar: Panel position set to`, position);
+    } else {
+      console.log(`CategorySidebar: Element ref not found for category ${categoryId}`);
     }
   };
   
