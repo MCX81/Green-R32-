@@ -101,3 +101,102 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Optimizare funcționalitate backup/restore în admin panel - restore-ul este prea lent și dă timeout în producție"
+
+backend:
+  - task: "Optimizare endpoint /api/admin/backup/restore cu operații bulk și batch processing"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/routers/backup.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: |
+          Implementat optimizări majore pentru restore:
+          1. Adăugat batch processing cu BATCH_SIZE=1000 pentru colecții mari
+          2. Optimizat Orders restore - înlocuit loop cu N queries cu o singură query folosind $in operator
+          3. Adăugat progress tracking detaliat pentru fiecare colecție
+          4. Implementat funcție helper batch_insert pentru procesare în loturi
+          5. Adăugat câmp 'progress' în răspunsul API cu detalii granulare
+          6. Îmbunătățit error handling și logging
+          
+          Optimizări specifice:
+          - Categories: bulk insert cu batching
+          - Products: bulk insert cu batching  
+          - Reviews: bulk insert cu batching
+          - Orders: query unică pentru verificare existență + bulk insert
+          
+          Rezultat așteptat: Reduce timpul de restore de la timeout la câteva secunde/minute chiar și pentru volume mari de date
+
+frontend:
+  - task: "Adăugare UI pentru progres în timp real și feedback detaliat pentru restore"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/admin/Backup.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: |
+          Implementat îmbunătățiri UI pentru restore:
+          1. Adăugat state 'restoreProgress' pentru tracking status în timp real
+          2. Crescut timeout la 5 minute (300000ms) pentru fișiere mari
+          3. Afișare progress box colorat în funcție de status (success/error/warning/processing)
+          4. Afișare detalii granulare din backend (lista de progress)
+          5. Îmbunătățit mesajele de eroare cu detalii complete
+          6. Progress box se ascunde automat după 10 secunde
+          7. Indicatori vizuali pentru fiecare status (CheckCircle, AlertCircle, spinner)
+          
+          UI Progress states:
+          - processing: albastru cu spinner
+          - success: verde cu CheckCircle
+          - warning: portocaliu cu AlertCircle
+          - error: roșu cu AlertCircle
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 0
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Optimizare endpoint /api/admin/backup/restore cu operații bulk și batch processing"
+    - "Adăugare UI pentru progres în timp real și feedback detaliat pentru restore"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: |
+      Am implementat optimizările pentru funcționalitatea de backup/restore:
+      
+      BACKEND (/app/backend/routers/backup.py):
+      - Înlocuit loop-ul cu N queries individuale pentru Orders cu o singură query bulk ($in operator)
+      - Adăugat batch processing pentru toate colecțiile (BATCH_SIZE=1000)
+      - Implementat progress tracking granular
+      - Toate operațiile folosesc acum insert_many în batch-uri
+      
+      FRONTEND (/app/frontend/src/pages/admin/Backup.jsx):
+      - Adăugat UI pentru progres în timp real
+      - Crescut timeout la 5 minute pentru restore-uri mari
+      - Afișare detalii complete despre ce s-a restaurat și eventuale erori
+      
+      Testing agent trebuie să testeze:
+      1. Endpoint-ul /api/admin/backup/restore cu un fișier de backup valid
+      2. Verificare că răspunsul conține câmpurile: restored, errors, progress, message
+      3. Verificare că Orders nu se duplică (doar cele noi se adaugă)
+      4. Performance: trebuie să fie mult mai rapid decât înainte
+      5. Frontend: verificare că progress box-ul apare și afișează detaliile corect
+      
+      Este necesar teste cu:
+      - Backup mic (câteva documente)
+      - Backup mare (>1000 documente pe colecție) pentru a testa batching-ul
+      - Backup cu ordere duplicate pentru a verifica logica de skip
