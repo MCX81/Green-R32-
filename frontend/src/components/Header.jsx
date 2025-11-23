@@ -39,11 +39,11 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
               
               {/* Robot Mascot with Slogan */}
               <div className="flex items-center space-x-3">
-                <div className="relative w-14 h-14 rounded-full border-2 border-green-500 bg-white p-1 flex items-center justify-center">
+                <div className="relative">
                   <img 
                     src="https://customer-assets.emergentagent.com/job_r32-shop/artifacts/woe463o2_generated-image%20%284%29.jpg" 
                     alt="R32 Mascot" 
-                    className="w-full h-full object-contain"
+                    className="w-20 h-20 object-contain"
                     style={{ transform: 'scaleX(-1)' }}
                   />
                 </div>
