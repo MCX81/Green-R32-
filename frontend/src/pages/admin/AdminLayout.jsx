@@ -52,6 +52,7 @@ const AdminLayout = () => {
     { path: '/admin/orders', icon: ShoppingCart, label: 'Comenzi' },
     { path: '/admin/users', icon: Users, label: 'Utilizatori' },
     { path: '/admin/reviews', icon: MessageSquare, label: 'Review-uri' },
+    { path: '/admin/backup', icon: Database, label: 'Backup' },
   ];
 
   const isActive = (path) => {
