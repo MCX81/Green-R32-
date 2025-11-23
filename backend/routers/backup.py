@@ -14,7 +14,7 @@ async def export_database(current_user: dict = Depends(get_current_admin_user)):
     try:
         # Get current timestamp for filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        db_name = "r32_ecommerce"
+        db_name = os.environ.get("DB_NAME", "r32_ecommerce")
         filename = f"backup_{db_name}_{timestamp}.json"
         
         # Export all collections
