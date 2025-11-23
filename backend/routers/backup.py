@@ -178,7 +178,7 @@ async def restore_database(
             except Exception as e:
                 errors.append(f"Categories: {str(e)}")
                 restored_stats["categories"] = 0
-                progress_details.append(f"Categories: ✗ Eroare")
+                progress_details.append("Categories: ✗ Eroare")
         
         # Restore Products - BULK OPERATION WITH BATCHING
         if "products" in collections_data and collections_data["products"]:
@@ -201,7 +201,7 @@ async def restore_database(
             except Exception as e:
                 errors.append(f"Products: {str(e)}")
                 restored_stats["products"] = 0
-                progress_details.append(f"Products: ✗ Eroare")
+                progress_details.append("Products: ✗ Eroare")
         
         # Restore Reviews - BULK OPERATION WITH BATCHING
         if "reviews" in collections_data and collections_data["reviews"]:
@@ -224,7 +224,7 @@ async def restore_database(
             except Exception as e:
                 errors.append(f"Reviews: {str(e)}")
                 restored_stats["reviews"] = 0
-                progress_details.append(f"Reviews: ✗ Eroare")
+                progress_details.append("Reviews: ✗ Eroare")
         
         # Restore Orders - Only new orders (don't delete existing) - OPTIMIZED
         if "orders" in collections_data and collections_data["orders"]:
@@ -261,12 +261,12 @@ async def restore_database(
                     progress_details.append(f"Orders: ✓ {total} comenzi noi adăugate")
                 else:
                     restored_stats["orders"] = 0
-                    progress_details.append(f"Orders: Nicio comandă nouă de adăugat")
+                    progress_details.append("Orders: Nicio comandă nouă de adăugat")
                     
             except Exception as e:
                 errors.append(f"Orders: {str(e)}")
                 restored_stats["orders"] = 0
-                progress_details.append(f"Orders: ✗ Eroare")
+                progress_details.append("Orders: ✗ Eroare")
         
         # Build response message
         message = "Backup restaurat cu succes!"
