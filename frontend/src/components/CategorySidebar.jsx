@@ -49,6 +49,7 @@ const CategorySidebar = () => {
     try {
       const response = await categoriesAPI.getAll();
       setCategories(response.data);
+      console.log(`CategorySidebar: Loaded ${response.data.length} categories`);
       // Reset refs when categories change
       categoryRefs.current = {};
     } catch (error) {
