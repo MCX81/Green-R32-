@@ -14,6 +14,8 @@ const Categories = () => {
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState(null);
+  const [filterType, setFilterType] = useState('all'); // 'all', 'main', 'sub'
+  const [expandedCategories, setExpandedCategories] = useState(new Set());
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
