@@ -204,48 +204,23 @@ test_plan:
   test_priority: "high_first"
 
 agent_communication:
-  - agent: "main"
+  - agent: "user"
     message: |
-      Am implementat optimizările pentru funcționalitatea de backup/restore:
+      PROBLEMĂ RAPORTATĂ: Hover functionality pentru categorii nu funcționează după navigare
       
-      BACKEND (/app/backend/routers/backup.py):
-      - Înlocuit loop-ul cu N queries individuale pentru Orders cu o singură query bulk ($in operator)
-      - Adăugat batch processing pentru toate colecțiile (BATCH_SIZE=1000)
-      - Implementat progress tracking granular
-      - Toate operațiile folosesc acum insert_many în batch-uri
+      CONTEXT:
+      - Pe pagina Home există CategorySidebar cu categorii
+      - La hover pe categorie ar trebui să apară panou floating cu subcategorii
+      - PROBLEMA: După navigare Home → Catalog → Home, hover-ul nu mai funcționează
       
-      FRONTEND (/app/frontend/src/pages/admin/Backup.jsx):
-      - Adăugat UI pentru progres în timp real
-      - Crescut timeout la 5 minute pentru restore-uri mari
-      - Afișare detalii complete despre ce s-a restaurat și eventuale erori
+      FIX IMPLEMENTAT:
+      - Adăugat useLocation hook și useEffect pentru resetarea hover state-ului
+      - Cleanup timeout-uri la schimbarea locației
+      - Reset categoryRefs când se încarcă categoriile
       
-      Testing agent trebuie să testeze:
-      1. Endpoint-ul /api/admin/backup/restore cu un fișier de backup valid
-      2. Verificare că răspunsul conține câmpurile: restored, errors, progress, message
-      3. Verificare că Orders nu se duplică (doar cele noi se adaugă)
-      4. Performance: trebuie să fie mult mai rapid decât înainte
-      5. Frontend: verificare că progress box-ul apare și afișează detaliile corect
+      SCENARII DE TESTAT:
+      1. Funcționare normală pe Home (baseline)
+      2. După navigare Catalog → Home (problema principală)
+      3. Multiple navigări pentru verificare persistență fix
       
-      Este necesar teste cu:
-      - Backup mic (câteva documente)
-      - Backup mare (>1000 documente pe colecție) pentru a testa batching-ul
-      - Backup cu ordere duplicate pentru a verifica logica de skip
-  - agent: "testing"
-    message: |
-      🎉 TESTARE COMPLETĂ - OPTIMIZĂRILE SUNT UN SUCCES TOTAL!
-      
-      REZULTATE TESTE BACKEND:
-      ✅ Toate endpoint-urile backup/restore funcționează perfect
-      ✅ Performance EXCELENTĂ: restore în 0.02s (era timeout înainte)
-      ✅ Progress tracking implementat corect cu 11 detalii granulare
-      ✅ Duplicate orders handling funcționează - 0 ordere duplicate adăugate
-      ✅ Batch processing confirmat funcțional
-      ✅ Bulk operations optimizate pentru toate colecțiile
-      
-      MINOR FIXES APLICATE:
-      - Adăugat BackupRestoreRequest model pentru request body
-      - Implementat convert_datetime_fields helper pentru JSON serialization
-      
-      RECOMANDARE PENTRU MAIN AGENT:
-      Backend-ul este complet funcțional și optimizat. Poți să finalizezi și să raportezi succesul implementării.
-      Optimizările au redus timpul de restore de la timeout la sub 1 secundă!
+      Testing agent trebuie să verifice dacă fix-ul rezolvă problema raportată.
