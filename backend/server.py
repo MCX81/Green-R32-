@@ -6,11 +6,12 @@ import os
 import logging
 from pathlib import Path
 
-# Import routers
-from routers import auth, products, categories, cart, wishlist, orders, reviews, admin
-
+# IMPORTANT: Load environment variables FIRST before importing routers
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
+
+# Import routers AFTER loading environment variables
+from routers import auth, products, categories, cart, wishlist, orders, reviews, admin
 
 # MongoDB connection
 mongo_url = os.environ['MONGO_URL']
