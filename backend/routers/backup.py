@@ -202,7 +202,7 @@ async def restore_database(
         )
 
 @router.get("/info")
-async def get_backup_info(current_user: dict = Depends(admin_required)):
+async def get_backup_info(current_user: dict = Depends(get_current_admin_user)):
     """Get database statistics for backup info"""
     try:
         stats = {
