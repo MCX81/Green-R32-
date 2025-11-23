@@ -17,16 +17,39 @@ async def get_products(
     in_stock: Optional[bool] = None,
     is_new: Optional[bool] = None,
     discount: Optional[bool] = None,
+    featured: Optional[bool] = None,
     sort_by: Optional[str] = Query(None, regex="^(price_asc|price_desc|rating|name)$"),
     skip: int = 0,
     limit: int = 100
 ):
-    """Get all products with filters"""
+    """Get all products with filters. If no filters, returns featured products."""
     query = {}
+    
+    # Check if any filters are applied
+    has_filters = any([category, brand, search, min_price, max_price, in_stock, is_new, discount, featured])
+    
+    # If no filters are applied, return featured products
+    if not has_filters:
+        query["featured"] = True
     
     # Apply filters
     if category:
-        query["category"] = category
+        # Check if category is a parent category slug
+        category_doc = await db.categories.find_one({"slug": category})
+        if category_doc:
+            # Get all subcategories for this parent
+            subcategories = await db.categories.find({"parentId": str(category_doc["_id"])}).to_list(length=None)
+            subcategory_slugs = [sub["slug"] for sub in subcategories]
+            
+            # If it has subcategories, search in both parent and subcategories
+            if subcategory_slugs:
+                query["category"] = {"$in": [category] + subcategory_slugs}
+            else:
+                # It's a subcategory or leaf category, just filter by it
+                query["category"] = category
+        else:
+            query["category"] = category
+    
     if brand:
         query["brand"] = brand
     if search:
@@ -46,6 +69,8 @@ async def get_products(
         query["isNew"] = is_new
     if discount:
         query["discount"] = {"$gt": 0}
+    if featured is not None:
+        query["featured"] = featured
     
     # Apply sorting
     sort_options = {
