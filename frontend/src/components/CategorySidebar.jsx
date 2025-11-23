@@ -49,6 +49,8 @@ const CategorySidebar = () => {
     try {
       const response = await categoriesAPI.getAll();
       setCategories(response.data);
+      // Reset refs when categories change
+      categoryRefs.current = {};
     } catch (error) {
       console.error('Error loading categories:', error);
     }
