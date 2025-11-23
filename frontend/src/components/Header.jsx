@@ -41,21 +41,23 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
               <div className="flex items-center space-x-3">
                 <div className="relative w-14 h-14 rounded-full border-2 border-green-500 bg-white p-1 flex items-center justify-center">
                   <img 
-                    src="https://cdn.pixabay.com/photo/2016/06/20/22/13/robot-1470102_640.png" 
+                    src="https://customer-assets.emergentagent.com/job_r32-shop/artifacts/woe463o2_generated-image%20%284%29.jpg" 
                     alt="R32 Mascot" 
                     className="w-full h-full object-contain"
+                    style={{ transform: 'scaleX(-1)' }}
                   />
                 </div>
                 <div className="hidden sm:block" style={{ 
-                  perspective: '300px',
+                  perspective: '400px',
                   perspectiveOrigin: 'center bottom'
                 }}>
-                  <p className="text-base font-bold leading-tight text-yellow-400" style={{ 
-                    fontFamily: "'Caveat', cursive",
-                    transform: 'rotateX(25deg)',
+                  <p className="text-base leading-tight text-green-600" style={{ 
+                    fontFamily: "'Star Jedi', sans-serif",
+                    transform: 'rotateX(30deg)',
                     transformStyle: 'preserve-3d',
                     textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                    letterSpacing: '0.05em'
+                    letterSpacing: '0.1em',
+                    fontWeight: 'normal'
                   }}>
                     simple
                     <br />
