@@ -71,6 +71,79 @@ const Backup = () => {
     }
   };
 
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      if (file.type === 'application/json' || file.name.endsWith('.json')) {
+        setSelectedFile(file);
+        toast({
+          title: 'Fișier selectat',
+          description: `${file.name} (${(file.size / 1024).toFixed(2)} KB)`,
+        });
+      } else {
+        toast({
+          title: 'Eroare',
+          description: 'Vă rugăm să selectați un fișier JSON valid.',
+          variant: 'destructive',
+        });
+      }
+    }
+  };
+
+  const handleRestore = async () => {
+    if (!selectedFile) {
+      toast({
+        title: 'Niciun fișier selectat',
+        description: 'Vă rugăm să selectați un fișier de backup mai întâi.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    // Confirm action
+    if (!window.confirm('⚠️ ATENȚIE: Restaurarea va ȘTERGE toate datele curente (categorii, produse, review-uri) și le va înlocui cu datele din backup.\n\nSunteți sigur că doriți să continuați?')) {
+      return;
+    }
+
+    setRestoring(true);
+
+    try {
+      // Read file content
+      const fileContent = await selectedFile.text();
+      
+      // Send to backend
+      const response = await api.post('/admin/backup/restore', {
+        backup_file: fileContent
+      });
+
+      toast({
+        title: 'Backup restaurat cu succes!',
+        description: `Au fost restaurate: ${Object.entries(response.data.restored).map(([key, val]) => `${key}: ${val}`).join(', ')}`,
+      });
+
+      // Reload backup info
+      await loadBackupInfo();
+      
+      // Clear selected file
+      setSelectedFile(null);
+      
+      // Reload page after 2 seconds to reflect changes
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+
+    } catch (error) {
+      console.error('Restore error:', error);
+      toast({
+        title: 'Eroare la restaurare',
+        description: error.response?.data?.detail || 'Nu s-a putut restaura backup-ul. Verificați formatul fișierului.',
+        variant: 'destructive',
+      });
+    } finally {
+      setRestoring(false);
+    }
+  };
+
   if (loadingInfo) {
     return <div className="p-8">Se încarcă...</div>;
   }
