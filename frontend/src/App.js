@@ -49,6 +49,7 @@ function App() {
               <Route path="orders" element={<Orders />} />
               <Route path="users" element={<Users />} />
               <Route path="reviews" element={<Reviews />} />
+              <Route path="backup" element={<Backup />} />
             </Route>
             
             {/* Main routes with header/footer */}
