@@ -76,7 +76,12 @@ const CategorySidebar = () => {
 
                 {/* Subcategories Panel */}
                 {hasSubcategories && hoveredCategory === category._id && (
-                  <div className="absolute left-full top-0 ml-1 w-64 bg-white border-2 border-gray-100 rounded-2xl shadow-xl z-50">
+                  <div 
+                    className="absolute left-full top-0 ml-1 w-64 bg-white border-2 border-gray-100 rounded-2xl shadow-2xl"
+                    style={{ zIndex: 9999 }}
+                    onMouseEnter={() => setHoveredCategory(category._id)}
+                    onMouseLeave={() => setHoveredCategory(null)}
+                  >
                     <div className="p-2">
                       <div className="font-bold text-sm text-gray-900 p-3 border-b">
                         {category.name}
