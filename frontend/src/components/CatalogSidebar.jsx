@@ -152,7 +152,7 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
         {/* Brands */}
         <div className="mb-6">
           <h3 className="font-semibold mb-3">Brand</h3>
-          <div className="space-y-2 max-h-64 overflow-y-auto">
+          <div className="space-y-2">
             {brands.map((brand) => (
               <div key={brand} className="flex items-center space-x-2">
                 <Checkbox
