@@ -111,9 +111,22 @@ const Checkout = () => {
       
     } catch (error) {
       console.error('Order creation error:', error);
+      
+      // Handle validation errors
+      let errorMessage = 'Nu s-a putut plasa comanda. Încercați din nou.';
+      
+      if (error.response?.data?.detail) {
+        // Check if detail is an array (validation errors)
+        if (Array.isArray(error.response.data.detail)) {
+          errorMessage = error.response.data.detail.map(err => err.msg).join(', ');
+        } else if (typeof error.response.data.detail === 'string') {
+          errorMessage = error.response.data.detail;
+        }
+      }
+      
       toast({
         title: 'Eroare',
-        description: error.response?.data?.detail || 'Nu s-a putut plasa comanda. Încercați din nou.',
+        description: errorMessage,
         variant: 'destructive',
       });
     } finally {
