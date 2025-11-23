@@ -75,9 +75,10 @@ async def seed_database():
         {"name": "Jucării & Copii", "slug": "jucarii-copii", "icon": "Baby", "description": "Jucării și produse pentru copii", "parentId": None, "createdAt": datetime.utcnow()},
     ]
     result = await db.categories.insert_many(main_categories)
-    # Store ObjectId directly, not string
-    category_ids = {cat['slug']: result.inserted_ids[i] for i, cat in enumerate(main_categories)}
+    # Store as string for consistency with backend queries
+    category_ids = {cat['slug']: str(result.inserted_ids[i]) for i, cat in enumerate(main_categories)}
     print(f"✅ Created {len(main_categories)} main categories")
+    print(f"Category IDs: {list(category_ids.values())[:3]}...")  # Debug: show first 3 IDs
     
     # Create subcategories
     subcategories = [
