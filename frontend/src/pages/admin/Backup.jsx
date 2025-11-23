@@ -111,15 +111,44 @@ const Backup = () => {
       // Read file content
       const fileContent = await selectedFile.text();
       
-      // Send to backend
+      // Send to backend with longer timeout for large files
       const response = await api.post('/admin/backup/restore', {
         backup_file: fileContent
+      }, {
+        timeout: 300000 // 5 minute timeout for large restores
       });
 
-      toast({
-        title: 'Backup restaurat cu succes!',
-        description: `Au fost restaurate: ${Object.entries(response.data.restored).map(([key, val]) => `${key}: ${val}`).join(', ')}`,
-      });
+      // Display detailed results
+      const { restored, errors, progress, message } = response.data;
+      
+      // Build detailed description
+      let description = '';
+      if (restored) {
+        const restoredItems = Object.entries(restored)
+          .filter(([_, val]) => val > 0)
+          .map(([key, val]) => `${key}: ${val}`)
+          .join(', ');
+        description = `Restaurate: ${restoredItems}`;
+      }
+      
+      // Show progress details if available
+      if (progress && progress.length > 0) {
+        console.log('Detalii restaurare:', progress);
+      }
+
+      // Show appropriate toast based on success/errors
+      if (errors && errors.length > 0) {
+        toast({
+          title: 'Backup restaurat cu avertismente',
+          description: `${description}\n\nErori: ${errors.join(', ')}`,
+          variant: 'warning',
+        });
+      } else {
+        toast({
+          title: '✓ Backup restaurat cu succes!',
+          description: description,
+        });
+      }
 
       // Reload backup info
       await loadBackupInfo();
@@ -134,9 +163,18 @@ const Backup = () => {
 
     } catch (error) {
       console.error('Restore error:', error);
+      
+      // Extract detailed error message
+      let errorMessage = 'Nu s-a putut restaura backup-ul. Verificați formatul fișierului.';
+      if (error.response?.data?.detail) {
+        errorMessage = error.response.data.detail;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
       toast({
         title: 'Eroare la restaurare',
-        description: error.response?.data?.detail || 'Nu s-a putut restaura backup-ul. Verificați formatul fișierului.',
+        description: errorMessage,
         variant: 'destructive',
       });
     } finally {
