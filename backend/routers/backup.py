@@ -50,10 +50,7 @@ async def export_database(current_user: dict = Depends(get_current_admin_user)):
         products = await db.products.find({}).to_list(length=None)
         for prod in products:
             prod["_id"] = str(prod["_id"])
-            if "createdAt" in prod:
-                prod["createdAt"] = prod["createdAt"].isoformat()
-            if "updatedAt" in prod:
-                prod["updatedAt"] = prod["updatedAt"].isoformat()
+            convert_datetime_fields(prod)
         backup_data["collections"]["products"] = products
         
         # Users (exclude passwords for security)
