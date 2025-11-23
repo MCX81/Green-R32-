@@ -5,12 +5,16 @@ import ProductCard from '../components/ProductCard';
 import CategorySidebar from '../components/CategorySidebar';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
-import { products, categories, banners } from '../mock/mockData';
+import { banners } from '../mock/mockData';
+import { productsAPI } from '../services/api';
 import { useToast } from '../hooks/use-toast';
 
 const Home = () => {
   const { toast } = useToast();
   const [currentBanner, setCurrentBanner] = useState(0);
+  const [offerProducts, setOfferProducts] = useState([]);
+  const [newProducts, setNewProducts] = useState([]);
+  const [featuredProducts, setFeaturedProducts] = useState([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -18,6 +22,28 @@ const Home = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const loadProducts = async () => {
+    try {
+      // Load offer products
+      const offersResponse = await productsAPI.getAll({ discount: true, limit: 3 });
+      setOfferProducts(offersResponse.data);
+
+      // Load new products
+      const newResponse = await productsAPI.getAll({ is_new: true, limit: 3 });
+      setNewProducts(newResponse.data);
+
+      // Load featured products
+      const featuredResponse = await productsAPI.getAll({ featured: true, limit: 6 });
+      setFeaturedProducts(featuredResponse.data);
+    } catch (error) {
+      console.error('Error loading products:', error);
+    }
+  };
 
   const handleAddToCart = (product) => {
     toast({
@@ -32,9 +58,6 @@ const Home = () => {
       description: `${product.name} a fost adăugat la lista ta de dorințe.`,
     });
   };
-
-  const offerProducts = products.filter(p => p.discount > 0).slice(0, 3);
-  const newProducts = products.filter(p => p.isNew).slice(0, 3);
 
   return (
     <div className="min-h-screen bg-gray-50">
