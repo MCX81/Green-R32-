@@ -13,6 +13,7 @@ import Account from "./pages/Account";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminLayout from "./pages/admin/AdminLayout";
+import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
 import { Toaster } from "./components/ui/toaster";
@@ -29,6 +30,9 @@ function App() {
             {/* Auth routes without header/footer */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            
+            {/* Admin login - separate from regular login */}
+            <Route path="/admin/login" element={<AdminLogin />} />
             
             {/* Admin routes */}
             <Route path="/admin" element={<AdminLayout />}>
