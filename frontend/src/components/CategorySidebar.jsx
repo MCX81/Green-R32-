@@ -112,81 +112,58 @@ const CategorySidebar = () => {
   };
 
   return (
-    <>
-      <Card className="rounded-2xl border-2 border-gray-100 overflow-hidden sticky top-24">
-        <div className="bg-green-600 text-white p-4 font-bold text-lg">
-          Toate Categoriile
-        </div>
-        <nav className="divide-y divide-gray-100 relative" style={{ overflow: 'visible' }}>
-          {mainCategories.map((category, index) => {
-            const Icon = iconMap[category.icon] || Smartphone;
-            const subcategories = getSubcategories(category._id);
-            const hasSubcategories = subcategories.length > 0;
-            
-            return (
-              <div
-                key={category._id}
-                ref={(el) => categoryRefs.current[category._id] = el}
-                className="relative"
-                onMouseEnter={() => handleCategoryHover(category._id)}
-                onMouseLeave={handleCategoryLeave}
-              >
-                <Link
-                  to={`/catalog?category=${category.slug}`}
-                  className="flex items-center justify-between p-4 hover:bg-green-50 transition-colors group relative block"
-                >
-                  <div className="flex items-center space-x-3">
-                    <Icon className="h-5 w-5 text-green-600" />
-                    <span className="text-sm font-medium text-gray-700 group-hover:text-green-600">
-                      {category.name}
-                    </span>
-                  </div>
-                  <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-green-600" />
-                </Link>
-              </div>
-            );
-          })}
-        </nav>
-      </Card>
-      
-      {/* Subcategories Floating Panel - Rendered outside Card */}
-      {hoveredCategory && mainCategories.map((category) => {
-        if (hoveredCategory !== category._id) return null;
-        
-        const subcategories = getSubcategories(category._id);
-        if (subcategories.length === 0) return null;
-        
-        return (
-          <div
-            key={`floating-${category._id}`}
-            className="fixed bg-white border-2 border-gray-100 rounded-2xl shadow-2xl p-2"
-            style={{
-              left: `${panelPosition.left}px`,
-              top: `${panelPosition.top}px`,
-              width: '256px',
-              zIndex: 9999
-            }}
-            onMouseEnter={handlePanelEnter}
-            onMouseLeave={handlePanelLeave}
-          >
-            <div className="font-bold text-sm text-gray-900 p-3 border-b">
-              {category.name}
-            </div>
-            {subcategories.map((subcat) => (
+    <Card className="rounded-2xl border-2 border-gray-100 overflow-visible sticky top-24">
+      <div className="bg-green-600 text-white p-4 font-bold text-lg">
+        Toate Categoriile
+      </div>
+      <nav className="divide-y divide-gray-100">
+        {mainCategories.map((category, index) => {
+          const Icon = iconMap[category.icon] || Smartphone;
+          const subcategories = getSubcategories(category._id);
+          const hasSubcategories = subcategories.length > 0;
+          
+          return (
+            <div
+              key={category._id}
+              className="relative group/category"
+            >
               <Link
-                key={subcat._id}
-                to={`/catalog?category=${subcat.slug}`}
-                className="block p-3 hover:bg-green-50 rounded-xl transition-colors"
+                to={`/catalog?category=${category.slug}`}
+                className="flex items-center justify-between p-4 hover:bg-green-50 transition-colors group relative block"
               >
-                <span className="text-sm text-gray-700 hover:text-green-600">
-                  {subcat.name}
-                </span>
+                <div className="flex items-center space-x-3">
+                  <Icon className="h-5 w-5 text-green-600" />
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-green-600">
+                    {category.name}
+                  </span>
+                </div>
+                <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-green-600" />
               </Link>
-            ))}
-          </div>
-        );
-      })}
-    </>
+              
+              {/* Subcategories Panel - CSS hover only */}
+              {hasSubcategories && (
+                <div className="absolute left-full top-0 ml-1 w-64 bg-white border-2 border-gray-100 rounded-2xl shadow-2xl p-2 opacity-0 invisible group-hover/category:opacity-100 group-hover/category:visible transition-all duration-200 z-[9999]">
+                  <div className="font-bold text-sm text-gray-900 p-3 border-b">
+                    {category.name}
+                  </div>
+                  {subcategories.map((subcat) => (
+                    <Link
+                      key={subcat._id}
+                      to={`/catalog?category=${subcat.slug}`}
+                      className="block p-3 hover:bg-green-50 rounded-xl transition-colors"
+                    >
+                      <span className="text-sm text-gray-700 hover:text-green-600">
+                        {subcat.name}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </nav>
+    </Card>
   );
 };
 
