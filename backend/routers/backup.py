@@ -58,8 +58,7 @@ async def export_database(current_user: dict = Depends(get_current_admin_user)):
         for user in users:
             user["_id"] = str(user["_id"])
             user.pop("password", None)  # Don't backup passwords
-            if "createdAt" in user:
-                user["createdAt"] = user["createdAt"].isoformat()
+            convert_datetime_fields(user)
         backup_data["collections"]["users"] = users
         
         # Orders
