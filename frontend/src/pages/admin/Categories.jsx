@@ -104,6 +104,33 @@ const Categories = () => {
     });
   };
 
+  const toggleCategory = (categoryId) => {
+    const newExpanded = new Set(expandedCategories);
+    if (newExpanded.has(categoryId)) {
+      newExpanded.delete(categoryId);
+    } else {
+      newExpanded.add(categoryId);
+    }
+    setExpandedCategories(newExpanded);
+  };
+
+  const getMainCategories = () => {
+    return categories.filter(cat => !cat.parentId);
+  };
+
+  const getSubcategories = (parentId) => {
+    return categories.filter(cat => cat.parentId === parentId);
+  };
+
+  const getFilteredCategories = () => {
+    if (filterType === 'main') {
+      return categories.filter(cat => !cat.parentId);
+    } else if (filterType === 'sub') {
+      return categories.filter(cat => cat.parentId);
+    }
+    return categories;
+  };
+
   if (loading) {
     return <div className="p-8">Se încarcă...</div>;
   }
