@@ -131,7 +131,7 @@ async def restore_database(
                     if key in item and isinstance(item[key], str):
                         try:
                             item[key] = datetime.fromisoformat(item[key])
-                        except:
+                        except (ValueError, TypeError):
                             pass
             return items
         
