@@ -180,6 +180,12 @@ const Backup = () => {
         errorMessage = error.message;
       }
       
+      setRestoreProgress({ 
+        status: 'error', 
+        message: 'Eroare la restaurare',
+        details: [errorMessage]
+      });
+      
       toast({
         title: 'Eroare la restaurare',
         description: errorMessage,
@@ -187,6 +193,11 @@ const Backup = () => {
       });
     } finally {
       setRestoring(false);
+      
+      // Clear progress after 10 seconds
+      setTimeout(() => {
+        setRestoreProgress(null);
+      }, 10000);
     }
   };
 
