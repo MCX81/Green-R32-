@@ -114,13 +114,18 @@ async def seed_database():
     await db.categories.insert_many(subcategories)
     print(f"✅ Created {len(subcategories)} subcategories")
     
+    # Get subcategory IDs for easier reference
+    all_subcats = await db.categories.find({"parentId": {"$ne": None}}).to_list(length=None)
+    subcat_ids = {cat['slug']: cat['_id'] for cat in all_subcats}
+    
     # Create products
     print("Creating products...")
     products = [
+        # Telefoane Mobile
         {
             "name": "Samsung Galaxy S24 Ultra 256GB",
             "description": "Telefon Samsung Galaxy S24 Ultra cu ecran Dynamic AMOLED 2X de 6.8 inch, procesor Snapdragon 8 Gen 3, cameră de 200MP și baterie de 5000mAh.",
-            "category": "telefoane-tablete",
+            "category": "telefoane-mobile",
             "brand": "Samsung",
             "price": 5499,
             "oldPrice": 6299,
@@ -132,6 +137,7 @@ async def seed_database():
             "stock": 50,
             "isNew": True,
             "discount": 13,
+            "featured": True,
             "createdAt": datetime.utcnow(),
             "updatedAt": datetime.utcnow()
         },
