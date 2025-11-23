@@ -20,7 +20,8 @@ const Login = () => {
     const result = await login(email, password);
     
     if (result.success) {
-      navigate('/');
+      // Force reload to clear all cached state
+      window.location.href = '/';
     }
     
     setLoading(false);
