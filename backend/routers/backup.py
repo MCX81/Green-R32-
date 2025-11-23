@@ -100,12 +100,106 @@ async def export_database(current_user: dict = Depends(admin_required)):
         )
 
 @router.post("/restore")
-async def restore_database(current_user: dict = Depends(admin_required)):
-    """Placeholder for future restore functionality"""
-    raise HTTPException(
-        status_code=501,
-        detail="Restaurarea din backup se face manual folosind MongoDB tools"
-    )
+async def restore_database(
+    backup_file: str,
+    current_user: dict = Depends(admin_required)
+):
+    """Restore database from JSON backup"""
+    try:
+        # Parse JSON
+        backup_data = json.loads(backup_file)
+        
+        # Validate backup structure
+        if "collections" not in backup_data:
+            raise HTTPException(
+                status_code=400,
+                detail="Format backup invalid. Lipsește secțiunea 'collections'."
+            )
+        
+        collections_data = backup_data["collections"]
+        restored_stats = {}
+        
+        # Restore Categories
+        if "categories" in collections_data:
+            # Clear existing categories
+            await db.categories.delete_many({})
+            
+            categories = collections_data["categories"]
+            if categories:
+                # Convert dates back
+                for cat in categories:
+                    if "createdAt" in cat and isinstance(cat["createdAt"], str):
+                        cat["createdAt"] = datetime.fromisoformat(cat["createdAt"])
+                    if "updatedAt" in cat and isinstance(cat["updatedAt"], str):
+                        cat["updatedAt"] = datetime.fromisoformat(cat["updatedAt"])
+                
+                await db.categories.insert_many(categories)
+                restored_stats["categories"] = len(categories)
+        
+        # Restore Products
+        if "products" in collections_data:
+            await db.products.delete_many({})
+            
+            products = collections_data["products"]
+            if products:
+                for prod in products:
+                    if "createdAt" in prod and isinstance(prod["createdAt"], str):
+                        prod["createdAt"] = datetime.fromisoformat(prod["createdAt"])
+                    if "updatedAt" in prod and isinstance(prod["updatedAt"], str):
+                        prod["updatedAt"] = datetime.fromisoformat(prod["updatedAt"])
+                
+                await db.products.insert_many(products)
+                restored_stats["products"] = len(products)
+        
+        # Restore Orders (optional - don't delete existing orders)
+        if "orders" in collections_data:
+            orders = collections_data["orders"]
+            if orders:
+                for order in orders:
+                    if "createdAt" in order and isinstance(order["createdAt"], str):
+                        order["createdAt"] = datetime.fromisoformat(order["createdAt"])
+                    if "updatedAt" in order and isinstance(order["updatedAt"], str):
+                        order["updatedAt"] = datetime.fromisoformat(order["updatedAt"])
+                    
+                    # Only restore if order doesn't exist
+                    existing = await db.orders.find_one({"orderId": order.get("orderId")})
+                    if not existing:
+                        await db.orders.insert_one(order)
+                        restored_stats["orders"] = restored_stats.get("orders", 0) + 1
+        
+        # Restore Reviews
+        if "reviews" in collections_data:
+            await db.reviews.delete_many({})
+            
+            reviews = collections_data["reviews"]
+            if reviews:
+                for review in reviews:
+                    if "createdAt" in review and isinstance(review["createdAt"], str):
+                        review["createdAt"] = datetime.fromisoformat(review["createdAt"])
+                
+                await db.reviews.insert_many(reviews)
+                restored_stats["reviews"] = len(reviews)
+        
+        return {
+            "success": True,
+            "message": "Backup restaurat cu succes!",
+            "restored": restored_stats,
+            "backup_info": {
+                "timestamp": backup_data.get("timestamp"),
+                "database": backup_data.get("database")
+            }
+        }
+        
+    except json.JSONDecodeError:
+        raise HTTPException(
+            status_code=400,
+            detail="Fișier JSON invalid. Verificați formatul."
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Eroare la restaurarea backup-ului: {str(e)}"
+        )
 
 @router.get("/info")
 async def get_backup_info(current_user: dict = Depends(admin_required)):
