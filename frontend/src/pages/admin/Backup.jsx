@@ -7,8 +7,10 @@ import api from '../../services/api';
 
 const Backup = () => {
   const [loading, setLoading] = useState(false);
+  const [restoring, setRestoring] = useState(false);
   const [backupInfo, setBackupInfo] = useState(null);
   const [loadingInfo, setLoadingInfo] = useState(true);
+  const [selectedFile, setSelectedFile] = useState(null);
   const { toast } = useToast();
 
   useEffect(() => {
