@@ -61,20 +61,58 @@ async def seed_database():
     
     # Create categories
     print("Creating categories...")
-    categories = [
-        {"name": "Telefoane & Tablete", "slug": "telefoane-tablete", "icon": "Smartphone", "description": "Smartphone-uri și tablete", "createdAt": datetime.utcnow()},
-        {"name": "Laptop, PC & Periferice", "slug": "laptop-pc", "icon": "Laptop", "description": "Laptopuri, computere și accesorii", "createdAt": datetime.utcnow()},
-        {"name": "TV, Audio-Video & Foto", "slug": "tv-audio-video", "icon": "Tv", "description": "Televizoare, audio și foto", "createdAt": datetime.utcnow()},
-        {"name": "Electrocasnice", "slug": "electrocasnice", "icon": "Refrigerator", "description": "Frigidere, mașini de spălat și altele", "createdAt": datetime.utcnow()},
-        {"name": "Gaming", "slug": "gaming", "icon": "Gamepad2", "description": "Console, jocuri și accesorii gaming", "createdAt": datetime.utcnow()},
-        {"name": "Fashion", "slug": "fashion", "icon": "Shirt", "description": "Îmbrăcăminte și încălțăminte", "createdAt": datetime.utcnow()},
-        {"name": "Carte", "slug": "carte", "icon": "BookOpen", "description": "Cărți și reviste", "createdAt": datetime.utcnow()},
-        {"name": "Casă & Grădină", "slug": "casa-gradina", "icon": "Home", "description": "Produse pentru casă și grădină", "createdAt": datetime.utcnow()},
-        {"name": "Sport", "slug": "sport", "icon": "Dumbbell", "description": "Echipament sportiv", "createdAt": datetime.utcnow()},
-        {"name": "Jucării & Copii", "slug": "jucarii-copii", "icon": "Baby", "description": "Jucării și produse pentru copii", "createdAt": datetime.utcnow()},
+    # First create main categories
+    main_categories = [
+        {"name": "Telefoane & Tablete", "slug": "telefoane-tablete", "icon": "Smartphone", "description": "Smartphone-uri și tablete", "parentId": None, "createdAt": datetime.utcnow()},
+        {"name": "Laptop, PC & Periferice", "slug": "laptop-pc", "icon": "Laptop", "description": "Laptopuri, computere și accesorii", "parentId": None, "createdAt": datetime.utcnow()},
+        {"name": "TV, Audio-Video & Foto", "slug": "tv-audio-video", "icon": "Tv", "description": "Televizoare, audio și foto", "parentId": None, "createdAt": datetime.utcnow()},
+        {"name": "Electrocasnice", "slug": "electrocasnice", "icon": "Refrigerator", "description": "Frigidere, mașini de spălat și altele", "parentId": None, "createdAt": datetime.utcnow()},
+        {"name": "Gaming", "slug": "gaming", "icon": "Gamepad2", "description": "Console, jocuri și accesorii gaming", "parentId": None, "createdAt": datetime.utcnow()},
+        {"name": "Fashion", "slug": "fashion", "icon": "Shirt", "description": "Îmbrăcăminte și încălțăminte", "parentId": None, "createdAt": datetime.utcnow()},
+        {"name": "Carte", "slug": "carte", "icon": "BookOpen", "description": "Cărți și reviste", "parentId": None, "createdAt": datetime.utcnow()},
+        {"name": "Casă & Grădină", "slug": "casa-gradina", "icon": "Home", "description": "Produse pentru casă și grădină", "parentId": None, "createdAt": datetime.utcnow()},
+        {"name": "Sport", "slug": "sport", "icon": "Dumbbell", "description": "Echipament sportiv", "parentId": None, "createdAt": datetime.utcnow()},
+        {"name": "Jucării & Copii", "slug": "jucarii-copii", "icon": "Baby", "description": "Jucării și produse pentru copii", "parentId": None, "createdAt": datetime.utcnow()},
     ]
-    await db.categories.insert_many(categories)
-    print(f"✅ Created {len(categories)} categories")
+    result = await db.categories.insert_many(main_categories)
+    category_ids = {cat['slug']: str(result.inserted_ids[i]) for i, cat in enumerate(main_categories)}
+    print(f"✅ Created {len(main_categories)} main categories")
+    
+    # Create subcategories
+    subcategories = [
+        # Telefoane & Tablete subcategories
+        {"name": "Telefoane Mobile", "slug": "telefoane-mobile", "icon": None, "description": "Smartphone-uri", "parentId": category_ids['telefoane-tablete'], "createdAt": datetime.utcnow()},
+        {"name": "Tablete", "slug": "tablete", "icon": None, "description": "Tablete și iPad-uri", "parentId": category_ids['telefoane-tablete'], "createdAt": datetime.utcnow()},
+        {"name": "Smartwatch & Wearables", "slug": "smartwatch-wearables", "icon": None, "description": "Ceasuri inteligente", "parentId": category_ids['telefoane-tablete'], "createdAt": datetime.utcnow()},
+        {"name": "Accesorii Telefoane", "slug": "accesorii-telefoane", "icon": None, "description": "Huse, folii, încărcătoare", "parentId": category_ids['telefoane-tablete'], "createdAt": datetime.utcnow()},
+        
+        # Laptop, PC subcategories
+        {"name": "Laptopuri", "slug": "laptopuri", "icon": None, "description": "Laptop-uri și notebook-uri", "parentId": category_ids['laptop-pc'], "createdAt": datetime.utcnow()},
+        {"name": "Calculatoare Desktop", "slug": "calculatoare-desktop", "icon": None, "description": "PC-uri desktop", "parentId": category_ids['laptop-pc'], "createdAt": datetime.utcnow()},
+        {"name": "Monitoare", "slug": "monitoare", "icon": None, "description": "Monitoare PC", "parentId": category_ids['laptop-pc'], "createdAt": datetime.utcnow()},
+        {"name": "Tastaturi & Mouse", "slug": "tastaturi-mouse", "icon": None, "description": "Periferice", "parentId": category_ids['laptop-pc'], "createdAt": datetime.utcnow()},
+        {"name": "Imprimante & Scannere", "slug": "imprimante-scannere", "icon": None, "description": "Echipamente birou", "parentId": category_ids['laptop-pc'], "createdAt": datetime.utcnow()},
+        
+        # TV, Audio-Video subcategories
+        {"name": "Televizoare", "slug": "televizoare", "icon": None, "description": "LED, OLED, QLED", "parentId": category_ids['tv-audio-video'], "createdAt": datetime.utcnow()},
+        {"name": "Soundbar & Boxe", "slug": "soundbar-boxe", "icon": None, "description": "Sisteme audio", "parentId": category_ids['tv-audio-video'], "createdAt": datetime.utcnow()},
+        {"name": "Căști & Earbuds", "slug": "casti-earbuds", "icon": None, "description": "Căști audio", "parentId": category_ids['tv-audio-video'], "createdAt": datetime.utcnow()},
+        {"name": "Camere Foto & Video", "slug": "camere-foto-video", "icon": None, "description": "DSLR, mirrorless", "parentId": category_ids['tv-audio-video'], "createdAt": datetime.utcnow()},
+        
+        # Gaming subcategories
+        {"name": "Console Gaming", "slug": "console-gaming", "icon": None, "description": "PlayStation, Xbox, Nintendo", "parentId": category_ids['gaming'], "createdAt": datetime.utcnow()},
+        {"name": "Jocuri Video", "slug": "jocuri-video", "icon": None, "description": "Jocuri pentru console", "parentId": category_ids['gaming'], "createdAt": datetime.utcnow()},
+        {"name": "Accesorii Gaming", "slug": "accesorii-gaming", "icon": None, "description": "Controllere, headset-uri", "parentId": category_ids['gaming'], "createdAt": datetime.utcnow()},
+        {"name": "PC Gaming", "slug": "pc-gaming", "icon": None, "description": "Calculatoare gaming", "parentId": category_ids['gaming'], "createdAt": datetime.utcnow()},
+        
+        # Fashion subcategories
+        {"name": "Pantofi Sport", "slug": "pantofi-sport", "icon": None, "description": "Adidași", "parentId": category_ids['fashion'], "createdAt": datetime.utcnow()},
+        {"name": "Îmbrăcăminte Bărbați", "slug": "imbracaminte-barbati", "icon": None, "description": "Haine bărbați", "parentId": category_ids['fashion'], "createdAt": datetime.utcnow()},
+        {"name": "Îmbrăcăminte Femei", "slug": "imbracaminte-femei", "icon": None, "description": "Haine femei", "parentId": category_ids['fashion'], "createdAt": datetime.utcnow()},
+        {"name": "Accesorii Fashion", "slug": "accesorii-fashion", "icon": None, "description": "Genți, curele, ceasuri", "parentId": category_ids['fashion'], "createdAt": datetime.utcnow()},
+    ]
+    await db.categories.insert_many(subcategories)
+    print(f"✅ Created {len(subcategories)} subcategories")
     
     # Create products
     print("Creating products...")
