@@ -49,7 +49,7 @@ async def register(user_data: UserCreate):
 
 @router.post("/login", response_model=Token)
 async def login(credentials: UserLogin):
-    """Login user"""
+    """Login user - ONLY for regular users, NOT for admins"""
     import logging
     logger = logging.getLogger(__name__)
     
@@ -61,6 +61,13 @@ async def login(credentials: UserLogin):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password"
+        )
+    
+    # SECURITY: Block admin users from logging in through public login
+    if user.get("role") == "admin":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin users must login through admin panel"
         )
     
     # Verify password
