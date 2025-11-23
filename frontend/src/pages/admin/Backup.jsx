@@ -404,6 +404,49 @@ const Backup = () => {
             </>
           )}
         </Button>
+
+        {/* Restore Progress Display */}
+        {restoreProgress && (
+          <div className={`mt-6 p-4 rounded-xl border-2 ${
+            restoreProgress.status === 'success' ? 'bg-green-50 border-green-200' :
+            restoreProgress.status === 'error' ? 'bg-red-50 border-red-200' :
+            restoreProgress.status === 'warning' ? 'bg-orange-50 border-orange-200' :
+            'bg-blue-50 border-blue-200'
+          }`}>
+            <div className="flex items-center space-x-3 mb-3">
+              {restoreProgress.status === 'success' && <CheckCircle className="h-5 w-5 text-green-600" />}
+              {restoreProgress.status === 'error' && <AlertCircle className="h-5 w-5 text-red-600" />}
+              {restoreProgress.status === 'warning' && <AlertCircle className="h-5 w-5 text-orange-600" />}
+              {restoreProgress.status === 'processing' && (
+                <svg className="animate-spin h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              )}
+              <span className={`font-semibold ${
+                restoreProgress.status === 'success' ? 'text-green-800' :
+                restoreProgress.status === 'error' ? 'text-red-800' :
+                restoreProgress.status === 'warning' ? 'text-orange-800' :
+                'text-blue-800'
+              }`}>
+                {restoreProgress.message}
+              </span>
+            </div>
+            
+            {restoreProgress.details && restoreProgress.details.length > 0 && (
+              <div className={`text-sm space-y-1 ${
+                restoreProgress.status === 'success' ? 'text-green-700' :
+                restoreProgress.status === 'error' ? 'text-red-700' :
+                restoreProgress.status === 'warning' ? 'text-orange-700' :
+                'text-blue-700'
+              }`}>
+                {restoreProgress.details.map((detail, index) => (
+                  <div key={index} className="pl-8">• {detail}</div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </Card>
 
       {/* Instructions Card */}
