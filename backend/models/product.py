@@ -15,6 +15,7 @@ class ProductBase(BaseModel):
     stock: int = 0
     isNew: bool = False
     discount: int = 0
+    featured: bool = False
 
 class ProductCreate(ProductBase):
     pass
