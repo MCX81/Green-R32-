@@ -108,8 +108,8 @@ const CategorySidebar = () => {
             key={`floating-${category._id}`}
             className="fixed bg-white border-2 border-gray-100 rounded-2xl shadow-2xl p-2"
             style={{
-              left: '280px',
-              top: '250px',
+              left: `${panelPosition.left}px`,
+              top: `${panelPosition.top}px`,
               width: '256px',
               zIndex: 9999
             }}
