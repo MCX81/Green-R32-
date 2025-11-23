@@ -16,14 +16,39 @@ import { Button } from '../../components/ui/button';
 const AdminLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user, logout, isAdmin } = useAuth();
+  const { user, logout, isAdmin, loading } = useAuth();
 
   // Redirect if not admin
   React.useEffect(() => {
-    if (!isAdmin()) {
+    if (!loading && !isAdmin()) {
+      console.log('Not admin, redirecting. User:', user);
       navigate('/');
     }
-  }, [isAdmin, navigate]);
+  }, [isAdmin, navigate, loading, user]);
+
+  // Show loading while checking auth
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <p className="text-lg">Se încarcă...</p>
+      </div>
+    );
+  }
+
+  // If not admin after loading, show access denied
+  if (!isAdmin()) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Acces interzis</h1>
+          <p className="text-gray-600 mb-4">Nu aveți permisiuni de administrator.</p>
+          <button onClick={() => navigate('/')} className="text-green-600 hover:underline">
+            Înapoi la pagina principală
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const menuItems = [
     { path: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
