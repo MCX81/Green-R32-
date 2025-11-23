@@ -71,6 +71,12 @@ const CategorySidebar = () => {
       leaveTimeoutRef.current = null;
     }
     
+    // Check if category has subcategories before showing panel
+    const subcategories = getSubcategories(categoryId);
+    if (subcategories.length === 0) {
+      return; // Don't show panel if no subcategories
+    }
+    
     setHoveredCategory(categoryId);
     
     // Calculate position
