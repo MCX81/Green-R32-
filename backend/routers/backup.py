@@ -102,7 +102,7 @@ async def export_database(current_user: dict = Depends(get_current_admin_user)):
 @router.post("/restore")
 async def restore_database(
     backup_file: str,
-    current_user: dict = Depends(admin_required)
+    current_user: dict = Depends(get_current_admin_user)
 ):
     """Restore database from JSON backup"""
     try:
