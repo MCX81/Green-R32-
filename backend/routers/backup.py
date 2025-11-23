@@ -65,10 +65,7 @@ async def export_database(current_user: dict = Depends(get_current_admin_user)):
         orders = await db.orders.find({}).to_list(length=None)
         for order in orders:
             order["_id"] = str(order["_id"])
-            if "createdAt" in order:
-                order["createdAt"] = order["createdAt"].isoformat()
-            if "updatedAt" in order:
-                order["updatedAt"] = order["updatedAt"].isoformat()
+            convert_datetime_fields(order)
         backup_data["collections"]["orders"] = orders
         
         # Reviews
