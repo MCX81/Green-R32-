@@ -104,7 +104,7 @@ async def restore_database(
     backup_file: str,
     current_user: dict = Depends(get_current_admin_user)
 ):
-    """Restore database from JSON backup"""
+    """Restore database from JSON backup - optimized for bulk operations"""
     try:
         # Parse JSON
         backup_data = json.loads(backup_file)
@@ -118,87 +118,135 @@ async def restore_database(
         
         collections_data = backup_data["collections"]
         restored_stats = {}
+        errors = []
         
-        # Restore Categories
-        if "categories" in collections_data:
-            # Clear existing categories
-            await db.categories.delete_many({})
-            
-            categories = collections_data["categories"]
-            if categories:
-                # Convert dates back
-                for cat in categories:
-                    if "createdAt" in cat and isinstance(cat["createdAt"], str):
-                        cat["createdAt"] = datetime.fromisoformat(cat["createdAt"])
-                    if "updatedAt" in cat and isinstance(cat["updatedAt"], str):
-                        cat["updatedAt"] = datetime.fromisoformat(cat["updatedAt"])
+        # Helper function to convert datetime strings
+        def convert_dates(items):
+            for item in items:
+                for key in ["createdAt", "updatedAt"]:
+                    if key in item and isinstance(item[key], str):
+                        try:
+                            item[key] = datetime.fromisoformat(item[key])
+                        except:
+                            pass
+            return items
+        
+        # Restore Categories - BULK OPERATION
+        if "categories" in collections_data and collections_data["categories"]:
+            try:
+                categories = collections_data["categories"]
                 
-                await db.categories.insert_many(categories)
-                restored_stats["categories"] = len(categories)
-        
-        # Restore Products
-        if "products" in collections_data:
-            await db.products.delete_many({})
-            
-            products = collections_data["products"]
-            if products:
-                for prod in products:
-                    if "createdAt" in prod and isinstance(prod["createdAt"], str):
-                        prod["createdAt"] = datetime.fromisoformat(prod["createdAt"])
-                    if "updatedAt" in prod and isinstance(prod["updatedAt"], str):
-                        prod["updatedAt"] = datetime.fromisoformat(prod["updatedAt"])
+                # Clear existing categories
+                delete_result = await db.categories.delete_many({})
                 
-                await db.products.insert_many(products)
-                restored_stats["products"] = len(products)
-        
-        # Restore Orders (optional - don't delete existing orders)
-        if "orders" in collections_data:
-            orders = collections_data["orders"]
-            if orders:
-                for order in orders:
-                    if "createdAt" in order and isinstance(order["createdAt"], str):
-                        order["createdAt"] = datetime.fromisoformat(order["createdAt"])
-                    if "updatedAt" in order and isinstance(order["updatedAt"], str):
-                        order["updatedAt"] = datetime.fromisoformat(order["updatedAt"])
+                # Convert dates
+                categories = convert_dates(categories)
+                
+                # Bulk insert
+                if categories:
+                    result = await db.categories.insert_many(categories, ordered=False)
+                    restored_stats["categories"] = len(result.inserted_ids)
+                else:
+                    restored_stats["categories"] = 0
                     
-                    # Only restore if order doesn't exist
+            except Exception as e:
+                errors.append(f"Categories: {str(e)}")
+                restored_stats["categories"] = 0
+        
+        # Restore Products - BULK OPERATION
+        if "products" in collections_data and collections_data["products"]:
+            try:
+                products = collections_data["products"]
+                
+                # Clear existing products
+                await db.products.delete_many({})
+                
+                # Convert dates
+                products = convert_dates(products)
+                
+                # Bulk insert
+                if products:
+                    result = await db.products.insert_many(products, ordered=False)
+                    restored_stats["products"] = len(result.inserted_ids)
+                else:
+                    restored_stats["products"] = 0
+                    
+            except Exception as e:
+                errors.append(f"Products: {str(e)}")
+                restored_stats["products"] = 0
+        
+        # Restore Reviews - BULK OPERATION
+        if "reviews" in collections_data and collections_data["reviews"]:
+            try:
+                reviews = collections_data["reviews"]
+                
+                # Clear existing reviews
+                await db.reviews.delete_many({})
+                
+                # Convert dates
+                reviews = convert_dates(reviews)
+                
+                # Bulk insert
+                if reviews:
+                    result = await db.reviews.insert_many(reviews, ordered=False)
+                    restored_stats["reviews"] = len(result.inserted_ids)
+                else:
+                    restored_stats["reviews"] = 0
+                    
+            except Exception as e:
+                errors.append(f"Reviews: {str(e)}")
+                restored_stats["reviews"] = 0
+        
+        # Restore Orders - Only new orders (don't delete existing)
+        if "orders" in collections_data and collections_data["orders"]:
+            try:
+                orders = collections_data["orders"]
+                orders = convert_dates(orders)
+                
+                new_orders = []
+                for order in orders:
+                    # Check if order exists
                     existing = await db.orders.find_one({"orderId": order.get("orderId")})
                     if not existing:
-                        await db.orders.insert_one(order)
-                        restored_stats["orders"] = restored_stats.get("orders", 0) + 1
-        
-        # Restore Reviews
-        if "reviews" in collections_data:
-            await db.reviews.delete_many({})
-            
-            reviews = collections_data["reviews"]
-            if reviews:
-                for review in reviews:
-                    if "createdAt" in review and isinstance(review["createdAt"], str):
-                        review["createdAt"] = datetime.fromisoformat(review["createdAt"])
+                        new_orders.append(order)
                 
-                await db.reviews.insert_many(reviews)
-                restored_stats["reviews"] = len(reviews)
+                if new_orders:
+                    result = await db.orders.insert_many(new_orders, ordered=False)
+                    restored_stats["orders"] = len(result.inserted_ids)
+                else:
+                    restored_stats["orders"] = 0
+                    
+            except Exception as e:
+                errors.append(f"Orders: {str(e)}")
+                restored_stats["orders"] = 0
+        
+        # Build response message
+        message = "Backup restaurat cu succes!"
+        if errors:
+            message += f" Cu erori: {', '.join(errors)}"
         
         return {
-            "success": True,
-            "message": "Backup restaurat cu succes!",
+            "success": len(errors) == 0,
+            "message": message,
             "restored": restored_stats,
+            "errors": errors if errors else None,
             "backup_info": {
                 "timestamp": backup_data.get("timestamp"),
                 "database": backup_data.get("database")
             }
         }
         
-    except json.JSONDecodeError:
+    except json.JSONDecodeError as e:
         raise HTTPException(
             status_code=400,
-            detail="Fișier JSON invalid. Verificați formatul."
+            detail=f"Fișier JSON invalid: {str(e)}"
         )
     except Exception as e:
+        import traceback
+        error_detail = f"Eroare la restaurarea backup-ului: {str(e)}\n{traceback.format_exc()}"
         raise HTTPException(
             status_code=500,
-            detail=f"Eroare la restaurarea backup-ului: {str(e)}"
+            detail=error_detail
         )
 
 @router.get("/info")
