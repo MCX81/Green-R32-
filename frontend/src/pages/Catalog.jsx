@@ -107,6 +107,11 @@ const Catalog = () => {
     );
   };
 
+  const handleResetFilters = () => {
+    setSelectedBrands([]);
+    setSelectedPriceRange(null);
+  };
+
   const getCategoryName = () => {
     if (category) {
       // Try to get category name from URL parameter
@@ -119,10 +124,14 @@ const Catalog = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex gap-6">
-          {/* Categories Sidebar */}
-          <aside className="w-64 flex-shrink-0">
-            <CategorySidebar />
-          </aside>
+          {/* Sidebar with Categories and Filters */}
+          <CatalogSidebar 
+            selectedBrands={selectedBrands}
+            onBrandToggle={handleBrandToggle}
+            selectedPriceRange={selectedPriceRange}
+            onPriceRangeChange={setSelectedPriceRange}
+            onResetFilters={handleResetFilters}
+          />
 
           {/* Main Content */}
           <div className="flex-1">
