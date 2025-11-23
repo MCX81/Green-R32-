@@ -107,10 +107,12 @@ const Backup = () => {
     }
 
     setRestoring(true);
+    setRestoreProgress({ status: 'processing', message: 'Se citește fișierul...' });
 
     try {
       // Read file content
       const fileContent = await selectedFile.text();
+      setRestoreProgress({ status: 'processing', message: 'Se încarcă datele în baza de date...' });
       
       // Send to backend with longer timeout for large files
       const response = await api.post('/admin/backup/restore', {
@@ -121,6 +123,11 @@ const Backup = () => {
 
       // Display detailed results
       const { restored, errors, progress, message } = response.data;
+      setRestoreProgress({ 
+        status: errors && errors.length > 0 ? 'warning' : 'success', 
+        message: message,
+        details: progress 
+      });
       
       // Build detailed description
       let description = '';
