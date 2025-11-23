@@ -44,7 +44,7 @@ const CategorySidebar = () => {
 
   return (
     <div className="relative">
-      <Card className="rounded-2xl border-2 border-gray-100 overflow-hidden sticky top-24">
+      <Card className="rounded-2xl border-2 border-gray-100 overflow-visible sticky top-24">
         <div className="bg-green-600 text-white p-4 font-bold text-lg">
           Toate Categoriile
         </div>
