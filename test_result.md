@@ -216,6 +216,29 @@ frontend:
           CONCLUZIE: Fix-ul implementat cu useLocation hook rezolvă complet problema raportată.
           Hover functionality funcționează perfect atât inițial cât și după navigare.
 
+  - task: "Testare UI și funcționalitate pentru pagina admin/backup"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/admin/Backup.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "NA"
+        agent: "main"
+        comment: |
+          Testare necesară pentru verificarea:
+          1. Pagina se încarcă corect cu toate cardurile (Database Info, Download Backup, Restore Backup)
+          2. Funcționalitatea de download backup funcționează
+          3. Funcționalitatea de restore backup cu progress tracking
+          4. Progress box afișează detalii granulare din backend
+          5. Mesaje de eroare/succes afișate corect
+          6. UI responsive și design consistent cu restul aplicației
+          
+          Credențiale admin pentru testare:
+          - Email: admin@r32.ro
+          - Password: admin123
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
