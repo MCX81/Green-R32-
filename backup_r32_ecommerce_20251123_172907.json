@@ -1,0 +1,970 @@
+{
+  "timestamp": "20251123_172907",
+  "database": "r32_ecommerce",
+  "collections": {
+    "categories": [
+      {
+        "_id": "6923417d1aca7e47970b4a62",
+        "name": "Telefoane & Tablete",
+        "slug": "telefoane-tablete",
+        "icon": "Smartphone",
+        "description": "Smartphone-uri și tablete",
+        "parentId": null,
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a63",
+        "name": "Laptop, PC & Periferice",
+        "slug": "laptop-pc",
+        "icon": "Laptop",
+        "description": "Laptopuri, computere și accesorii",
+        "parentId": null,
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a64",
+        "name": "TV, Audio-Video & Foto",
+        "slug": "tv-audio-video",
+        "icon": "Tv",
+        "description": "Televizoare, audio și foto",
+        "parentId": null,
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a65",
+        "name": "Electrocasnice",
+        "slug": "electrocasnice",
+        "icon": "Refrigerator",
+        "description": "Frigidere, mașini de spălat și altele",
+        "parentId": null,
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a66",
+        "name": "Gaming",
+        "slug": "gaming",
+        "icon": "Gamepad2",
+        "description": "Console, jocuri și accesorii gaming",
+        "parentId": null,
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a67",
+        "name": "Fashion",
+        "slug": "fashion",
+        "icon": "Shirt",
+        "description": "Îmbrăcăminte și încălțăminte",
+        "parentId": null,
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a68",
+        "name": "Carte",
+        "slug": "carte",
+        "icon": "BookOpen",
+        "description": "Cărți și reviste",
+        "parentId": null,
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a69",
+        "name": "Casă & Grădină",
+        "slug": "casa-gradina",
+        "icon": "Home",
+        "description": "Produse pentru casă și grădină",
+        "parentId": null,
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a6a",
+        "name": "Sport",
+        "slug": "sport",
+        "icon": "Dumbbell",
+        "description": "Echipament sportiv",
+        "parentId": null,
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a6b",
+        "name": "Jucării & Copii",
+        "slug": "jucarii-copii",
+        "icon": "Baby",
+        "description": "Jucării și produse pentru copii",
+        "parentId": null,
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a6c",
+        "name": "Telefoane Mobile",
+        "slug": "telefoane-mobile",
+        "icon": null,
+        "description": "Smartphone-uri",
+        "parentId": "6923417d1aca7e47970b4a62",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a6d",
+        "name": "Tablete",
+        "slug": "tablete",
+        "icon": null,
+        "description": "Tablete și iPad-uri",
+        "parentId": "6923417d1aca7e47970b4a62",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a6e",
+        "name": "Smartwatch & Wearables",
+        "slug": "smartwatch-wearables",
+        "icon": null,
+        "description": "Ceasuri inteligente",
+        "parentId": "6923417d1aca7e47970b4a62",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a6f",
+        "name": "Accesorii Telefoane",
+        "slug": "accesorii-telefoane",
+        "icon": null,
+        "description": "Huse, folii, încărcătoare",
+        "parentId": "6923417d1aca7e47970b4a62",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a70",
+        "name": "Laptopuri",
+        "slug": "laptopuri",
+        "icon": null,
+        "description": "Laptop-uri și notebook-uri",
+        "parentId": "6923417d1aca7e47970b4a63",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a71",
+        "name": "Calculatoare Desktop",
+        "slug": "calculatoare-desktop",
+        "icon": null,
+        "description": "PC-uri desktop",
+        "parentId": "6923417d1aca7e47970b4a63",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a72",
+        "name": "Monitoare",
+        "slug": "monitoare",
+        "icon": null,
+        "description": "Monitoare PC",
+        "parentId": "6923417d1aca7e47970b4a63",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a73",
+        "name": "Tastaturi & Mouse",
+        "slug": "tastaturi-mouse",
+        "icon": null,
+        "description": "Periferice",
+        "parentId": "6923417d1aca7e47970b4a63",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a74",
+        "name": "Imprimante & Scannere",
+        "slug": "imprimante-scannere",
+        "icon": null,
+        "description": "Echipamente birou",
+        "parentId": "6923417d1aca7e47970b4a63",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a75",
+        "name": "Televizoare",
+        "slug": "televizoare",
+        "icon": null,
+        "description": "LED, OLED, QLED",
+        "parentId": "6923417d1aca7e47970b4a64",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a76",
+        "name": "Soundbar & Boxe",
+        "slug": "soundbar-boxe",
+        "icon": null,
+        "description": "Sisteme audio",
+        "parentId": "6923417d1aca7e47970b4a64",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a77",
+        "name": "Căști & Earbuds",
+        "slug": "casti-earbuds",
+        "icon": null,
+        "description": "Căști audio",
+        "parentId": "6923417d1aca7e47970b4a64",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a78",
+        "name": "Camere Foto & Video",
+        "slug": "camere-foto-video",
+        "icon": null,
+        "description": "DSLR, mirrorless",
+        "parentId": "6923417d1aca7e47970b4a64",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a79",
+        "name": "Console Gaming",
+        "slug": "console-gaming",
+        "icon": null,
+        "description": "PlayStation, Xbox, Nintendo",
+        "parentId": "6923417d1aca7e47970b4a66",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a7a",
+        "name": "Jocuri Video",
+        "slug": "jocuri-video",
+        "icon": null,
+        "description": "Jocuri pentru console",
+        "parentId": "6923417d1aca7e47970b4a66",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a7b",
+        "name": "Accesorii Gaming",
+        "slug": "accesorii-gaming",
+        "icon": null,
+        "description": "Controllere, headset-uri",
+        "parentId": "6923417d1aca7e47970b4a66",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a7c",
+        "name": "PC Gaming",
+        "slug": "pc-gaming",
+        "icon": null,
+        "description": "Calculatoare gaming",
+        "parentId": "6923417d1aca7e47970b4a66",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a7d",
+        "name": "Pantofi Sport",
+        "slug": "pantofi-sport",
+        "icon": null,
+        "description": "Adidași",
+        "parentId": "6923417d1aca7e47970b4a67",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a7e",
+        "name": "Îmbrăcăminte Bărbați",
+        "slug": "imbracaminte-barbati",
+        "icon": null,
+        "description": "Haine bărbați",
+        "parentId": "6923417d1aca7e47970b4a67",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a7f",
+        "name": "Îmbrăcăminte Femei",
+        "slug": "imbracaminte-femei",
+        "icon": null,
+        "description": "Haine femei",
+        "parentId": "6923417d1aca7e47970b4a67",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a80",
+        "name": "Accesorii Fashion",
+        "slug": "accesorii-fashion",
+        "icon": null,
+        "description": "Genți, curele, ceasuri",
+        "parentId": "6923417d1aca7e47970b4a67",
+        "createdAt": "2025-11-23T17:16:45.075000"
+      }
+    ],
+    "products": [
+      {
+        "_id": "6923417d1aca7e47970b4a81",
+        "name": "Samsung Galaxy S24 Ultra 256GB",
+        "description": "Telefon Samsung Galaxy S24 Ultra cu ecran Dynamic AMOLED 2X de 6.8 inch, procesor Snapdragon 8 Gen 3, cameră de 200MP și baterie de 5000mAh.",
+        "category": "telefoane-mobile",
+        "brand": "Samsung",
+        "price": 5499,
+        "oldPrice": 6299,
+        "rating": 4.8,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 50,
+        "isNew": true,
+        "discount": 13,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a82",
+        "name": "iPhone 15 Pro Max 512GB",
+        "description": "iPhone 15 Pro Max cu ecran Super Retina XDR, chip A17 Pro și sistem foto Pro cu zoom optic 5x.",
+        "category": "telefoane-mobile",
+        "brand": "Apple",
+        "price": 7899,
+        "oldPrice": null,
+        "rating": 4.9,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 30,
+        "isNew": true,
+        "discount": 0,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a83",
+        "name": "Google Pixel 8 Pro 128GB",
+        "description": "Google Pixel 8 Pro cu ecran OLED de 6.7 inch, procesor Google Tensor G3 și cameră de 50MP cu AI.",
+        "category": "telefoane-mobile",
+        "brand": "Google",
+        "price": 4299,
+        "oldPrice": 4899,
+        "rating": 4.7,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 25,
+        "isNew": false,
+        "discount": 12,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a84",
+        "name": "Xiaomi 14 Pro 512GB",
+        "description": "Xiaomi 14 Pro cu ecran AMOLED de 6.73 inch, procesor Snapdragon 8 Gen 3 și încărcare rapidă 120W.",
+        "category": "telefoane-mobile",
+        "brand": "Xiaomi",
+        "price": 3999,
+        "oldPrice": null,
+        "rating": 4.6,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 40,
+        "isNew": true,
+        "discount": 0,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a85",
+        "name": "Samsung Galaxy Tab S9+ 256GB",
+        "description": "Tabletă Samsung Galaxy Tab S9+ cu ecran Dynamic AMOLED 2X de 12.4 inch și S Pen inclus.",
+        "category": "tablete",
+        "brand": "Samsung",
+        "price": 4499,
+        "oldPrice": 5299,
+        "rating": 4.7,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 20,
+        "isNew": false,
+        "discount": 15,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a86",
+        "name": "iPad Pro 12.9\" M2 512GB",
+        "description": "iPad Pro cu chip M2, ecran Liquid Retina XDR de 12.9 inch și suport pentru Apple Pencil.",
+        "category": "tablete",
+        "brand": "Apple",
+        "price": 6799,
+        "oldPrice": null,
+        "rating": 4.9,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1585790050230-5dd28404f9bc?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1585790050230-5dd28404f9bc?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 15,
+        "isNew": true,
+        "discount": 0,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a87",
+        "name": "Apple Watch Series 9 GPS 45mm",
+        "description": "Apple Watch Series 9 cu ecran Retina Always-On și chip S9 pentru performanță îmbunătățită.",
+        "category": "smartwatch-wearables",
+        "brand": "Apple",
+        "price": 2199,
+        "oldPrice": 2499,
+        "rating": 4.8,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 35,
+        "isNew": false,
+        "discount": 12,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a88",
+        "name": "Samsung Galaxy Watch 6 Classic 47mm",
+        "description": "Samsung Galaxy Watch 6 Classic cu ecran Super AMOLED și rotativă fizică pentru navigare ușoară.",
+        "category": "smartwatch-wearables",
+        "brand": "Samsung",
+        "price": 1799,
+        "oldPrice": null,
+        "rating": 4.6,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1617625802912-cde586faf331?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1617625802912-cde586faf331?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 28,
+        "isNew": true,
+        "discount": 0,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a89",
+        "name": "Laptop Lenovo IdeaPad 3 15.6\" Intel Core i5",
+        "description": "Laptop Lenovo IdeaPad 3 cu procesor Intel Core i5, 16GB RAM, SSD 512GB și ecran Full HD de 15.6 inch.",
+        "category": "laptopuri",
+        "brand": "Lenovo",
+        "price": 2799,
+        "oldPrice": 3299,
+        "rating": 4.5,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 25,
+        "isNew": false,
+        "discount": 15,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a8a",
+        "name": "MacBook Pro 16\" M3 Pro 512GB",
+        "description": "MacBook Pro cu chip M3 Pro, 18GB RAM, SSD 512GB și ecran Liquid Retina XDR de 16 inch.",
+        "category": "laptopuri",
+        "brand": "Apple",
+        "price": 13999,
+        "oldPrice": null,
+        "rating": 4.9,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 15,
+        "isNew": true,
+        "discount": 0,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a8b",
+        "name": "ASUS ROG Strix G16 RTX 4060",
+        "description": "Laptop gaming ASUS ROG Strix G16 cu procesor Intel Core i7, RTX 4060, 16GB RAM și ecran 165Hz.",
+        "category": "laptopuri",
+        "brand": "Asus",
+        "price": 5999,
+        "oldPrice": 6999,
+        "rating": 4.7,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 18,
+        "isNew": false,
+        "discount": 14,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a8c",
+        "name": "HP Pavilion 15 AMD Ryzen 7",
+        "description": "Laptop HP Pavilion 15 cu procesor AMD Ryzen 7, 16GB RAM, SSD 512GB și ecran Full HD.",
+        "category": "laptopuri",
+        "brand": "HP",
+        "price": 3299,
+        "oldPrice": null,
+        "rating": 4.4,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 22,
+        "isNew": false,
+        "discount": 0,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a8d",
+        "name": "Monitor Samsung Odyssey G7 32\" 240Hz",
+        "description": "Monitor gaming curbat Samsung Odyssey G7 cu rezoluție QHD, 240Hz și timp de răspuns 1ms.",
+        "category": "monitoare",
+        "brand": "Samsung",
+        "price": 2499,
+        "oldPrice": 2999,
+        "rating": 4.8,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 15,
+        "isNew": false,
+        "discount": 17,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a8e",
+        "name": "Monitor LG UltraWide 34\" 5K",
+        "description": "Monitor ultrawide LG 34 inch cu rezoluție 5K2K, suport HDR10 și acoperire 98% DCI-P3.",
+        "category": "monitoare",
+        "brand": "LG",
+        "price": 4299,
+        "oldPrice": null,
+        "rating": 4.7,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 12,
+        "isNew": true,
+        "discount": 0,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a8f",
+        "name": "Samsung Smart TV 65\" QLED 4K",
+        "description": "Televizor Samsung QLED 4K cu ecran de 65 inch, tehnologie Quantum Dot și sistem Smart TV Tizen.",
+        "category": "televizoare",
+        "brand": "Samsung",
+        "price": 4299,
+        "oldPrice": 5199,
+        "rating": 4.7,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 20,
+        "isNew": false,
+        "discount": 17,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a90",
+        "name": "LG OLED TV 55\" 4K Smart",
+        "description": "Televizor LG OLED cu ecran de 55 inch, tehnologie self-lit pixels și suport pentru Dolby Vision IQ.",
+        "category": "televizoare",
+        "brand": "LG",
+        "price": 5699,
+        "oldPrice": null,
+        "rating": 4.8,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 12,
+        "isNew": true,
+        "discount": 0,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a91",
+        "name": "Sony WH-1000XM5 Wireless",
+        "description": "Căști Sony WH-1000XM5 cu noise cancelling activ, autonomie 30 ore și sunet Hi-Res Audio.",
+        "category": "casti-earbuds",
+        "brand": "Sony",
+        "price": 1499,
+        "oldPrice": 1799,
+        "rating": 4.9,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 30,
+        "isNew": false,
+        "discount": 17,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a92",
+        "name": "Apple AirPods Pro 2",
+        "description": "AirPods Pro 2 cu noise cancelling adaptiv, audio spatial personalizat și cip H2.",
+        "category": "casti-earbuds",
+        "brand": "Apple",
+        "price": 1099,
+        "oldPrice": null,
+        "rating": 4.8,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 45,
+        "isNew": true,
+        "discount": 0,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a93",
+        "name": "PlayStation 5 Slim Digital Edition",
+        "description": "Consolă PlayStation 5 Slim Digital Edition cu SSD de 1TB și suport pentru jocuri 4K.",
+        "category": "console-gaming",
+        "brand": "Sony",
+        "price": 2499,
+        "oldPrice": 2799,
+        "rating": 4.9,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 10,
+        "isNew": true,
+        "discount": 11,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a94",
+        "name": "Xbox Series X 1TB",
+        "description": "Consolă Xbox Series X cu 1TB SSD, suport 4K și 120fps, compatibilă cu jocuri Xbox și Game Pass.",
+        "category": "console-gaming",
+        "brand": "Microsoft",
+        "price": 2699,
+        "oldPrice": null,
+        "rating": 4.8,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 18,
+        "isNew": false,
+        "discount": 0,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a95",
+        "name": "Nintendo Switch OLED",
+        "description": "Consolă Nintendo Switch OLED cu ecran OLED de 7 inch și dock îmbunătățit.",
+        "category": "console-gaming",
+        "brand": "Nintendo",
+        "price": 1599,
+        "oldPrice": 1799,
+        "rating": 4.7,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 25,
+        "isNew": false,
+        "discount": 11,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a96",
+        "name": "Razer DeathAdder V3 Pro Wireless",
+        "description": "Mouse gaming wireless Razer DeathAdder V3 Pro cu senzor Focus Pro 30K și autonomie 90 ore.",
+        "category": "accesorii-gaming",
+        "brand": "Razer",
+        "price": 699,
+        "oldPrice": 849,
+        "rating": 4.8,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 40,
+        "isNew": false,
+        "discount": 18,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a97",
+        "name": "Logitech G Pro X Superlight 2",
+        "description": "Mouse gaming ultraușor Logitech G Pro X Superlight 2 cu senzor HERO 2 și greutate sub 60g.",
+        "category": "accesorii-gaming",
+        "brand": "Logitech",
+        "price": 799,
+        "oldPrice": null,
+        "rating": 4.9,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 35,
+        "isNew": true,
+        "discount": 0,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a98",
+        "name": "Frigider Samsung Side by Side 617L",
+        "description": "Frigider Samsung Side by Side cu capacitate totală de 617L, tehnologie No Frost și dispenser apă/gheață.",
+        "category": "electrocasnice",
+        "brand": "Samsung",
+        "price": 4899,
+        "oldPrice": 5799,
+        "rating": 4.6,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 10,
+        "isNew": false,
+        "discount": 16,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a99",
+        "name": "Mașină de spălat Bosch Serie 6 9kg",
+        "description": "Mașină de spălat Bosch Serie 6 cu capacitate de 9kg, clasa energetică A și tehnologie VarioPerfect.",
+        "category": "electrocasnice",
+        "brand": "Bosch",
+        "price": 2999,
+        "oldPrice": null,
+        "rating": 4.7,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 15,
+        "isNew": false,
+        "discount": 0,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a9a",
+        "name": "Nike Air Max 270 React",
+        "description": "Adidași Nike Air Max 270 React cu sistem de amortizare Air Max și design modern.",
+        "category": "pantofi-sport",
+        "brand": "Nike",
+        "price": 599,
+        "oldPrice": 799,
+        "rating": 4.4,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 40,
+        "isNew": false,
+        "discount": 25,
+        "featured": true,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a9b",
+        "name": "Adidas Ultraboost 22",
+        "description": "Adidași Adidas Ultraboost 22 cu tehnologie Boost și talpă Continental pentru aderență maximă.",
+        "category": "pantofi-sport",
+        "brand": "Adidas",
+        "price": 699,
+        "oldPrice": null,
+        "rating": 4.6,
+        "reviews": 0,
+        "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80",
+        "images": [
+          "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80"
+        ],
+        "inStock": true,
+        "stock": 35,
+        "isNew": true,
+        "discount": 0,
+        "featured": false,
+        "createdAt": "2025-11-23T17:16:45.077000",
+        "updatedAt": "2025-11-23T17:16:45.077000"
+      }
+    ],
+    "users": [
+      {
+        "_id": "69227bb674ae9a0d63c8a706",
+        "name": "Admin User",
+        "email": "admin@r32.ro",
+        "phone": "0700000000",
+        "address": "Admin Address",
+        "role": "admin",
+        "createdAt": "2025-11-23T03:12:54.313000",
+        "updatedAt": "2025-11-23T03:12:54.313000"
+      },
+      {
+        "_id": "69227bb674ae9a0d63c8a707",
+        "name": "Ion Popescu",
+        "email": "ion@test.ro",
+        "phone": "0712345678",
+        "address": "Str. Exemplu nr. 123, București",
+        "role": "user",
+        "createdAt": "2025-11-23T03:12:54.537000",
+        "updatedAt": "2025-11-23T03:12:54.537000"
+      },
+      {
+        "_id": "6923417c1aca7e47970b4a60",
+        "name": "Admin User",
+        "email": "admin@r32.ro",
+        "phone": "0700000000",
+        "address": "Admin Address",
+        "role": "admin",
+        "createdAt": "2025-11-23T17:16:44.844000",
+        "updatedAt": "2025-11-23T17:16:44.844000"
+      },
+      {
+        "_id": "6923417d1aca7e47970b4a61",
+        "name": "Ion Popescu",
+        "email": "ion@test.ro",
+        "phone": "0712345678",
+        "address": "Str. Exemplu nr. 123, București",
+        "role": "user",
+        "createdAt": "2025-11-23T17:16:45.074000",
+        "updatedAt": "2025-11-23T17:16:45.074000"
+      }
+    ],
+    "orders": [
+      {
+        "_id": "69232416c8f8692d11f829b7",
+        "orderId": "ORD-E1267962",
+        "userId": "69227bb674ae9a0d63c8a707",
+        "items": [
+          {
+            "productId": "1",
+            "name": "Samsung Galaxy S24 Ultra 256GB",
+            "price": 5499.0,
+            "quantity": 1,
+            "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=200&q=80"
+          },
+          {
+            "productId": "2",
+            "name": "MacBook Pro 16\" M3 Pro 512GB",
+            "price": 13999.0,
+            "quantity": 1,
+            "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=200&q=80"
+          }
+        ],
+        "subtotal": 19498.0,
+        "shipping": 0,
+        "total": 19498.0,
+        "status": "pending",
+        "paymentMethod": "cash",
+        "notes": "",
+        "shippingAddress": {
+          "name": "Ion Popescu",
+          "phone": "0712345678",
+          "address": "Spl. 1 Decembrie 1918 Bl. 28 Ap. 8",
+          "city": "Lugoj",
+          "county": "Timiș",
+          "postalCode": "305500"
+        },
+        "createdAt": "2025-11-23T15:11:18.232000",
+        "updatedAt": "2025-11-23T15:11:18.232000"
+      }
+    ],
+    "reviews": []
+  },
+  "stats": {
+    "total_categories": 31,
+    "total_products": 27,
+    "total_users": 4,
+    "total_orders": 1,
+    "total_reviews": 0
+  }
+}
