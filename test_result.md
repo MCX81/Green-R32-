@@ -224,7 +224,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Fix hover functionality pentru CategorySidebar după navigare Catalog → Home"
+    - "Testare frontend completă pentru pagina admin/backup - verificare UI și funcționalitate restore/export"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
