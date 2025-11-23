@@ -70,7 +70,9 @@ async def create_order(
         "subtotal": subtotal,
         "shipping": shipping,
         "total": total,
-        "status": "pending",
+        "status": order_data.status or "pending",
+        "paymentMethod": order_data.paymentMethod,
+        "notes": order_data.notes,
         "shippingAddress": order_data.shippingAddress.dict(),
         "createdAt": datetime.utcnow(),
         "updatedAt": datetime.utcnow()
