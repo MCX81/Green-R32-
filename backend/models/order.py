@@ -22,6 +22,8 @@ class ShippingAddress(BaseModel):
     phone: str
     address: str
     city: str
+    county: str
+    postalCode: Optional[str] = None
 
 class OrderCreate(BaseModel):
     items: List[OrderItem]
