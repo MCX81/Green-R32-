@@ -118,8 +118,11 @@ async def restore_database(
 ):
     """Restore database from JSON backup - highly optimized with batch processing"""
     try:
+        print(f"📥 Starting restore... File size: {len(request.backup_file)} chars")
+        
         # Parse JSON
         backup_data = json.loads(request.backup_file)
+        print(f"✓ JSON parsed successfully")
         
         # Validate backup structure
         if "collections" not in backup_data:
