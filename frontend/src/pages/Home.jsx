@@ -66,7 +66,7 @@ const Home = () => {
         <div className="flex gap-6">
           {/* Left Sidebar - Categories */}
           <aside className="w-64 flex-shrink-0">
-            <CategorySidebar />
+            <CategorySidebar key={location.pathname} />
           </aside>
 
           {/* Main Content */}
