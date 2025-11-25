@@ -107,19 +107,19 @@ const CategorySidebar = () => {
         Toate Categoriile
       </div>
       <nav className="divide-y divide-gray-100">
-        {mainCategories.map((category, index) => {
+        {mainCategories.map((category) => {
           const Icon = iconMap[category.icon] || Smartphone;
-          const subcategories = getSubcategories(category._id);
-          const hasSubcategories = subcategories.length > 0;
           
           return (
             <div
               key={category._id}
-              className="relative group/category"
+              ref={(el) => categoryRefs.current[category._id] = el}
+              onMouseEnter={() => handleCategoryHover(category._id)}
+              onMouseLeave={handleCategoryLeave}
             >
               <Link
                 to={`/catalog?category=${category.slug}`}
-                className="flex items-center justify-between p-4 hover:bg-green-50 transition-colors group relative block"
+                className="flex items-center justify-between p-4 hover:bg-green-50 transition-colors group"
               >
                 <div className="flex items-center space-x-3">
                   <Icon className="h-5 w-5 text-green-600" />
@@ -129,26 +129,6 @@ const CategorySidebar = () => {
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-green-600" />
               </Link>
-              
-              {/* Subcategories Panel - CSS hover only */}
-              {hasSubcategories && (
-                <div className="absolute left-full top-0 ml-1 w-64 bg-white border-2 border-gray-100 rounded-2xl shadow-2xl p-2 opacity-0 invisible group-hover/category:opacity-100 group-hover/category:visible transition-all duration-200 z-[9999]">
-                  <div className="font-bold text-sm text-gray-900 p-3 border-b">
-                    {category.name}
-                  </div>
-                  {subcategories.map((subcat) => (
-                    <Link
-                      key={subcat._id}
-                      to={`/catalog?category=${subcat.slug}`}
-                      className="block p-3 hover:bg-green-50 rounded-xl transition-colors"
-                    >
-                      <span className="text-sm text-gray-700 hover:text-green-600">
-                        {subcat.name}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              )}
             </div>
           );
         })}
