@@ -20,9 +20,12 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
   }, []);
 
   useEffect(() => {
+    console.log('useEffect triggered:', { categorySlug, categoriesLength: categories.length });
     if (categorySlug && categories.length > 0) {
+      console.log('Calling findCurrentCategory with:', categorySlug);
       findCurrentCategory(categorySlug);
     } else if (!categorySlug) {
+      console.log('Resetting to main categories');
       // Reset to main categories when no category is selected
       setCurrentCategory(null);
       setSubcategories([]);
