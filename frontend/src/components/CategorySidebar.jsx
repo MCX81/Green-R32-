@@ -154,7 +154,42 @@ const CategorySidebar = () => {
         })}
       </nav>
     </Card>
-  );
+    
+    {/* Floating Subcategories Panel - FIXED position OUTSIDE Card */}
+    {hoveredCategory && mainCategories.filter(cat => cat._id === hoveredCategory).map((category) => {
+      const subcategories = getSubcategories(category._id);
+      if (subcategories.length === 0) return null;
+      
+      return (
+        <div
+          key={`floating-${category._id}`}
+          className="fixed bg-white border-2 border-gray-100 rounded-2xl shadow-2xl p-2 z-[9999]"
+          style={{
+            left: `${panelPosition.left}px`,
+            top: `${panelPosition.top}px`,
+            width: '256px'
+          }}
+          onMouseEnter={handlePanelEnter}
+          onMouseLeave={handlePanelLeave}
+        >
+          <div className="font-bold text-sm text-gray-900 p-3 border-b">
+            {category.name}
+          </div>
+          {subcategories.map((subcat) => (
+            <Link
+              key={subcat._id}
+              to={`/catalog?category=${subcat.slug}`}
+              className="block p-3 hover:bg-green-50 rounded-xl transition-colors"
+            >
+              <span className="text-sm text-gray-700 hover:text-green-600">
+                {subcat.name}
+              </span>
+            </Link>
+          ))}
+        </div>
+      );
+    })}
+  </>;
 };
 
 export default CategorySidebar;
