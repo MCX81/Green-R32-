@@ -11,7 +11,6 @@ import { useToast } from '../hooks/use-toast';
 
 const Home = () => {
   const { toast } = useToast();
-  const location = useLocation();
   const [currentBanner, setCurrentBanner] = useState(0);
   const [offerProducts, setOfferProducts] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
