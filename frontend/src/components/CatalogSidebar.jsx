@@ -123,7 +123,7 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
               <span className="text-sm font-medium text-gray-700 group-hover:text-green-600">
                 Înapoi la categorii
               </span>
-            </Link>
+            </button>
           )}
           
           {displayCategories.map((cat) => {
