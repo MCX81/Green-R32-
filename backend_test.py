@@ -13,7 +13,7 @@ from datetime import datetime
 from typing import Dict, Any, List
 
 # Configuration
-BASE_URL = "https://r32-emag-clone.preview.emergentagent.com/api"
+BASE_URL = "https://easycart-52.preview.emergentagent.com/api"
 ADMIN_CREDENTIALS = {
     "email": "admin@r32.ro",
     "password": "admin123"
