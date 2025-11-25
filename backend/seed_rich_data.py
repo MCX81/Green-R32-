@@ -204,6 +204,11 @@ def generate_products_for_category(category_name, category_slug, category_id, co
         price = random.randint(500, 8000)
         discount_chance = random.random()
         
+        images = [
+            f"https://placehold.co/600x400/0ea5e9/white?text={brand}+{i+1}",
+            f"https://placehold.co/600x400/10b981/white?text={brand}+{i+1}"
+        ]
+        
         product = {
             "_id": str(uuid.uuid4()),
             "name": f"{brand} {category_name} {model}",
@@ -215,10 +220,8 @@ def generate_products_for_category(category_name, category_slug, category_id, co
             "categoryId": category_id,
             "brand": brand,
             "stock": random.randint(5, 100),
-            "images": [
-                f"https://placehold.co/600x400/0ea5e9/white?text={brand}+{i+1}",
-                f"https://placehold.co/600x400/10b981/white?text={brand}+{i+1}"
-            ],
+            "image": images[0],  # Set image to first image in array
+            "images": images,
             "rating": round(random.uniform(3.5, 5.0), 1),
             "reviewCount": random.randint(10, 500),
             "featured": random.random() > 0.8,
