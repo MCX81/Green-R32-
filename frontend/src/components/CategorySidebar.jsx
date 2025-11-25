@@ -171,6 +171,7 @@ const CategorySidebar = () => {
       );
     })}
   </>
+  );
 };
 
 export default CategorySidebar;
