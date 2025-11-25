@@ -93,24 +93,32 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
             </Link>
           )}
           
-          {displayCategories.map((cat) => (
-            <Link
-              key={cat._id}
-              to={`/catalog?category=${cat.slug}`}
-              className={`flex items-center justify-between p-4 hover:bg-green-50 transition-colors group ${
-                categorySlug === cat.slug ? 'bg-green-50' : ''
-              }`}
-            >
-              <span className={`text-sm font-medium ${
-                categorySlug === cat.slug ? 'text-green-600' : 'text-gray-700 group-hover:text-green-600'
-              }`}>
-                {cat.name}
-              </span>
-              <ChevronRight className={`h-4 w-4 ${
-                categorySlug === cat.slug ? 'text-green-600' : 'text-gray-400 group-hover:text-green-600'
-              }`} />
-            </Link>
-          ))}
+          {displayCategories.map((cat) => {
+            // Check if this category has subcategories
+            const hasSubcategories = categories.some(subcat => subcat.parentId === cat._id);
+            
+            return (
+              <Link
+                key={cat._id}
+                to={`/catalog?category=${cat.slug}`}
+                className={`flex items-center justify-between p-4 hover:bg-green-50 transition-colors group ${
+                  categorySlug === cat.slug ? 'bg-green-50' : ''
+                }`}
+              >
+                <span className={`text-sm font-medium ${
+                  categorySlug === cat.slug ? 'text-green-600' : 'text-gray-700 group-hover:text-green-600'
+                }`}>
+                  {cat.name}
+                </span>
+                {/* Only show arrow if category has subcategories */}
+                {hasSubcategories && (
+                  <ChevronRight className={`h-4 w-4 ${
+                    categorySlug === cat.slug ? 'text-green-600' : 'text-gray-400 group-hover:text-green-600'
+                  }`} />
+                )}
+              </Link>
+            );
+          })}
         </nav>
       </Card>
 
