@@ -13,10 +13,6 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
   
   const categorySlug = searchParams.get('category');
 
-  useEffect(() => {
-    loadCategories();
-  }, []);
-
   const loadCategories = async () => {
     try {
       const response = await categoriesAPI.getAll();
@@ -25,6 +21,10 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
       console.error('Error loading categories:', error);
     }
   };
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
 
   // Get main categories (no parentId)
   const mainCategories = categories.filter(cat => !cat.parentId);
