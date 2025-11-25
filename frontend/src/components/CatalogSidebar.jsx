@@ -48,25 +48,35 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
   };
 
   const findCurrentCategory = (slug) => {
+    console.log('🔍 findCurrentCategory called with slug:', slug);
+    
     // First check if it's a subcategory
     const subcategory = categories.find(cat => cat.slug === slug && cat.parentId);
     
     if (subcategory) {
+      console.log('📱 Found as SUBCATEGORY:', subcategory.name);
       // It's a subcategory, find its parent and siblings
       const parent = categories.find(cat => cat._id === subcategory.parentId);
+      console.log('👆 Parent category:', parent?.name);
       setCurrentCategory(parent);
       
       // Get all subcategories of the parent
       const subs = categories.filter(cat => cat.parentId === parent._id);
+      console.log('📋 Setting subcategories count:', subs.length);
       setSubcategories(subs);
     } else {
       // It's a main category
       const mainCategory = categories.find(cat => cat.slug === slug && !cat.parentId);
+      console.log('📦 Found as MAIN CATEGORY:', mainCategory?.name);
+      
       if (mainCategory) {
         setCurrentCategory(mainCategory);
         // Get subcategories
         const subs = categories.filter(cat => cat.parentId === mainCategory._id);
+        console.log('📋 Setting subcategories count:', subs.length);
         setSubcategories(subs);
+      } else {
+        console.log('❌ NO CATEGORY FOUND with slug:', slug);
       }
     }
   };
