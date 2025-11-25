@@ -301,13 +301,17 @@ async def restore_database(
         }
         
     except json.JSONDecodeError as e:
+        print(f"❌ JSON Decode Error: {str(e)}")
         raise HTTPException(
             status_code=400,
             detail=f"Fișier JSON invalid: {str(e)}"
         )
     except Exception as e:
         import traceback
-        error_detail = f"Eroare la restaurarea backup-ului: {str(e)}\n{traceback.format_exc()}"
+        error_detail = f"Eroare la restaurarea backup-ului: {str(e)}"
+        full_trace = traceback.format_exc()
+        print(f"❌ RESTORE ERROR: {error_detail}")
+        print(f"Full trace: {full_trace}")
         raise HTTPException(
             status_code=500,
             detail=error_detail
