@@ -9,7 +9,7 @@ class ProductBase(BaseModel):
     brand: str
     price: float
     oldPrice: Optional[float] = None
-    image: str
+    image: Optional[str] = None  # Made optional
     images: List[str] = []
     inStock: bool = True
     stock: int = 0
