@@ -8,12 +8,20 @@ import { categoriesAPI } from '../services/api';
 import { brands, priceRanges } from '../mock/mockData';
 
 const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onPriceRangeChange, onResetFilters }) => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState(null);
   const [subcategories, setSubcategories] = useState([]);
   
   const categorySlug = searchParams.get('category');
+  
+  // Force reset function
+  const resetToMainCategories = () => {
+    console.log('🔄 FORCE RESET to main categories');
+    setCurrentCategory(null);
+    setSubcategories([]);
+    setSearchParams({}); // Clear URL params
+  };
 
   useEffect(() => {
     loadCategories();
