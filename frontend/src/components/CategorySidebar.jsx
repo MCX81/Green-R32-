@@ -24,17 +24,6 @@ const CategorySidebar = () => {
     'Baby': Baby,
   };
 
-  useEffect(() => {
-    loadCategories();
-    
-    // Cleanup timeout on unmount
-    return () => {
-      if (leaveTimeoutRef.current) {
-        clearTimeout(leaveTimeoutRef.current);
-      }
-    };
-  }, []);
-
   const loadCategories = async () => {
     try {
       const response = await categoriesAPI.getAll();
@@ -45,6 +34,17 @@ const CategorySidebar = () => {
       console.error('Error loading categories:', error);
     }
   };
+
+  useEffect(() => {
+    loadCategories();
+    
+    // Cleanup timeout on unmount
+    return () => {
+      if (leaveTimeoutRef.current) {
+        clearTimeout(leaveTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Get only main categories (no parentId)
   const mainCategories = categories.filter(cat => !cat.parentId);
