@@ -26,6 +26,13 @@ const CategorySidebar = () => {
 
   useEffect(() => {
     loadCategories();
+    
+    // Cleanup timeout on unmount
+    return () => {
+      if (leaveTimeoutRef.current) {
+        clearTimeout(leaveTimeoutRef.current);
+      }
+    };
   }, []);
 
   const loadCategories = async () => {
