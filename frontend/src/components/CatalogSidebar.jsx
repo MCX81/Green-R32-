@@ -22,6 +22,10 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
   useEffect(() => {
     if (categorySlug && categories.length > 0) {
       findCurrentCategory(categorySlug);
+    } else if (!categorySlug) {
+      // Reset state when no category is selected
+      setCurrentCategory(null);
+      setSubcategories([]);
     }
   }, [categorySlug, categories]);
 
