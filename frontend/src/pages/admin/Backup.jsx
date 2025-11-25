@@ -308,18 +308,31 @@ const Backup = () => {
         </div>
 
         {/* Pre-generated backup download */}
-        <div className="mb-4 p-4 bg-purple-50 border-2 border-purple-200 rounded-xl">
+        <div className="mb-4 p-4 bg-purple-50 border-2 border-purple-200 rounded-xl space-y-3">
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-semibold text-purple-900">📦 Backup Pre-generat Disponibil</p>
-              <p className="text-sm text-purple-700">1336 produse, 67 categorii - Gata pentru deploy</p>
+              <p className="font-semibold text-purple-900">📦 Backup COMPLET (Recomandat)</p>
+              <p className="text-sm text-purple-700">1336 produse, 67 categorii - 1.3 MB</p>
             </div>
             <a
               href="/r32_backup.json"
               download="r32_backup.json"
               className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition-colors"
             >
-              Descarcă JSON
+              Descarcă Complet
+            </a>
+          </div>
+          <div className="flex items-center justify-between border-t pt-3">
+            <div>
+              <p className="font-semibold text-blue-900">🧪 Backup TEST (Pentru Testare)</p>
+              <p className="text-sm text-blue-700">50 produse, 10 categorii - 41 KB</p>
+            </div>
+            <a
+              href="/r32_backup_small.json"
+              download="r32_backup_small.json"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors"
+            >
+              Descarcă Test
             </a>
           </div>
         </div>
