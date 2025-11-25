@@ -10,12 +10,24 @@ import { brands, priceRanges } from '../mock/mockData';
 const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onPriceRangeChange, onResetFilters }) => {
   const [searchParams] = useSearchParams();
   const [categories, setCategories] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState(null);
+  const [subcategories, setSubcategories] = useState([]);
   
   const categorySlug = searchParams.get('category');
 
   useEffect(() => {
     loadCategories();
   }, []);
+
+  useEffect(() => {
+    if (categorySlug && categories.length > 0) {
+      findCurrentCategory(categorySlug);
+    } else if (!categorySlug) {
+      // Reset to main categories when no category is selected
+      setCurrentCategory(null);
+      setSubcategories([]);
+    }
+  }, [categorySlug, categories]);
 
   const loadCategories = async () => {
     try {
@@ -26,39 +38,35 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
     }
   };
 
-  // Get main categories (no parentId)
-  const mainCategories = categories.filter(cat => !cat.parentId);
-  
-  // Compute current state based on categorySlug
-  let currentCategory = null;
-  let subcategories = [];
-  let displayCategories = mainCategories;
-  let title = 'Toate Categoriile';
-  
-  if (categorySlug && categories.length > 0) {
-    // Check if it's a subcategory
-    const subcategory = categories.find(cat => cat.slug === categorySlug && cat.parentId);
+  const findCurrentCategory = (slug) => {
+    // First check if it's a subcategory
+    const subcategory = categories.find(cat => cat.slug === slug && cat.parentId);
     
     if (subcategory) {
-      // It's a subcategory - show parent's subcategories
+      // It's a subcategory, find its parent and siblings
       const parent = categories.find(cat => cat._id === subcategory.parentId);
-      if (parent) {
-        currentCategory = parent;
-        subcategories = categories.filter(cat => cat.parentId === parent._id);
-        displayCategories = subcategories;
-        title = parent.name;
-      }
+      setCurrentCategory(parent);
+      
+      // Get all subcategories of the parent
+      const subs = categories.filter(cat => cat.parentId === parent._id);
+      setSubcategories(subs);
     } else {
-      // It's a main category - show its subcategories
-      const mainCat = categories.find(cat => cat.slug === categorySlug && !cat.parentId);
-      if (mainCat) {
-        currentCategory = mainCat;
-        subcategories = categories.filter(cat => cat.parentId === mainCat._id);
-        displayCategories = subcategories.length > 0 ? subcategories : mainCategories;
-        title = subcategories.length > 0 ? mainCat.name : 'Toate Categoriile';
+      // It's a main category
+      const mainCategory = categories.find(cat => cat.slug === slug && !cat.parentId);
+      if (mainCategory) {
+        setCurrentCategory(mainCategory);
+        // Get subcategories
+        const subs = categories.filter(cat => cat.parentId === mainCategory._id);
+        setSubcategories(subs);
       }
     }
-  }
+  };
+
+  // Get main categories (no parentId)
+  const mainCategories = categories.filter(cat => !cat.parentId);
+
+  const displayCategories = currentCategory && subcategories.length > 0 ? subcategories : mainCategories;
+  const title = currentCategory && subcategories.length > 0 ? currentCategory.name : 'Toate Categoriile';
 
   return (
     <aside className="w-64 flex-shrink-0 sticky top-24 self-start">
@@ -72,6 +80,10 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
           {currentCategory && subcategories.length > 0 && (
             <Link
               to="/catalog"
+              onClick={() => {
+                setCurrentCategory(null);
+                setSubcategories([]);
+              }}
               className="flex items-center p-4 hover:bg-green-50 transition-colors group"
             >
               <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-green-600 rotate-180 mr-2" />
