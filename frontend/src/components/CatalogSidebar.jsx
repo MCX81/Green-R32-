@@ -26,44 +26,39 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
     }
   };
 
-  const findCurrentCategory = (slug) => {
-    console.log('findCurrentCategory called with slug:', slug);
-    console.log('Total categories:', categories.length);
-    
-    // First check if it's a subcategory
-    const subcategory = categories.find(cat => cat.slug === slug && cat.parentId);
-    
-    if (subcategory) {
-      console.log('Found subcategory:', subcategory.name);
-      // It's a subcategory, find its parent and siblings
-      const parent = categories.find(cat => cat._id === subcategory.parentId);
-      setCurrentCategory(parent);
-      
-      // Get all subcategories of the parent
-      const subs = categories.filter(cat => cat.parentId === parent._id);
-      setSubcategories(subs);
-      console.log('Set parent and subs:', parent?.name, subs.length);
-    } else {
-      // It's a main category
-      const mainCategory = categories.find(cat => cat.slug === slug && !cat.parentId);
-      console.log('Main category found:', mainCategory?.name);
-      if (mainCategory) {
-        setCurrentCategory(mainCategory);
-        // Get subcategories
-        const subs = categories.filter(cat => cat.parentId === mainCategory._id);
-        setSubcategories(subs);
-        console.log('Set main category and subs:', mainCategory.name, subs.length);
-      } else {
-        console.log('No category found with slug:', slug);
-      }
-    }
-  };
-
   // Get main categories (no parentId)
   const mainCategories = categories.filter(cat => !cat.parentId);
-
-  const displayCategories = currentCategory && subcategories.length > 0 ? subcategories : mainCategories;
-  const title = currentCategory && subcategories.length > 0 ? currentCategory.name : 'Toate Categoriile';
+  
+  // Compute current state based on categorySlug
+  let currentCategory = null;
+  let subcategories = [];
+  let displayCategories = mainCategories;
+  let title = 'Toate Categoriile';
+  
+  if (categorySlug && categories.length > 0) {
+    // Check if it's a subcategory
+    const subcategory = categories.find(cat => cat.slug === categorySlug && cat.parentId);
+    
+    if (subcategory) {
+      // It's a subcategory - show parent's subcategories
+      const parent = categories.find(cat => cat._id === subcategory.parentId);
+      if (parent) {
+        currentCategory = parent;
+        subcategories = categories.filter(cat => cat.parentId === parent._id);
+        displayCategories = subcategories;
+        title = parent.name;
+      }
+    } else {
+      // It's a main category - show its subcategories
+      const mainCat = categories.find(cat => cat.slug === categorySlug && !cat.parentId);
+      if (mainCat) {
+        currentCategory = mainCat;
+        subcategories = categories.filter(cat => cat.parentId === mainCat._id);
+        displayCategories = subcategories.length > 0 ? subcategories : mainCategories;
+        title = subcategories.length > 0 ? mainCat.name : 'Toate Categoriile';
+      }
+    }
+  }
 
   return (
     <aside className="w-64 flex-shrink-0 sticky top-24 self-start">
