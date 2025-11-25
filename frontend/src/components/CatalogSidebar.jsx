@@ -10,41 +10,12 @@ import { brands, priceRanges } from '../mock/mockData';
 const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onPriceRangeChange, onResetFilters }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [categories, setCategories] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState(null);
-  const [subcategories, setSubcategories] = useState([]);
   
   const categorySlug = searchParams.get('category');
-  
-  // Force reset function
-  const resetToMainCategories = () => {
-    console.log('🔄 FORCE RESET to main categories');
-    setCurrentCategory(null);
-    setSubcategories([]);
-    setSearchParams({}); // Clear URL params
-  };
 
   useEffect(() => {
     loadCategories();
   }, []);
-
-  useEffect(() => {
-    console.log('🔵 useEffect triggered:', { 
-      categorySlug, 
-      categoriesCount: categories.length,
-      currentCategoryBefore: currentCategory?.name,
-      subcategoriesCountBefore: subcategories.length 
-    });
-    
-    if (categorySlug && categories.length > 0) {
-      console.log('✅ Calling findCurrentCategory with:', categorySlug);
-      findCurrentCategory(categorySlug);
-    } else if (!categorySlug) {
-      console.log('🔄 Resetting to main categories');
-      // Reset state when no category is selected
-      setCurrentCategory(null);
-      setSubcategories([]);
-    }
-  }, [categorySlug, categories]);
 
   const loadCategories = async () => {
     try {
