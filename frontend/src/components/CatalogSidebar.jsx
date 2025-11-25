@@ -20,15 +20,8 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
   }, []);
 
   useEffect(() => {
-    console.log('useEffect triggered:', { categorySlug, categoriesLength: categories.length });
     if (categorySlug && categories.length > 0) {
-      console.log('Calling findCurrentCategory with:', categorySlug);
       findCurrentCategory(categorySlug);
-    } else if (!categorySlug) {
-      console.log('Resetting to main categories');
-      // Reset to main categories when no category is selected
-      setCurrentCategory(null);
-      setSubcategories([]);
     }
   }, [categorySlug, categories]);
 
@@ -42,12 +35,10 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
   };
 
   const findCurrentCategory = (slug) => {
-    console.log('findCurrentCategory called with:', slug);
     // First check if it's a subcategory
     const subcategory = categories.find(cat => cat.slug === slug && cat.parentId);
     
     if (subcategory) {
-      console.log('Found as subcategory:', subcategory.name);
       // It's a subcategory, find its parent and siblings
       const parent = categories.find(cat => cat._id === subcategory.parentId);
       setCurrentCategory(parent);
@@ -55,19 +46,14 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
       // Get all subcategories of the parent
       const subs = categories.filter(cat => cat.parentId === parent._id);
       setSubcategories(subs);
-      console.log('Set parent and subs:', parent?.name, subs.length);
     } else {
       // It's a main category
       const mainCategory = categories.find(cat => cat.slug === slug && !cat.parentId);
-      console.log('Found as main category:', mainCategory?.name);
       if (mainCategory) {
         setCurrentCategory(mainCategory);
         // Get subcategories
         const subs = categories.filter(cat => cat.parentId === mainCategory._id);
         setSubcategories(subs);
-        console.log('Set main category and subs:', mainCategory.name, subs.length);
-      } else {
-        console.log('ERROR: No category found with slug:', slug);
       }
     }
   };
@@ -103,32 +89,24 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
             </Link>
           )}
           
-          {displayCategories.map((cat) => {
-            // Check if this category has subcategories
-            const hasSubcategories = categories.some(subcat => subcat.parentId === cat._id);
-            
-            return (
-              <Link
-                key={cat._id}
-                to={`/catalog?category=${cat.slug}`}
-                className={`flex items-center justify-between p-4 hover:bg-green-50 transition-colors group ${
-                  categorySlug === cat.slug ? 'bg-green-50' : ''
-                }`}
-              >
-                <span className={`text-sm font-medium ${
-                  categorySlug === cat.slug ? 'text-green-600' : 'text-gray-700 group-hover:text-green-600'
-                }`}>
-                  {cat.name}
-                </span>
-                {/* Only show arrow if category has subcategories */}
-                {hasSubcategories && (
-                  <ChevronRight className={`h-4 w-4 ${
-                    categorySlug === cat.slug ? 'text-green-600' : 'text-gray-400 group-hover:text-green-600'
-                  }`} />
-                )}
-              </Link>
-            );
-          })}
+          {displayCategories.map((cat) => (
+            <Link
+              key={cat._id}
+              to={`/catalog?category=${cat.slug}`}
+              className={`flex items-center justify-between p-4 hover:bg-green-50 transition-colors group ${
+                categorySlug === cat.slug ? 'bg-green-50' : ''
+              }`}
+            >
+              <span className={`text-sm font-medium ${
+                categorySlug === cat.slug ? 'text-green-600' : 'text-gray-700 group-hover:text-green-600'
+              }`}>
+                {cat.name}
+              </span>
+              <ChevronRight className={`h-4 w-4 ${
+                categorySlug === cat.slug ? 'text-green-600' : 'text-gray-400 group-hover:text-green-600'
+              }`} />
+            </Link>
+          ))}
         </nav>
       </Card>
 
