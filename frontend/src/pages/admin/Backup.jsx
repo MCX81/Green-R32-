@@ -307,6 +307,23 @@ const Backup = () => {
           </div>
         </div>
 
+        {/* Pre-generated backup download */}
+        <div className="mb-4 p-4 bg-purple-50 border-2 border-purple-200 rounded-xl">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-semibold text-purple-900">📦 Backup Pre-generat Disponibil</p>
+              <p className="text-sm text-purple-700">1336 produse, 67 categorii - Gata pentru deploy</p>
+            </div>
+            <a
+              href="/r32_backup.json"
+              download="r32_backup.json"
+              className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition-colors"
+            >
+              Descarcă JSON
+            </a>
+          </div>
+        </div>
+
         <Button
           onClick={handleBackup}
           disabled={loading}
