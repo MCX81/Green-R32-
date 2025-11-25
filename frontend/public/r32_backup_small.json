@@ -1,9 +1,1413 @@
 {
-  "timestamp": "2025-11-25T19:30:00.000Z",
-  "database": "r32_db",
+  "timestamp": "2025-11-25T18:54:57.631200",
+  "database": "test_database",
   "collections": {
-    "categories": [],
-    "products": [],
-    "users": []
+    "categories": [
+      {
+        "_id": "588141f8-4111-447a-bd6c-37e0b9aa87ed",
+        "name": "Telefoane & Tablete",
+        "slug": "telefoane-tablete",
+        "icon": "Smartphone",
+        "parentId": null,
+        "createdAt": "2025-11-25T18:54:57.601973",
+        "updatedAt": "2025-11-25T18:54:57.601978"
+      },
+      {
+        "_id": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "name": "Telefoane Mobile",
+        "slug": "telefoane-mobile",
+        "icon": null,
+        "parentId": "588141f8-4111-447a-bd6c-37e0b9aa87ed",
+        "createdAt": "2025-11-25T18:54:57.601989",
+        "updatedAt": "2025-11-25T18:54:57.601990"
+      },
+      {
+        "_id": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "name": "Smartphone Android",
+        "slug": "smartphone-android",
+        "icon": null,
+        "parentId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "createdAt": "2025-11-25T18:54:57.602269",
+        "updatedAt": "2025-11-25T18:54:57.602270"
+      },
+      {
+        "_id": "87c33c15-66a3-4c9c-a809-30e76403b3f3",
+        "name": "iPhone",
+        "slug": "iphone",
+        "icon": null,
+        "parentId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "createdAt": "2025-11-25T18:54:57.602476",
+        "updatedAt": "2025-11-25T18:54:57.602477"
+      },
+      {
+        "_id": "6adffb11-c59e-43f8-a113-e8d07a4772b6",
+        "name": "Telefoane Simple",
+        "slug": "telefoane-simple",
+        "icon": null,
+        "parentId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "createdAt": "2025-11-25T18:54:57.602696",
+        "updatedAt": "2025-11-25T18:54:57.602696"
+      },
+      {
+        "_id": "1fd43f98-83d0-41f0-85bf-a166dc844d98",
+        "name": "Tablete",
+        "slug": "tablete",
+        "icon": null,
+        "parentId": "588141f8-4111-447a-bd6c-37e0b9aa87ed",
+        "createdAt": "2025-11-25T18:54:57.602857",
+        "updatedAt": "2025-11-25T18:54:57.602858"
+      },
+      {
+        "_id": "8a3ebde2-6933-4bfe-97a9-80faae484ac6",
+        "name": "Tablete Android",
+        "slug": "tablete-android",
+        "icon": null,
+        "parentId": "1fd43f98-83d0-41f0-85bf-a166dc844d98",
+        "createdAt": "2025-11-25T18:54:57.602984",
+        "updatedAt": "2025-11-25T18:54:57.602985"
+      },
+      {
+        "_id": "4221c666-2701-4453-bac2-df40a0e5fc34",
+        "name": "iPad",
+        "slug": "ipad",
+        "icon": null,
+        "parentId": "1fd43f98-83d0-41f0-85bf-a166dc844d98",
+        "createdAt": "2025-11-25T18:54:57.603119",
+        "updatedAt": "2025-11-25T18:54:57.603120"
+      },
+      {
+        "_id": "bca3c28a-d8e2-4d20-8ee0-4735d3ebe084",
+        "name": "Tablete Windows",
+        "slug": "tablete-windows",
+        "icon": null,
+        "parentId": "1fd43f98-83d0-41f0-85bf-a166dc844d98",
+        "createdAt": "2025-11-25T18:54:57.603258",
+        "updatedAt": "2025-11-25T18:54:57.603259"
+      },
+      {
+        "_id": "8df6d6bd-2a82-433f-9a85-43a457b79eb9",
+        "name": "Smartwatch & Wearables",
+        "slug": "smartwatch-wearables",
+        "icon": null,
+        "parentId": "588141f8-4111-447a-bd6c-37e0b9aa87ed",
+        "createdAt": "2025-11-25T18:54:57.603383",
+        "updatedAt": "2025-11-25T18:54:57.603384"
+      }
+    ],
+    "products": [
+      {
+        "_id": "dfe219de-525a-4cd7-ad46-0b3578034da2",
+        "name": "Xiaomi Telefoane Mobile Model 601",
+        "slug": "telefoane-mobile-xiaomi-1",
+        "description": "Produs Telefoane Mobile de calitate premium de la Xiaomi. Caracteristici excelente și garantie completa.",
+        "price": 6998,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Xiaomi",
+        "stock": 18,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+1",
+          "https://placehold.co/600x400/10b981/white?text=Xiaomi+1"
+        ],
+        "rating": 4.0,
+        "reviewCount": 261,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Xiaomi",
+          "Model": "Model 601"
+        },
+        "createdAt": "2025-11-25T18:54:57.602022",
+        "updatedAt": "2025-11-25T18:54:57.602023"
+      },
+      {
+        "_id": "7582bb4a-168d-40ab-a7fa-7332c40b519a",
+        "name": "Xiaomi Telefoane Mobile Model 642",
+        "slug": "telefoane-mobile-xiaomi-2",
+        "description": "Produs Telefoane Mobile de calitate premium de la Xiaomi. Caracteristici excelente și garantie completa.",
+        "price": 2688,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Xiaomi",
+        "stock": 97,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+2",
+          "https://placehold.co/600x400/10b981/white?text=Xiaomi+2"
+        ],
+        "rating": 4.8,
+        "reviewCount": 113,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Xiaomi",
+          "Model": "Model 642"
+        },
+        "createdAt": "2025-11-25T18:54:57.602035",
+        "updatedAt": "2025-11-25T18:54:57.602036"
+      },
+      {
+        "_id": "9b0b086d-4a17-4499-98be-daeed6eed9fd",
+        "name": "Xiaomi Telefoane Mobile Model 158",
+        "slug": "telefoane-mobile-xiaomi-3",
+        "description": "Produs Telefoane Mobile de calitate premium de la Xiaomi. Caracteristici excelente și garantie completa.",
+        "price": 5014,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Xiaomi",
+        "stock": 24,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+3",
+          "https://placehold.co/600x400/10b981/white?text=Xiaomi+3"
+        ],
+        "rating": 3.7,
+        "reviewCount": 63,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Xiaomi",
+          "Model": "Model 158"
+        },
+        "createdAt": "2025-11-25T18:54:57.602045",
+        "updatedAt": "2025-11-25T18:54:57.602046"
+      },
+      {
+        "_id": "c078a4e7-0897-46f6-95c1-c4112f5cd008",
+        "name": "Huawei Telefoane Mobile Model 837",
+        "slug": "telefoane-mobile-huawei-4",
+        "description": "Produs Telefoane Mobile de calitate premium de la Huawei. Caracteristici excelente și garantie completa.",
+        "price": 6544,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Huawei",
+        "stock": 32,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Huawei+4",
+          "https://placehold.co/600x400/10b981/white?text=Huawei+4"
+        ],
+        "rating": 4.3,
+        "reviewCount": 135,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Huawei",
+          "Model": "Model 837"
+        },
+        "createdAt": "2025-11-25T18:54:57.602054",
+        "updatedAt": "2025-11-25T18:54:57.602055"
+      },
+      {
+        "_id": "e35847ae-7150-4fa3-8b49-a97ce83d1139",
+        "name": "Apple Telefoane Mobile Model 451",
+        "slug": "telefoane-mobile-apple-5",
+        "description": "Produs Telefoane Mobile de calitate premium de la Apple. Caracteristici excelente și garantie completa.",
+        "price": 4670,
+        "discountPrice": 3969,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Apple",
+        "stock": 43,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Apple+5",
+          "https://placehold.co/600x400/10b981/white?text=Apple+5"
+        ],
+        "rating": 4.5,
+        "reviewCount": 179,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Apple",
+          "Model": "Model 451"
+        },
+        "createdAt": "2025-11-25T18:54:57.602070",
+        "updatedAt": "2025-11-25T18:54:57.602071"
+      },
+      {
+        "_id": "d3c30c09-2450-4991-829b-edbb72628e60",
+        "name": "Apple Telefoane Mobile Model 282",
+        "slug": "telefoane-mobile-apple-6",
+        "description": "Produs Telefoane Mobile de calitate premium de la Apple. Caracteristici excelente și garantie completa.",
+        "price": 5051,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Apple",
+        "stock": 50,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Apple+6",
+          "https://placehold.co/600x400/10b981/white?text=Apple+6"
+        ],
+        "rating": 4.1,
+        "reviewCount": 492,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Apple",
+          "Model": "Model 282"
+        },
+        "createdAt": "2025-11-25T18:54:57.602080",
+        "updatedAt": "2025-11-25T18:54:57.602081"
+      },
+      {
+        "_id": "e14130c1-4d76-4bff-962f-1640886c31cf",
+        "name": "Apple Telefoane Mobile Model 712",
+        "slug": "telefoane-mobile-apple-7",
+        "description": "Produs Telefoane Mobile de calitate premium de la Apple. Caracteristici excelente și garantie completa.",
+        "price": 3200,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Apple",
+        "stock": 54,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Apple+7",
+          "https://placehold.co/600x400/10b981/white?text=Apple+7"
+        ],
+        "rating": 4.8,
+        "reviewCount": 127,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Apple",
+          "Model": "Model 712"
+        },
+        "createdAt": "2025-11-25T18:54:57.602088",
+        "updatedAt": "2025-11-25T18:54:57.602089"
+      },
+      {
+        "_id": "50acd231-b7e4-499d-bb71-91ddd2ee46c4",
+        "name": "Motorola Telefoane Mobile Model 448",
+        "slug": "telefoane-mobile-motorola-8",
+        "description": "Produs Telefoane Mobile de calitate premium de la Motorola. Caracteristici excelente și garantie completa.",
+        "price": 5805,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Motorola",
+        "stock": 99,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Motorola+8",
+          "https://placehold.co/600x400/10b981/white?text=Motorola+8"
+        ],
+        "rating": 4.4,
+        "reviewCount": 414,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Motorola",
+          "Model": "Model 448"
+        },
+        "createdAt": "2025-11-25T18:54:57.602100",
+        "updatedAt": "2025-11-25T18:54:57.602101"
+      },
+      {
+        "_id": "4f48bdb6-6a9a-47a8-a7bd-678bd49ae66d",
+        "name": "OnePlus Telefoane Mobile Model 643",
+        "slug": "telefoane-mobile-oneplus-9",
+        "description": "Produs Telefoane Mobile de calitate premium de la OnePlus. Caracteristici excelente și garantie completa.",
+        "price": 1101,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "OnePlus",
+        "stock": 78,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=OnePlus+9",
+          "https://placehold.co/600x400/10b981/white?text=OnePlus+9"
+        ],
+        "rating": 4.5,
+        "reviewCount": 214,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "OnePlus",
+          "Model": "Model 643"
+        },
+        "createdAt": "2025-11-25T18:54:57.602108",
+        "updatedAt": "2025-11-25T18:54:57.602109"
+      },
+      {
+        "_id": "8fe103d7-0f01-40dc-a832-9a19164946ae",
+        "name": "Samsung Telefoane Mobile Model 799",
+        "slug": "telefoane-mobile-samsung-10",
+        "description": "Produs Telefoane Mobile de calitate premium de la Samsung. Caracteristici excelente și garantie completa.",
+        "price": 2234,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Samsung",
+        "stock": 13,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Samsung+10",
+          "https://placehold.co/600x400/10b981/white?text=Samsung+10"
+        ],
+        "rating": 3.8,
+        "reviewCount": 177,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Samsung",
+          "Model": "Model 799"
+        },
+        "createdAt": "2025-11-25T18:54:57.602116",
+        "updatedAt": "2025-11-25T18:54:57.602116"
+      },
+      {
+        "_id": "088bdba7-f111-4c30-9830-32151835f166",
+        "name": "Google Telefoane Mobile Model 766",
+        "slug": "telefoane-mobile-google-11",
+        "description": "Produs Telefoane Mobile de calitate premium de la Google. Caracteristici excelente și garantie completa.",
+        "price": 4214,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Google",
+        "stock": 89,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Google+11",
+          "https://placehold.co/600x400/10b981/white?text=Google+11"
+        ],
+        "rating": 3.9,
+        "reviewCount": 149,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Google",
+          "Model": "Model 766"
+        },
+        "createdAt": "2025-11-25T18:54:57.602124",
+        "updatedAt": "2025-11-25T18:54:57.602125"
+      },
+      {
+        "_id": "c0ebcede-4271-49c1-8483-168973d73ac4",
+        "name": "Samsung Telefoane Mobile Model 235",
+        "slug": "telefoane-mobile-samsung-12",
+        "description": "Produs Telefoane Mobile de calitate premium de la Samsung. Caracteristici excelente și garantie completa.",
+        "price": 2369,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Samsung",
+        "stock": 47,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Samsung+12",
+          "https://placehold.co/600x400/10b981/white?text=Samsung+12"
+        ],
+        "rating": 4.5,
+        "reviewCount": 420,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Samsung",
+          "Model": "Model 235"
+        },
+        "createdAt": "2025-11-25T18:54:57.602131",
+        "updatedAt": "2025-11-25T18:54:57.602132"
+      },
+      {
+        "_id": "2799eef6-2d8b-4097-95e8-10b0e933750a",
+        "name": "Google Telefoane Mobile Model 374",
+        "slug": "telefoane-mobile-google-13",
+        "description": "Produs Telefoane Mobile de calitate premium de la Google. Caracteristici excelente și garantie completa.",
+        "price": 5108,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Google",
+        "stock": 43,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Google+13",
+          "https://placehold.co/600x400/10b981/white?text=Google+13"
+        ],
+        "rating": 4.4,
+        "reviewCount": 358,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Google",
+          "Model": "Model 374"
+        },
+        "createdAt": "2025-11-25T18:54:57.602138",
+        "updatedAt": "2025-11-25T18:54:57.602139"
+      },
+      {
+        "_id": "0071711c-784c-4cd4-9593-06723b3b8844",
+        "name": "Samsung Telefoane Mobile Model 890",
+        "slug": "telefoane-mobile-samsung-14",
+        "description": "Produs Telefoane Mobile de calitate premium de la Samsung. Caracteristici excelente și garantie completa.",
+        "price": 6804,
+        "discountPrice": 5783,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Samsung",
+        "stock": 50,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Samsung+14",
+          "https://placehold.co/600x400/10b981/white?text=Samsung+14"
+        ],
+        "rating": 3.6,
+        "reviewCount": 318,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Samsung",
+          "Model": "Model 890"
+        },
+        "createdAt": "2025-11-25T18:54:57.602146",
+        "updatedAt": "2025-11-25T18:54:57.602147"
+      },
+      {
+        "_id": "97641d95-3694-47fc-b464-544226e18a26",
+        "name": "Apple Telefoane Mobile Model 213",
+        "slug": "telefoane-mobile-apple-15",
+        "description": "Produs Telefoane Mobile de calitate premium de la Apple. Caracteristici excelente și garantie completa.",
+        "price": 2703,
+        "discountPrice": 2297,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Apple",
+        "stock": 27,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Apple+15",
+          "https://placehold.co/600x400/10b981/white?text=Apple+15"
+        ],
+        "rating": 4.8,
+        "reviewCount": 188,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Apple",
+          "Model": "Model 213"
+        },
+        "createdAt": "2025-11-25T18:54:57.602155",
+        "updatedAt": "2025-11-25T18:54:57.602156"
+      },
+      {
+        "_id": "b8dd97fa-4e9b-4223-a61c-a8d8ab97186b",
+        "name": "OnePlus Telefoane Mobile Model 862",
+        "slug": "telefoane-mobile-oneplus-16",
+        "description": "Produs Telefoane Mobile de calitate premium de la OnePlus. Caracteristici excelente și garantie completa.",
+        "price": 6872,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "OnePlus",
+        "stock": 82,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=OnePlus+16",
+          "https://placehold.co/600x400/10b981/white?text=OnePlus+16"
+        ],
+        "rating": 4.1,
+        "reviewCount": 146,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "OnePlus",
+          "Model": "Model 862"
+        },
+        "createdAt": "2025-11-25T18:54:57.602165",
+        "updatedAt": "2025-11-25T18:54:57.602165"
+      },
+      {
+        "_id": "74c01042-5301-40b9-aeb0-ca0f0d01e30d",
+        "name": "Huawei Telefoane Mobile Model 218",
+        "slug": "telefoane-mobile-huawei-17",
+        "description": "Produs Telefoane Mobile de calitate premium de la Huawei. Caracteristici excelente și garantie completa.",
+        "price": 5512,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Huawei",
+        "stock": 41,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Huawei+17",
+          "https://placehold.co/600x400/10b981/white?text=Huawei+17"
+        ],
+        "rating": 3.8,
+        "reviewCount": 44,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Huawei",
+          "Model": "Model 218"
+        },
+        "createdAt": "2025-11-25T18:54:57.602171",
+        "updatedAt": "2025-11-25T18:54:57.602172"
+      },
+      {
+        "_id": "59b67a6e-fd2e-433d-a58e-90f88ade86e3",
+        "name": "Motorola Telefoane Mobile Model 821",
+        "slug": "telefoane-mobile-motorola-18",
+        "description": "Produs Telefoane Mobile de calitate premium de la Motorola. Caracteristici excelente și garantie completa.",
+        "price": 1901,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Motorola",
+        "stock": 93,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Motorola+18",
+          "https://placehold.co/600x400/10b981/white?text=Motorola+18"
+        ],
+        "rating": 3.8,
+        "reviewCount": 157,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Motorola",
+          "Model": "Model 821"
+        },
+        "createdAt": "2025-11-25T18:54:57.602179",
+        "updatedAt": "2025-11-25T18:54:57.602179"
+      },
+      {
+        "_id": "d81dd22e-cae7-4936-8fa6-1e2673a924b8",
+        "name": "Xiaomi Telefoane Mobile Model 181",
+        "slug": "telefoane-mobile-xiaomi-19",
+        "description": "Produs Telefoane Mobile de calitate premium de la Xiaomi. Caracteristici excelente și garantie completa.",
+        "price": 6462,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Xiaomi",
+        "stock": 31,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+19",
+          "https://placehold.co/600x400/10b981/white?text=Xiaomi+19"
+        ],
+        "rating": 4.2,
+        "reviewCount": 386,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Xiaomi",
+          "Model": "Model 181"
+        },
+        "createdAt": "2025-11-25T18:54:57.602185",
+        "updatedAt": "2025-11-25T18:54:57.602186"
+      },
+      {
+        "_id": "746f5ae1-df7d-44e2-87ec-e3fe4c9b87b2",
+        "name": "Xiaomi Telefoane Mobile Model 689",
+        "slug": "telefoane-mobile-xiaomi-20",
+        "description": "Produs Telefoane Mobile de calitate premium de la Xiaomi. Caracteristici excelente și garantie completa.",
+        "price": 7696,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Xiaomi",
+        "stock": 95,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+20",
+          "https://placehold.co/600x400/10b981/white?text=Xiaomi+20"
+        ],
+        "rating": 3.9,
+        "reviewCount": 216,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Xiaomi",
+          "Model": "Model 689"
+        },
+        "createdAt": "2025-11-25T18:54:57.602193",
+        "updatedAt": "2025-11-25T18:54:57.602194"
+      },
+      {
+        "_id": "43113886-69b8-4ab6-8424-274572541d0c",
+        "name": "Xiaomi Telefoane Mobile Model 983",
+        "slug": "telefoane-mobile-xiaomi-21",
+        "description": "Produs Telefoane Mobile de calitate premium de la Xiaomi. Caracteristici excelente și garantie completa.",
+        "price": 4133,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Xiaomi",
+        "stock": 13,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+21",
+          "https://placehold.co/600x400/10b981/white?text=Xiaomi+21"
+        ],
+        "rating": 4.6,
+        "reviewCount": 312,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Xiaomi",
+          "Model": "Model 983"
+        },
+        "createdAt": "2025-11-25T18:54:57.602200",
+        "updatedAt": "2025-11-25T18:54:57.602200"
+      },
+      {
+        "_id": "b664548c-5b0b-47a1-8355-4bcc448ee195",
+        "name": "OnePlus Telefoane Mobile Model 143",
+        "slug": "telefoane-mobile-oneplus-22",
+        "description": "Produs Telefoane Mobile de calitate premium de la OnePlus. Caracteristici excelente și garantie completa.",
+        "price": 3059,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "OnePlus",
+        "stock": 64,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=OnePlus+22",
+          "https://placehold.co/600x400/10b981/white?text=OnePlus+22"
+        ],
+        "rating": 3.5,
+        "reviewCount": 24,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "OnePlus",
+          "Model": "Model 143"
+        },
+        "createdAt": "2025-11-25T18:54:57.602207",
+        "updatedAt": "2025-11-25T18:54:57.602208"
+      },
+      {
+        "_id": "fb04e23d-814d-4f6b-9fe7-6e349057da01",
+        "name": "Motorola Telefoane Mobile Model 595",
+        "slug": "telefoane-mobile-motorola-23",
+        "description": "Produs Telefoane Mobile de calitate premium de la Motorola. Caracteristici excelente și garantie completa.",
+        "price": 982,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Motorola",
+        "stock": 6,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Motorola+23",
+          "https://placehold.co/600x400/10b981/white?text=Motorola+23"
+        ],
+        "rating": 3.9,
+        "reviewCount": 248,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Motorola",
+          "Model": "Model 595"
+        },
+        "createdAt": "2025-11-25T18:54:57.602214",
+        "updatedAt": "2025-11-25T18:54:57.602215"
+      },
+      {
+        "_id": "55864327-9ab1-4452-9274-8c5ee4fe518e",
+        "name": "Apple Telefoane Mobile Model 787",
+        "slug": "telefoane-mobile-apple-24",
+        "description": "Produs Telefoane Mobile de calitate premium de la Apple. Caracteristici excelente și garantie completa.",
+        "price": 1533,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Apple",
+        "stock": 30,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Apple+24",
+          "https://placehold.co/600x400/10b981/white?text=Apple+24"
+        ],
+        "rating": 4.2,
+        "reviewCount": 492,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Apple",
+          "Model": "Model 787"
+        },
+        "createdAt": "2025-11-25T18:54:57.602222",
+        "updatedAt": "2025-11-25T18:54:57.602223"
+      },
+      {
+        "_id": "c3851bf8-975f-4564-bcf0-7406f9787f72",
+        "name": "Motorola Telefoane Mobile Model 724",
+        "slug": "telefoane-mobile-motorola-25",
+        "description": "Produs Telefoane Mobile de calitate premium de la Motorola. Caracteristici excelente și garantie completa.",
+        "price": 1221,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Motorola",
+        "stock": 43,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Motorola+25",
+          "https://placehold.co/600x400/10b981/white?text=Motorola+25"
+        ],
+        "rating": 4.4,
+        "reviewCount": 248,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Motorola",
+          "Model": "Model 724"
+        },
+        "createdAt": "2025-11-25T18:54:57.602230",
+        "updatedAt": "2025-11-25T18:54:57.602230"
+      },
+      {
+        "_id": "810b3a71-a212-4a04-93bd-6a15191abd9d",
+        "name": "Google Telefoane Mobile Model 282",
+        "slug": "telefoane-mobile-google-26",
+        "description": "Produs Telefoane Mobile de calitate premium de la Google. Caracteristici excelente și garantie completa.",
+        "price": 5048,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Google",
+        "stock": 71,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Google+26",
+          "https://placehold.co/600x400/10b981/white?text=Google+26"
+        ],
+        "rating": 3.5,
+        "reviewCount": 275,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Google",
+          "Model": "Model 282"
+        },
+        "createdAt": "2025-11-25T18:54:57.602237",
+        "updatedAt": "2025-11-25T18:54:57.602237"
+      },
+      {
+        "_id": "bd12d68a-6ef3-4fbb-85a4-765b265e2de8",
+        "name": "Google Telefoane Mobile Model 249",
+        "slug": "telefoane-mobile-google-27",
+        "description": "Produs Telefoane Mobile de calitate premium de la Google. Caracteristici excelente și garantie completa.",
+        "price": 4920,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Google",
+        "stock": 94,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Google+27",
+          "https://placehold.co/600x400/10b981/white?text=Google+27"
+        ],
+        "rating": 4.0,
+        "reviewCount": 286,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Google",
+          "Model": "Model 249"
+        },
+        "createdAt": "2025-11-25T18:54:57.602243",
+        "updatedAt": "2025-11-25T18:54:57.602244"
+      },
+      {
+        "_id": "71c00e45-b2c4-453e-8728-bc2323d7fa9e",
+        "name": "Huawei Telefoane Mobile Model 983",
+        "slug": "telefoane-mobile-huawei-28",
+        "description": "Produs Telefoane Mobile de calitate premium de la Huawei. Caracteristici excelente și garantie completa.",
+        "price": 4792,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Huawei",
+        "stock": 70,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Huawei+28",
+          "https://placehold.co/600x400/10b981/white?text=Huawei+28"
+        ],
+        "rating": 3.5,
+        "reviewCount": 394,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Huawei",
+          "Model": "Model 983"
+        },
+        "createdAt": "2025-11-25T18:54:57.602249",
+        "updatedAt": "2025-11-25T18:54:57.602250"
+      },
+      {
+        "_id": "27922f0c-5d73-4129-87c9-8ad5b22bfed1",
+        "name": "Samsung Telefoane Mobile Model 496",
+        "slug": "telefoane-mobile-samsung-29",
+        "description": "Produs Telefoane Mobile de calitate premium de la Samsung. Caracteristici excelente și garantie completa.",
+        "price": 4101,
+        "discountPrice": null,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Samsung",
+        "stock": 87,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Samsung+29",
+          "https://placehold.co/600x400/10b981/white?text=Samsung+29"
+        ],
+        "rating": 4.6,
+        "reviewCount": 346,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Samsung",
+          "Model": "Model 496"
+        },
+        "createdAt": "2025-11-25T18:54:57.602256",
+        "updatedAt": "2025-11-25T18:54:57.602257"
+      },
+      {
+        "_id": "46abd360-c3a8-43de-8980-0443c6fc7fa8",
+        "name": "Huawei Telefoane Mobile Model 881",
+        "slug": "telefoane-mobile-huawei-30",
+        "description": "Produs Telefoane Mobile de calitate premium de la Huawei. Caracteristici excelente și garantie completa.",
+        "price": 3657,
+        "discountPrice": 3108,
+        "category": "telefoane-mobile",
+        "categoryId": "931a2e72-8587-4769-ba23-aa5f1253d5ab",
+        "brand": "Huawei",
+        "stock": 14,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Huawei+30",
+          "https://placehold.co/600x400/10b981/white?text=Huawei+30"
+        ],
+        "rating": 4.9,
+        "reviewCount": 259,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Huawei",
+          "Model": "Model 881"
+        },
+        "createdAt": "2025-11-25T18:54:57.602264",
+        "updatedAt": "2025-11-25T18:54:57.602264"
+      },
+      {
+        "_id": "9c0815cc-f7f2-48e6-aa08-b9a07b77abc9",
+        "name": "Brand B Smartphone Android Model 232",
+        "slug": "smartphone-android-brand b-1",
+        "description": "Produs Smartphone Android de calitate premium de la Brand B. Caracteristici excelente și garantie completa.",
+        "price": 1339,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand B",
+        "stock": 84,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand B+1",
+          "https://placehold.co/600x400/10b981/white?text=Brand B+1"
+        ],
+        "rating": 4.2,
+        "reviewCount": 74,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand B",
+          "Model": "Model 232"
+        },
+        "createdAt": "2025-11-25T18:54:57.602279",
+        "updatedAt": "2025-11-25T18:54:57.602280"
+      },
+      {
+        "_id": "ddfea77f-7cd4-42e3-872c-b89e9a72b1f5",
+        "name": "Brand A Smartphone Android Model 376",
+        "slug": "smartphone-android-brand a-2",
+        "description": "Produs Smartphone Android de calitate premium de la Brand A. Caracteristici excelente și garantie completa.",
+        "price": 983,
+        "discountPrice": 835,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand A",
+        "stock": 27,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand A+2",
+          "https://placehold.co/600x400/10b981/white?text=Brand A+2"
+        ],
+        "rating": 4.3,
+        "reviewCount": 285,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand A",
+          "Model": "Model 376"
+        },
+        "createdAt": "2025-11-25T18:54:57.602286",
+        "updatedAt": "2025-11-25T18:54:57.602287"
+      },
+      {
+        "_id": "5d3d3580-3bc7-4a0f-a741-22f585c38edc",
+        "name": "Brand C Smartphone Android Model 317",
+        "slug": "smartphone-android-brand c-3",
+        "description": "Produs Smartphone Android de calitate premium de la Brand C. Caracteristici excelente și garantie completa.",
+        "price": 5214,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand C",
+        "stock": 56,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand C+3",
+          "https://placehold.co/600x400/10b981/white?text=Brand C+3"
+        ],
+        "rating": 3.5,
+        "reviewCount": 70,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand C",
+          "Model": "Model 317"
+        },
+        "createdAt": "2025-11-25T18:54:57.602293",
+        "updatedAt": "2025-11-25T18:54:57.602293"
+      },
+      {
+        "_id": "2903be23-1c48-4d3a-a69b-2cf6e6fbb8b4",
+        "name": "Brand B Smartphone Android Model 530",
+        "slug": "smartphone-android-brand b-4",
+        "description": "Produs Smartphone Android de calitate premium de la Brand B. Caracteristici excelente și garantie completa.",
+        "price": 3257,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand B",
+        "stock": 98,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand B+4",
+          "https://placehold.co/600x400/10b981/white?text=Brand B+4"
+        ],
+        "rating": 3.7,
+        "reviewCount": 498,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand B",
+          "Model": "Model 530"
+        },
+        "createdAt": "2025-11-25T18:54:57.602299",
+        "updatedAt": "2025-11-25T18:54:57.602300"
+      },
+      {
+        "_id": "27177195-a27d-4b98-811d-a905acf2ccc7",
+        "name": "Brand C Smartphone Android Model 781",
+        "slug": "smartphone-android-brand c-5",
+        "description": "Produs Smartphone Android de calitate premium de la Brand C. Caracteristici excelente și garantie completa.",
+        "price": 4745,
+        "discountPrice": 4033,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand C",
+        "stock": 95,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand C+5",
+          "https://placehold.co/600x400/10b981/white?text=Brand C+5"
+        ],
+        "rating": 4.6,
+        "reviewCount": 378,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand C",
+          "Model": "Model 781"
+        },
+        "createdAt": "2025-11-25T18:54:57.602307",
+        "updatedAt": "2025-11-25T18:54:57.602308"
+      },
+      {
+        "_id": "f497a431-e789-4f2d-8a74-c049a8a02972",
+        "name": "Brand A Smartphone Android Model 461",
+        "slug": "smartphone-android-brand a-6",
+        "description": "Produs Smartphone Android de calitate premium de la Brand A. Caracteristici excelente și garantie completa.",
+        "price": 2867,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand A",
+        "stock": 94,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand A+6",
+          "https://placehold.co/600x400/10b981/white?text=Brand A+6"
+        ],
+        "rating": 3.7,
+        "reviewCount": 248,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand A",
+          "Model": "Model 461"
+        },
+        "createdAt": "2025-11-25T18:54:57.602314",
+        "updatedAt": "2025-11-25T18:54:57.602316"
+      },
+      {
+        "_id": "4542cad7-9f48-43d4-89f2-9debfd782092",
+        "name": "Brand A Smartphone Android Model 335",
+        "slug": "smartphone-android-brand a-7",
+        "description": "Produs Smartphone Android de calitate premium de la Brand A. Caracteristici excelente și garantie completa.",
+        "price": 4798,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand A",
+        "stock": 44,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand A+7",
+          "https://placehold.co/600x400/10b981/white?text=Brand A+7"
+        ],
+        "rating": 4.0,
+        "reviewCount": 113,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand A",
+          "Model": "Model 335"
+        },
+        "createdAt": "2025-11-25T18:54:57.602322",
+        "updatedAt": "2025-11-25T18:54:57.602323"
+      },
+      {
+        "_id": "13f0ed03-9dd8-427c-b0ad-3b9e4d917f05",
+        "name": "Brand A Smartphone Android Model 329",
+        "slug": "smartphone-android-brand a-8",
+        "description": "Produs Smartphone Android de calitate premium de la Brand A. Caracteristici excelente și garantie completa.",
+        "price": 2060,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand A",
+        "stock": 14,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand A+8",
+          "https://placehold.co/600x400/10b981/white?text=Brand A+8"
+        ],
+        "rating": 5.0,
+        "reviewCount": 219,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand A",
+          "Model": "Model 329"
+        },
+        "createdAt": "2025-11-25T18:54:57.602328",
+        "updatedAt": "2025-11-25T18:54:57.602329"
+      },
+      {
+        "_id": "c5a62f57-3de9-46f6-8deb-7ef281946fce",
+        "name": "Brand C Smartphone Android Model 350",
+        "slug": "smartphone-android-brand c-9",
+        "description": "Produs Smartphone Android de calitate premium de la Brand C. Caracteristici excelente și garantie completa.",
+        "price": 1816,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand C",
+        "stock": 6,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand C+9",
+          "https://placehold.co/600x400/10b981/white?text=Brand C+9"
+        ],
+        "rating": 3.6,
+        "reviewCount": 359,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand C",
+          "Model": "Model 350"
+        },
+        "createdAt": "2025-11-25T18:54:57.602335",
+        "updatedAt": "2025-11-25T18:54:57.602336"
+      },
+      {
+        "_id": "c408b399-ad30-44dd-b36c-67befb2311df",
+        "name": "Brand B Smartphone Android Model 482",
+        "slug": "smartphone-android-brand b-10",
+        "description": "Produs Smartphone Android de calitate premium de la Brand B. Caracteristici excelente și garantie completa.",
+        "price": 1158,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand B",
+        "stock": 90,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand B+10",
+          "https://placehold.co/600x400/10b981/white?text=Brand B+10"
+        ],
+        "rating": 4.2,
+        "reviewCount": 255,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand B",
+          "Model": "Model 482"
+        },
+        "createdAt": "2025-11-25T18:54:57.602342",
+        "updatedAt": "2025-11-25T18:54:57.602342"
+      },
+      {
+        "_id": "25502eae-57e0-4593-95e7-4808738902f8",
+        "name": "Brand A Smartphone Android Model 678",
+        "slug": "smartphone-android-brand a-11",
+        "description": "Produs Smartphone Android de calitate premium de la Brand A. Caracteristici excelente și garantie completa.",
+        "price": 2302,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand A",
+        "stock": 57,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand A+11",
+          "https://placehold.co/600x400/10b981/white?text=Brand A+11"
+        ],
+        "rating": 4.2,
+        "reviewCount": 168,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand A",
+          "Model": "Model 678"
+        },
+        "createdAt": "2025-11-25T18:54:57.602348",
+        "updatedAt": "2025-11-25T18:54:57.602349"
+      },
+      {
+        "_id": "e2ed3841-1aa2-4a54-b6ec-2631b8c92421",
+        "name": "Brand B Smartphone Android Model 310",
+        "slug": "smartphone-android-brand b-12",
+        "description": "Produs Smartphone Android de calitate premium de la Brand B. Caracteristici excelente și garantie completa.",
+        "price": 7142,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand B",
+        "stock": 21,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand B+12",
+          "https://placehold.co/600x400/10b981/white?text=Brand B+12"
+        ],
+        "rating": 4.5,
+        "reviewCount": 159,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand B",
+          "Model": "Model 310"
+        },
+        "createdAt": "2025-11-25T18:54:57.602357",
+        "updatedAt": "2025-11-25T18:54:57.602357"
+      },
+      {
+        "_id": "e80c124d-1755-488e-9f1e-4b64e5c2c58f",
+        "name": "Brand A Smartphone Android Model 662",
+        "slug": "smartphone-android-brand a-13",
+        "description": "Produs Smartphone Android de calitate premium de la Brand A. Caracteristici excelente și garantie completa.",
+        "price": 2250,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand A",
+        "stock": 97,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand A+13",
+          "https://placehold.co/600x400/10b981/white?text=Brand A+13"
+        ],
+        "rating": 4.9,
+        "reviewCount": 40,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand A",
+          "Model": "Model 662"
+        },
+        "createdAt": "2025-11-25T18:54:57.602363",
+        "updatedAt": "2025-11-25T18:54:57.602364"
+      },
+      {
+        "_id": "b7199854-893b-4777-ac1f-69047c094eda",
+        "name": "Brand C Smartphone Android Model 252",
+        "slug": "smartphone-android-brand c-14",
+        "description": "Produs Smartphone Android de calitate premium de la Brand C. Caracteristici excelente și garantie completa.",
+        "price": 7751,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand C",
+        "stock": 45,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand C+14",
+          "https://placehold.co/600x400/10b981/white?text=Brand C+14"
+        ],
+        "rating": 4.3,
+        "reviewCount": 312,
+        "featured": true,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand C",
+          "Model": "Model 252"
+        },
+        "createdAt": "2025-11-25T18:54:57.602371",
+        "updatedAt": "2025-11-25T18:54:57.602372"
+      },
+      {
+        "_id": "6570ab01-7921-447c-8fa3-517618c6e8a3",
+        "name": "Brand B Smartphone Android Model 140",
+        "slug": "smartphone-android-brand b-15",
+        "description": "Produs Smartphone Android de calitate premium de la Brand B. Caracteristici excelente și garantie completa.",
+        "price": 7240,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand B",
+        "stock": 74,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand B+15",
+          "https://placehold.co/600x400/10b981/white?text=Brand B+15"
+        ],
+        "rating": 4.1,
+        "reviewCount": 466,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand B",
+          "Model": "Model 140"
+        },
+        "createdAt": "2025-11-25T18:54:57.602379",
+        "updatedAt": "2025-11-25T18:54:57.602380"
+      },
+      {
+        "_id": "305e34b9-26c8-4c23-a180-a8a568e39fd5",
+        "name": "Brand C Smartphone Android Model 133",
+        "slug": "smartphone-android-brand c-16",
+        "description": "Produs Smartphone Android de calitate premium de la Brand C. Caracteristici excelente și garantie completa.",
+        "price": 2237,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand C",
+        "stock": 19,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand C+16",
+          "https://placehold.co/600x400/10b981/white?text=Brand C+16"
+        ],
+        "rating": 3.5,
+        "reviewCount": 239,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand C",
+          "Model": "Model 133"
+        },
+        "createdAt": "2025-11-25T18:54:57.602387",
+        "updatedAt": "2025-11-25T18:54:57.602387"
+      },
+      {
+        "_id": "b8e7de4a-5319-4a11-8f36-5766df449870",
+        "name": "Brand A Smartphone Android Model 503",
+        "slug": "smartphone-android-brand a-17",
+        "description": "Produs Smartphone Android de calitate premium de la Brand A. Caracteristici excelente și garantie completa.",
+        "price": 4056,
+        "discountPrice": 3447,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand A",
+        "stock": 47,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand A+17",
+          "https://placehold.co/600x400/10b981/white?text=Brand A+17"
+        ],
+        "rating": 4.9,
+        "reviewCount": 196,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand A",
+          "Model": "Model 503"
+        },
+        "createdAt": "2025-11-25T18:54:57.602393",
+        "updatedAt": "2025-11-25T18:54:57.602394"
+      },
+      {
+        "_id": "59b70aa6-a384-4b6d-ba33-9ef1d214a275",
+        "name": "Brand A Smartphone Android Model 830",
+        "slug": "smartphone-android-brand a-18",
+        "description": "Produs Smartphone Android de calitate premium de la Brand A. Caracteristici excelente și garantie completa.",
+        "price": 5512,
+        "discountPrice": 4685,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand A",
+        "stock": 30,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand A+18",
+          "https://placehold.co/600x400/10b981/white?text=Brand A+18"
+        ],
+        "rating": 4.6,
+        "reviewCount": 425,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand A",
+          "Model": "Model 830"
+        },
+        "createdAt": "2025-11-25T18:54:57.602400",
+        "updatedAt": "2025-11-25T18:54:57.602401"
+      },
+      {
+        "_id": "c22a6cd9-6016-436e-9968-06505c96dda7",
+        "name": "Brand C Smartphone Android Model 737",
+        "slug": "smartphone-android-brand c-19",
+        "description": "Produs Smartphone Android de calitate premium de la Brand C. Caracteristici excelente și garantie completa.",
+        "price": 6774,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand C",
+        "stock": 71,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand C+19",
+          "https://placehold.co/600x400/10b981/white?text=Brand C+19"
+        ],
+        "rating": 4.2,
+        "reviewCount": 29,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand C",
+          "Model": "Model 737"
+        },
+        "createdAt": "2025-11-25T18:54:57.602408",
+        "updatedAt": "2025-11-25T18:54:57.602408"
+      },
+      {
+        "_id": "5049560d-c87c-4871-80bd-6985ed734b6b",
+        "name": "Brand C Smartphone Android Model 761",
+        "slug": "smartphone-android-brand c-20",
+        "description": "Produs Smartphone Android de calitate premium de la Brand C. Caracteristici excelente și garantie completa.",
+        "price": 6627,
+        "discountPrice": null,
+        "category": "smartphone-android",
+        "categoryId": "1cfa66d4-62ef-4fdf-bf32-ddb5e1aa1f41",
+        "brand": "Brand C",
+        "stock": 85,
+        "images": [
+          "https://placehold.co/600x400/0ea5e9/white?text=Brand C+20",
+          "https://placehold.co/600x400/10b981/white?text=Brand C+20"
+        ],
+        "rating": 3.8,
+        "reviewCount": 415,
+        "featured": false,
+        "specifications": {
+          "Garantie": "24 luni",
+          "Producator": "Brand C",
+          "Model": "Model 761"
+        },
+        "createdAt": "2025-11-25T18:54:57.602414",
+        "updatedAt": "2025-11-25T18:54:57.602415"
+      }
+    ],
+    "users": [
+      {
+        "_id": "f9e9ef13-c99f-450e-af4e-6101d5a15de6",
+        "name": "Admin User",
+        "email": "admin@r32.ro",
+        "password": "$2b$12$KIk03udD0snUrxoA5t5cK.80XLzWFCIKHFlCBH6ls0WpKfNdRRd3a",
+        "phone": "0700000000",
+        "address": "Admin Address",
+        "role": "admin",
+        "createdAt": "2025-11-25T18:54:57.596281",
+        "updatedAt": "2025-11-25T18:54:57.596288"
+      }
+    ]
   }
 }
