@@ -119,7 +119,8 @@
           "Model": "Model 601"
         },
         "createdAt": "2025-11-25T18:54:57.602022",
-        "updatedAt": "2025-11-25T18:54:57.602023"
+        "updatedAt": "2025-11-25T18:54:57.602023",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+1"
       },
       {
         "_id": "7582bb4a-168d-40ab-a7fa-7332c40b519a",
@@ -145,7 +146,8 @@
           "Model": "Model 642"
         },
         "createdAt": "2025-11-25T18:54:57.602035",
-        "updatedAt": "2025-11-25T18:54:57.602036"
+        "updatedAt": "2025-11-25T18:54:57.602036",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+2"
       },
       {
         "_id": "9b0b086d-4a17-4499-98be-daeed6eed9fd",
@@ -171,7 +173,8 @@
           "Model": "Model 158"
         },
         "createdAt": "2025-11-25T18:54:57.602045",
-        "updatedAt": "2025-11-25T18:54:57.602046"
+        "updatedAt": "2025-11-25T18:54:57.602046",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+3"
       },
       {
         "_id": "c078a4e7-0897-46f6-95c1-c4112f5cd008",
@@ -197,7 +200,8 @@
           "Model": "Model 837"
         },
         "createdAt": "2025-11-25T18:54:57.602054",
-        "updatedAt": "2025-11-25T18:54:57.602055"
+        "updatedAt": "2025-11-25T18:54:57.602055",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Huawei+4"
       },
       {
         "_id": "e35847ae-7150-4fa3-8b49-a97ce83d1139",
@@ -223,7 +227,8 @@
           "Model": "Model 451"
         },
         "createdAt": "2025-11-25T18:54:57.602070",
-        "updatedAt": "2025-11-25T18:54:57.602071"
+        "updatedAt": "2025-11-25T18:54:57.602071",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Apple+5"
       },
       {
         "_id": "d3c30c09-2450-4991-829b-edbb72628e60",
@@ -249,7 +254,8 @@
           "Model": "Model 282"
         },
         "createdAt": "2025-11-25T18:54:57.602080",
-        "updatedAt": "2025-11-25T18:54:57.602081"
+        "updatedAt": "2025-11-25T18:54:57.602081",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Apple+6"
       },
       {
         "_id": "e14130c1-4d76-4bff-962f-1640886c31cf",
@@ -275,7 +281,8 @@
           "Model": "Model 712"
         },
         "createdAt": "2025-11-25T18:54:57.602088",
-        "updatedAt": "2025-11-25T18:54:57.602089"
+        "updatedAt": "2025-11-25T18:54:57.602089",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Apple+7"
       },
       {
         "_id": "50acd231-b7e4-499d-bb71-91ddd2ee46c4",
@@ -301,7 +308,8 @@
           "Model": "Model 448"
         },
         "createdAt": "2025-11-25T18:54:57.602100",
-        "updatedAt": "2025-11-25T18:54:57.602101"
+        "updatedAt": "2025-11-25T18:54:57.602101",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Motorola+8"
       },
       {
         "_id": "4f48bdb6-6a9a-47a8-a7bd-678bd49ae66d",
@@ -327,7 +335,8 @@
           "Model": "Model 643"
         },
         "createdAt": "2025-11-25T18:54:57.602108",
-        "updatedAt": "2025-11-25T18:54:57.602109"
+        "updatedAt": "2025-11-25T18:54:57.602109",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=OnePlus+9"
       },
       {
         "_id": "8fe103d7-0f01-40dc-a832-9a19164946ae",
@@ -353,7 +362,8 @@
           "Model": "Model 799"
         },
         "createdAt": "2025-11-25T18:54:57.602116",
-        "updatedAt": "2025-11-25T18:54:57.602116"
+        "updatedAt": "2025-11-25T18:54:57.602116",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Samsung+10"
       },
       {
         "_id": "088bdba7-f111-4c30-9830-32151835f166",
@@ -379,7 +389,8 @@
           "Model": "Model 766"
         },
         "createdAt": "2025-11-25T18:54:57.602124",
-        "updatedAt": "2025-11-25T18:54:57.602125"
+        "updatedAt": "2025-11-25T18:54:57.602125",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Google+11"
       },
       {
         "_id": "c0ebcede-4271-49c1-8483-168973d73ac4",
@@ -405,7 +416,8 @@
           "Model": "Model 235"
         },
         "createdAt": "2025-11-25T18:54:57.602131",
-        "updatedAt": "2025-11-25T18:54:57.602132"
+        "updatedAt": "2025-11-25T18:54:57.602132",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Samsung+12"
       },
       {
         "_id": "2799eef6-2d8b-4097-95e8-10b0e933750a",
@@ -431,7 +443,8 @@
           "Model": "Model 374"
         },
         "createdAt": "2025-11-25T18:54:57.602138",
-        "updatedAt": "2025-11-25T18:54:57.602139"
+        "updatedAt": "2025-11-25T18:54:57.602139",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Google+13"
       },
       {
         "_id": "0071711c-784c-4cd4-9593-06723b3b8844",
@@ -457,7 +470,8 @@
           "Model": "Model 890"
         },
         "createdAt": "2025-11-25T18:54:57.602146",
-        "updatedAt": "2025-11-25T18:54:57.602147"
+        "updatedAt": "2025-11-25T18:54:57.602147",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Samsung+14"
       },
       {
         "_id": "97641d95-3694-47fc-b464-544226e18a26",
@@ -483,7 +497,8 @@
           "Model": "Model 213"
         },
         "createdAt": "2025-11-25T18:54:57.602155",
-        "updatedAt": "2025-11-25T18:54:57.602156"
+        "updatedAt": "2025-11-25T18:54:57.602156",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Apple+15"
       },
       {
         "_id": "b8dd97fa-4e9b-4223-a61c-a8d8ab97186b",
@@ -509,7 +524,8 @@
           "Model": "Model 862"
         },
         "createdAt": "2025-11-25T18:54:57.602165",
-        "updatedAt": "2025-11-25T18:54:57.602165"
+        "updatedAt": "2025-11-25T18:54:57.602165",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=OnePlus+16"
       },
       {
         "_id": "74c01042-5301-40b9-aeb0-ca0f0d01e30d",
@@ -535,7 +551,8 @@
           "Model": "Model 218"
         },
         "createdAt": "2025-11-25T18:54:57.602171",
-        "updatedAt": "2025-11-25T18:54:57.602172"
+        "updatedAt": "2025-11-25T18:54:57.602172",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Huawei+17"
       },
       {
         "_id": "59b67a6e-fd2e-433d-a58e-90f88ade86e3",
@@ -561,7 +578,8 @@
           "Model": "Model 821"
         },
         "createdAt": "2025-11-25T18:54:57.602179",
-        "updatedAt": "2025-11-25T18:54:57.602179"
+        "updatedAt": "2025-11-25T18:54:57.602179",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Motorola+18"
       },
       {
         "_id": "d81dd22e-cae7-4936-8fa6-1e2673a924b8",
@@ -587,7 +605,8 @@
           "Model": "Model 181"
         },
         "createdAt": "2025-11-25T18:54:57.602185",
-        "updatedAt": "2025-11-25T18:54:57.602186"
+        "updatedAt": "2025-11-25T18:54:57.602186",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+19"
       },
       {
         "_id": "746f5ae1-df7d-44e2-87ec-e3fe4c9b87b2",
@@ -613,7 +632,8 @@
           "Model": "Model 689"
         },
         "createdAt": "2025-11-25T18:54:57.602193",
-        "updatedAt": "2025-11-25T18:54:57.602194"
+        "updatedAt": "2025-11-25T18:54:57.602194",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+20"
       },
       {
         "_id": "43113886-69b8-4ab6-8424-274572541d0c",
@@ -639,7 +659,8 @@
           "Model": "Model 983"
         },
         "createdAt": "2025-11-25T18:54:57.602200",
-        "updatedAt": "2025-11-25T18:54:57.602200"
+        "updatedAt": "2025-11-25T18:54:57.602200",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Xiaomi+21"
       },
       {
         "_id": "b664548c-5b0b-47a1-8355-4bcc448ee195",
@@ -665,7 +686,8 @@
           "Model": "Model 143"
         },
         "createdAt": "2025-11-25T18:54:57.602207",
-        "updatedAt": "2025-11-25T18:54:57.602208"
+        "updatedAt": "2025-11-25T18:54:57.602208",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=OnePlus+22"
       },
       {
         "_id": "fb04e23d-814d-4f6b-9fe7-6e349057da01",
@@ -691,7 +713,8 @@
           "Model": "Model 595"
         },
         "createdAt": "2025-11-25T18:54:57.602214",
-        "updatedAt": "2025-11-25T18:54:57.602215"
+        "updatedAt": "2025-11-25T18:54:57.602215",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Motorola+23"
       },
       {
         "_id": "55864327-9ab1-4452-9274-8c5ee4fe518e",
@@ -717,7 +740,8 @@
           "Model": "Model 787"
         },
         "createdAt": "2025-11-25T18:54:57.602222",
-        "updatedAt": "2025-11-25T18:54:57.602223"
+        "updatedAt": "2025-11-25T18:54:57.602223",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Apple+24"
       },
       {
         "_id": "c3851bf8-975f-4564-bcf0-7406f9787f72",
@@ -743,7 +767,8 @@
           "Model": "Model 724"
         },
         "createdAt": "2025-11-25T18:54:57.602230",
-        "updatedAt": "2025-11-25T18:54:57.602230"
+        "updatedAt": "2025-11-25T18:54:57.602230",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Motorola+25"
       },
       {
         "_id": "810b3a71-a212-4a04-93bd-6a15191abd9d",
@@ -769,7 +794,8 @@
           "Model": "Model 282"
         },
         "createdAt": "2025-11-25T18:54:57.602237",
-        "updatedAt": "2025-11-25T18:54:57.602237"
+        "updatedAt": "2025-11-25T18:54:57.602237",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Google+26"
       },
       {
         "_id": "bd12d68a-6ef3-4fbb-85a4-765b265e2de8",
@@ -795,7 +821,8 @@
           "Model": "Model 249"
         },
         "createdAt": "2025-11-25T18:54:57.602243",
-        "updatedAt": "2025-11-25T18:54:57.602244"
+        "updatedAt": "2025-11-25T18:54:57.602244",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Google+27"
       },
       {
         "_id": "71c00e45-b2c4-453e-8728-bc2323d7fa9e",
@@ -821,7 +848,8 @@
           "Model": "Model 983"
         },
         "createdAt": "2025-11-25T18:54:57.602249",
-        "updatedAt": "2025-11-25T18:54:57.602250"
+        "updatedAt": "2025-11-25T18:54:57.602250",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Huawei+28"
       },
       {
         "_id": "27922f0c-5d73-4129-87c9-8ad5b22bfed1",
@@ -847,7 +875,8 @@
           "Model": "Model 496"
         },
         "createdAt": "2025-11-25T18:54:57.602256",
-        "updatedAt": "2025-11-25T18:54:57.602257"
+        "updatedAt": "2025-11-25T18:54:57.602257",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Samsung+29"
       },
       {
         "_id": "46abd360-c3a8-43de-8980-0443c6fc7fa8",
@@ -873,7 +902,8 @@
           "Model": "Model 881"
         },
         "createdAt": "2025-11-25T18:54:57.602264",
-        "updatedAt": "2025-11-25T18:54:57.602264"
+        "updatedAt": "2025-11-25T18:54:57.602264",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Huawei+30"
       },
       {
         "_id": "9c0815cc-f7f2-48e6-aa08-b9a07b77abc9",
@@ -899,7 +929,8 @@
           "Model": "Model 232"
         },
         "createdAt": "2025-11-25T18:54:57.602279",
-        "updatedAt": "2025-11-25T18:54:57.602280"
+        "updatedAt": "2025-11-25T18:54:57.602280",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand B+1"
       },
       {
         "_id": "ddfea77f-7cd4-42e3-872c-b89e9a72b1f5",
@@ -925,7 +956,8 @@
           "Model": "Model 376"
         },
         "createdAt": "2025-11-25T18:54:57.602286",
-        "updatedAt": "2025-11-25T18:54:57.602287"
+        "updatedAt": "2025-11-25T18:54:57.602287",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand A+2"
       },
       {
         "_id": "5d3d3580-3bc7-4a0f-a741-22f585c38edc",
@@ -951,7 +983,8 @@
           "Model": "Model 317"
         },
         "createdAt": "2025-11-25T18:54:57.602293",
-        "updatedAt": "2025-11-25T18:54:57.602293"
+        "updatedAt": "2025-11-25T18:54:57.602293",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand C+3"
       },
       {
         "_id": "2903be23-1c48-4d3a-a69b-2cf6e6fbb8b4",
@@ -977,7 +1010,8 @@
           "Model": "Model 530"
         },
         "createdAt": "2025-11-25T18:54:57.602299",
-        "updatedAt": "2025-11-25T18:54:57.602300"
+        "updatedAt": "2025-11-25T18:54:57.602300",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand B+4"
       },
       {
         "_id": "27177195-a27d-4b98-811d-a905acf2ccc7",
@@ -1003,7 +1037,8 @@
           "Model": "Model 781"
         },
         "createdAt": "2025-11-25T18:54:57.602307",
-        "updatedAt": "2025-11-25T18:54:57.602308"
+        "updatedAt": "2025-11-25T18:54:57.602308",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand C+5"
       },
       {
         "_id": "f497a431-e789-4f2d-8a74-c049a8a02972",
@@ -1029,7 +1064,8 @@
           "Model": "Model 461"
         },
         "createdAt": "2025-11-25T18:54:57.602314",
-        "updatedAt": "2025-11-25T18:54:57.602316"
+        "updatedAt": "2025-11-25T18:54:57.602316",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand A+6"
       },
       {
         "_id": "4542cad7-9f48-43d4-89f2-9debfd782092",
@@ -1055,7 +1091,8 @@
           "Model": "Model 335"
         },
         "createdAt": "2025-11-25T18:54:57.602322",
-        "updatedAt": "2025-11-25T18:54:57.602323"
+        "updatedAt": "2025-11-25T18:54:57.602323",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand A+7"
       },
       {
         "_id": "13f0ed03-9dd8-427c-b0ad-3b9e4d917f05",
@@ -1081,7 +1118,8 @@
           "Model": "Model 329"
         },
         "createdAt": "2025-11-25T18:54:57.602328",
-        "updatedAt": "2025-11-25T18:54:57.602329"
+        "updatedAt": "2025-11-25T18:54:57.602329",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand A+8"
       },
       {
         "_id": "c5a62f57-3de9-46f6-8deb-7ef281946fce",
@@ -1107,7 +1145,8 @@
           "Model": "Model 350"
         },
         "createdAt": "2025-11-25T18:54:57.602335",
-        "updatedAt": "2025-11-25T18:54:57.602336"
+        "updatedAt": "2025-11-25T18:54:57.602336",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand C+9"
       },
       {
         "_id": "c408b399-ad30-44dd-b36c-67befb2311df",
@@ -1133,7 +1172,8 @@
           "Model": "Model 482"
         },
         "createdAt": "2025-11-25T18:54:57.602342",
-        "updatedAt": "2025-11-25T18:54:57.602342"
+        "updatedAt": "2025-11-25T18:54:57.602342",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand B+10"
       },
       {
         "_id": "25502eae-57e0-4593-95e7-4808738902f8",
@@ -1159,7 +1199,8 @@
           "Model": "Model 678"
         },
         "createdAt": "2025-11-25T18:54:57.602348",
-        "updatedAt": "2025-11-25T18:54:57.602349"
+        "updatedAt": "2025-11-25T18:54:57.602349",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand A+11"
       },
       {
         "_id": "e2ed3841-1aa2-4a54-b6ec-2631b8c92421",
@@ -1185,7 +1226,8 @@
           "Model": "Model 310"
         },
         "createdAt": "2025-11-25T18:54:57.602357",
-        "updatedAt": "2025-11-25T18:54:57.602357"
+        "updatedAt": "2025-11-25T18:54:57.602357",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand B+12"
       },
       {
         "_id": "e80c124d-1755-488e-9f1e-4b64e5c2c58f",
@@ -1211,7 +1253,8 @@
           "Model": "Model 662"
         },
         "createdAt": "2025-11-25T18:54:57.602363",
-        "updatedAt": "2025-11-25T18:54:57.602364"
+        "updatedAt": "2025-11-25T18:54:57.602364",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand A+13"
       },
       {
         "_id": "b7199854-893b-4777-ac1f-69047c094eda",
@@ -1237,7 +1280,8 @@
           "Model": "Model 252"
         },
         "createdAt": "2025-11-25T18:54:57.602371",
-        "updatedAt": "2025-11-25T18:54:57.602372"
+        "updatedAt": "2025-11-25T18:54:57.602372",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand C+14"
       },
       {
         "_id": "6570ab01-7921-447c-8fa3-517618c6e8a3",
@@ -1263,7 +1307,8 @@
           "Model": "Model 140"
         },
         "createdAt": "2025-11-25T18:54:57.602379",
-        "updatedAt": "2025-11-25T18:54:57.602380"
+        "updatedAt": "2025-11-25T18:54:57.602380",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand B+15"
       },
       {
         "_id": "305e34b9-26c8-4c23-a180-a8a568e39fd5",
@@ -1289,7 +1334,8 @@
           "Model": "Model 133"
         },
         "createdAt": "2025-11-25T18:54:57.602387",
-        "updatedAt": "2025-11-25T18:54:57.602387"
+        "updatedAt": "2025-11-25T18:54:57.602387",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand C+16"
       },
       {
         "_id": "b8e7de4a-5319-4a11-8f36-5766df449870",
@@ -1315,7 +1361,8 @@
           "Model": "Model 503"
         },
         "createdAt": "2025-11-25T18:54:57.602393",
-        "updatedAt": "2025-11-25T18:54:57.602394"
+        "updatedAt": "2025-11-25T18:54:57.602394",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand A+17"
       },
       {
         "_id": "59b70aa6-a384-4b6d-ba33-9ef1d214a275",
@@ -1341,7 +1388,8 @@
           "Model": "Model 830"
         },
         "createdAt": "2025-11-25T18:54:57.602400",
-        "updatedAt": "2025-11-25T18:54:57.602401"
+        "updatedAt": "2025-11-25T18:54:57.602401",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand A+18"
       },
       {
         "_id": "c22a6cd9-6016-436e-9968-06505c96dda7",
@@ -1367,7 +1415,8 @@
           "Model": "Model 737"
         },
         "createdAt": "2025-11-25T18:54:57.602408",
-        "updatedAt": "2025-11-25T18:54:57.602408"
+        "updatedAt": "2025-11-25T18:54:57.602408",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand C+19"
       },
       {
         "_id": "5049560d-c87c-4871-80bd-6985ed734b6b",
@@ -1393,7 +1442,8 @@
           "Model": "Model 761"
         },
         "createdAt": "2025-11-25T18:54:57.602414",
-        "updatedAt": "2025-11-25T18:54:57.602415"
+        "updatedAt": "2025-11-25T18:54:57.602415",
+        "image": "https://placehold.co/600x400/0ea5e9/white?text=Brand C+20"
       }
     ],
     "users": [
