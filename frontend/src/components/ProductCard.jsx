@@ -51,7 +51,7 @@ const ProductCard = ({ product, onAddToCart, onAddToWishlist }) => {
       </Link>
 
       <div className="p-4">
-        <Link to={`/product/${id}`}>
+        <Link to={`/product/${_id}`}>
           <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-green-600 transition-colors">
             {name}
           </h3>
