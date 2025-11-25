@@ -73,10 +73,7 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
           {/* Back button if we're in subcategories */}
           {currentCategory && subcategories.length > 0 && (
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                resetToMainCategories();
-              }}
+              onClick={() => setSearchParams({})}
               className="flex items-center p-4 hover:bg-green-50 transition-colors group w-full text-left"
             >
               <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-green-600 rotate-180 mr-2" />
