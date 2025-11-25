@@ -169,7 +169,7 @@ const CategorySidebar = () => {
         </div>
       );
     })}
-  </>;
+  </>
 };
 
 export default CategorySidebar;
