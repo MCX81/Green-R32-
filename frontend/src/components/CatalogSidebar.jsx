@@ -86,6 +86,13 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
 
   const displayCategories = currentCategory && subcategories.length > 0 ? subcategories : mainCategories;
   const title = currentCategory && subcategories.length > 0 ? currentCategory.name : 'Toate Categoriile';
+  
+  console.log('🎨 RENDER:', { 
+    currentCategory: currentCategory?.name, 
+    subcategoriesCount: subcategories.length,
+    displayCategoriesCount: displayCategories.length,
+    title 
+  });
 
   return (
     <aside className="w-64 flex-shrink-0 sticky top-24 self-start">
