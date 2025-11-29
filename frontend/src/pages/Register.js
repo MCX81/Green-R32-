@@ -130,7 +130,7 @@ const Register = () => {
 
           <div className="mt-6 text-center text-sm text-muted-foreground">
             Ai deja cont?{' '}
-            <Link to="/login" className="text-primary hover:underline font-medium">
+            <Link to="/facturare/login" className="text-primary hover:underline font-medium">
               Autentifică-te
             </Link>
           </div>
