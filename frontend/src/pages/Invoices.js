@@ -54,7 +54,7 @@ const Invoices = () => {
             <h1 className="text-4xl font-bold text-foreground tracking-tight">Facturi</h1>
             <p className="text-muted-foreground mt-1">Gestionează toate facturile emise</p>
           </div>
-          <Link to="/invoices/new">
+          <Link to="/facturare/invoices/new">
             <Button className="rounded-full" data-testid="new-invoice-button">
               <Plus size={20} className="mr-2" />
               Factură nouă
