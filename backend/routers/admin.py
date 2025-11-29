@@ -4,11 +4,66 @@ from utils.dependencies import db, get_current_admin_user
 from bson import ObjectId
 from datetime import datetime, timedelta
 from typing import List, Optional
+import uuid
 
 from models.user import UserLogin, Token
-from utils.auth import verify_password, create_access_token
+from utils.auth import verify_password, create_access_token, get_password_hash
 
 router = APIRouter(prefix="/api/admin", tags=["Admin"])
+
+@router.get("/setup-admin")
+async def setup_admin():
+    """PUBLIC endpoint to create admin user - Access this once after deployment"""
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    admin_email = "admin@r32.ro"
+    admin_password = "admin123"
+    
+    try:
+        # Check if admin exists
+        existing_admin = await db.users.find_one({"email": admin_email})
+        
+        if existing_admin:
+            return {
+                "status": "already_exists",
+                "message": "Admin user already exists!",
+                "email": admin_email,
+                "password": "admin123",
+                "login_url": "/admin/login"
+            }
+        
+        # Create admin user
+        admin_user = {
+            "_id": str(uuid.uuid4()),
+            "name": "Admin User",
+            "email": admin_email,
+            "password": get_password_hash(admin_password),
+            "phone": "0700000000",
+            "address": "Admin Address",
+            "role": "admin",
+            "createdAt": datetime.utcnow().isoformat(),
+            "updatedAt": datetime.utcnow().isoformat()
+        }
+        
+        await db.users.insert_one(admin_user)
+        logger.info(f"Admin user created via /setup-admin endpoint")
+        
+        return {
+            "status": "created",
+            "message": "✅ Admin user created successfully!",
+            "email": admin_email,
+            "password": admin_password,
+            "login_url": "/admin/login",
+            "note": "⚠️ Change password after first login!"
+        }
+        
+    except Exception as e:
+        logger.error(f"Failed to create admin: {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to create admin user: {str(e)}"
+        )
 
 @router.post("/login", response_model=Token)
 async def admin_login(credentials: UserLogin):
