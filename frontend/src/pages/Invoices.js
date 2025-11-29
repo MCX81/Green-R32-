@@ -67,7 +67,7 @@ const Invoices = () => {
             <FileText size={64} className="text-muted-foreground mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-foreground mb-2">Nicio factură emisă</h3>
             <p className="text-muted-foreground mb-6">Emite prima ta factură acum.</p>
-            <Link to="/invoices/new">
+            <Link to="/facturare/invoices/new">
               <Button className="rounded-full">
                 <Plus size={20} className="mr-2" />
                 Creează factură
