@@ -23,7 +23,7 @@ const InvoiceView = () => {
       setInvoice(response.data);
     } catch (error) {
       toast.error('Eroare la încărcarea facturii');
-      navigate('/invoices');
+      navigate('/facturare/invoices');
     } finally {
       setLoading(false);
     }
