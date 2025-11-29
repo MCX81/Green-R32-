@@ -9,13 +9,13 @@ const Sidebar = () => {
   const { logout, user } = useAuth();
 
   const menuItems = [
-    { icon: Home, label: 'Dashboard', path: '/dashboard' },
-    { icon: Building2, label: 'Companii', path: '/companies' },
-    { icon: Users, label: 'Clienți', path: '/clients' },
-    { icon: Package, label: 'Produse', path: '/products' },
-    { icon: FileText, label: 'Facturi', path: '/invoices' },
-    { icon: BarChart3, label: 'Rapoarte', path: '/reports' },
-    { icon: Settings, label: 'Setări', path: '/settings' },
+    { icon: Home, label: 'Dashboard', path: '/facturare/dashboard' },
+    { icon: Building2, label: 'Companii', path: '/facturare/companies' },
+    { icon: Users, label: 'Clienți', path: '/facturare/clients' },
+    { icon: Package, label: 'Produse', path: '/facturare/products' },
+    { icon: FileText, label: 'Facturi', path: '/facturare/invoices' },
+    { icon: BarChart3, label: 'Rapoarte', path: '/facturare/reports' },
+    { icon: Settings, label: 'Setări', path: '/facturare/settings' },
   ];
 
   return (
