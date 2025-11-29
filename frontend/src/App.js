@@ -54,14 +54,26 @@ function App() {
             
             {/* Admin routes */}
             <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<Dashboard />} />
-              <Route path="products" element={<Products />} />
+              <Route index element={<AdminDashboard />} />
+              <Route path="products" element={<AdminProducts />} />
               <Route path="categories" element={<Categories />} />
               <Route path="orders" element={<Orders />} />
               <Route path="users" element={<Users />} />
               <Route path="reviews" element={<Reviews />} />
               <Route path="backup" element={<Backup />} />
             </Route>
+
+            {/* Facturare routes */}
+            <Route path="/factura" element={<FacturareDashboard />} />
+            <Route path="/factura/dashboard" element={<FacturareDashboard />} />
+            <Route path="/factura/companies" element={<Companies />} />
+            <Route path="/factura/clients" element={<Clients />} />
+            <Route path="/factura/products" element={<FacturareProducts />} />
+            <Route path="/factura/invoices" element={<Invoices />} />
+            <Route path="/factura/invoices/new" element={<InvoiceForm />} />
+            <Route path="/factura/invoices/:id" element={<InvoiceView />} />
+            <Route path="/factura/reports" element={<Reports />} />
+            <Route path="/factura/settings" element={<Settings />} />
             
             {/* Main routes with header/footer */}
             <Route path="/*" element={
