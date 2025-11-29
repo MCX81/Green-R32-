@@ -84,7 +84,7 @@ const InvoiceForm = () => {
       };
       const response = await api.post('/invoices', payload);
       toast.success('Factură creată cu succes!');
-      navigate(`/invoices/${response.data.id}`);
+      navigate(`/facturare/invoices/${response.data.id}`);
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Eroare la creare');
     } finally {
