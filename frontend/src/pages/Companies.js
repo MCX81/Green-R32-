@@ -35,7 +35,7 @@ const Companies = () => {
 
   const loadCompanies = async () => {
     try {
-      const response = await api.get('/companies');
+      const response = await api.get('/factura/companies');
       setCompanies(response.data);
     } catch (error) {
       toast.error('Eroare la încărcarea companiilor');
@@ -69,7 +69,7 @@ const Companies = () => {
         await api.put(`/companies/${editingCompany.id}`, formData);
         toast.success('Companie actualizată');
       } else {
-        await api.post('/companies', formData);
+        await api.post('/factura/companies', formData);
         toast.success('Companie adăugată');
       }
       loadCompanies();

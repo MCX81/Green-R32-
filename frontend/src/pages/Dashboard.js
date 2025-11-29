@@ -20,8 +20,8 @@ const Dashboard = () => {
   const loadData = async () => {
     try {
       const [statsRes, invoicesRes] = await Promise.all([
-        api.get('/dashboard/stats'),
-        api.get('/dashboard/recent-invoices?limit=5')
+        api.get('/factura/dashboard/stats'),
+        api.get('/factura/dashboard/recent-invoices?limit=5')
       ]);
       setStats(statsRes.data);
       setRecentInvoices(invoicesRes.data);
