@@ -56,6 +56,43 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Auto-create admin user on startup
+@app.on_event("startup")
+async def create_admin_user():
+    """Create default admin user if not exists"""
+    try:
+        from utils.auth import get_password_hash
+        from datetime import datetime
+        import uuid
+        
+        admin_email = "admin@r32.ro"
+        
+        # Check if admin exists
+        existing_admin = await db.users.find_one({"email": admin_email})
+        
+        if not existing_admin:
+            logger.info("Admin user not found. Creating default admin user...")
+            
+            admin_user = {
+                "_id": str(uuid.uuid4()),
+                "name": "Admin User",
+                "email": admin_email,
+                "password": get_password_hash("admin123"),
+                "phone": "0700000000",
+                "address": "Admin Address",
+                "role": "admin",
+                "createdAt": datetime.utcnow().isoformat(),
+                "updatedAt": datetime.utcnow().isoformat()
+            }
+            
+            await db.users.insert_one(admin_user)
+            logger.info(f"✅ Admin user created successfully: {admin_email}")
+            logger.info("⚠️  Default password: admin123 - CHANGE THIS IMMEDIATELY!")
+        else:
+            logger.info(f"✅ Admin user already exists: {admin_email}")
+    except Exception as e:
+        logger.error(f"❌ Failed to create admin user: {str(e)}")
+
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
