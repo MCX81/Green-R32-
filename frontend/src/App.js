@@ -47,18 +47,35 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" />} />
-          <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-          <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/companies" element={<ProtectedRoute><Companies /></ProtectedRoute>} />
-          <Route path="/clients" element={<ProtectedRoute><Clients /></ProtectedRoute>} />
-          <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
-          <Route path="/invoices" element={<ProtectedRoute><Invoices /></ProtectedRoute>} />
-          <Route path="/invoices/new" element={<ProtectedRoute><InvoiceForm /></ProtectedRoute>} />
-          <Route path="/invoices/:id" element={<ProtectedRoute><InvoiceView /></ProtectedRoute>} />
-          <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
-          <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+          {/* Root redirects */}
+          <Route path="/" element={<Navigate to="/facturare/dashboard" />} />
+          
+          {/* Facturare routes */}
+          <Route path="/facturare">
+            <Route index element={<Navigate to="/facturare/dashboard" />} />
+            <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
+            <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
+            <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="companies" element={<ProtectedRoute><Companies /></ProtectedRoute>} />
+            <Route path="clients" element={<ProtectedRoute><Clients /></ProtectedRoute>} />
+            <Route path="products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
+            <Route path="invoices" element={<ProtectedRoute><Invoices /></ProtectedRoute>} />
+            <Route path="invoices/new" element={<ProtectedRoute><InvoiceForm /></ProtectedRoute>} />
+            <Route path="invoices/:id" element={<ProtectedRoute><InvoiceView /></ProtectedRoute>} />
+            <Route path="reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
+            <Route path="settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+          </Route>
+          
+          {/* Legacy routes redirect to /facturare */}
+          <Route path="/login" element={<Navigate to="/facturare/login" replace />} />
+          <Route path="/register" element={<Navigate to="/facturare/register" replace />} />
+          <Route path="/dashboard" element={<Navigate to="/facturare/dashboard" replace />} />
+          <Route path="/companies" element={<Navigate to="/facturare/companies" replace />} />
+          <Route path="/clients" element={<Navigate to="/facturare/clients" replace />} />
+          <Route path="/products" element={<Navigate to="/facturare/products" replace />} />
+          <Route path="/invoices/*" element={<Navigate to={`/facturare/invoices${window.location.pathname.replace('/invoices', '')}`} replace />} />
+          <Route path="/reports" element={<Navigate to="/facturare/reports" replace />} />
+          <Route path="/settings" element={<Navigate to="/facturare/settings" replace />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
