@@ -41,8 +41,15 @@ async def get_current_user(credentials: Optional[HTTPAuthorizationCredentials] =
         )
     
     # Get user from database
+    # Try both UUID (string) and ObjectId formats
     from bson import ObjectId
-    user = await db.users.find_one({"_id": ObjectId(user_id)})
+    try:
+        # First try as ObjectId
+        user = await db.users.find_one({"_id": ObjectId(user_id)})
+    except:
+        # If that fails, try as string (UUID)
+        user = await db.users.find_one({"_id": user_id})
+    
     if user is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
