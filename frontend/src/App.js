@@ -16,14 +16,25 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminLogin from "./pages/admin/AdminLogin";
-import Dashboard from "./pages/admin/Dashboard";
-import Products from "./pages/admin/Products";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminProducts from "./pages/admin/Products";
 import Categories from "./pages/admin/Categories";
 import Orders from "./pages/admin/Orders";
 import Users from "./pages/admin/Users";
 import Reviews from "./pages/admin/Reviews";
 import Backup from "./pages/admin/Backup";
 import { Toaster } from "./components/ui/toaster";
+
+// Facturare imports
+import FacturareDashboard from "./pages/Dashboard";
+import Companies from "./pages/Companies";
+import Clients from "./pages/Clients";
+import FacturareProducts from "./pages/Products";
+import Invoices from "./pages/Invoices";
+import InvoiceForm from "./pages/InvoiceForm";
+import InvoiceView from "./pages/InvoiceView";
+import Reports from "./pages/Reports";
+import Settings from "./pages/Settings";
 
 function App() {
   const [cartCount] = useState(2);
