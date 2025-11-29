@@ -82,7 +82,7 @@ const InvoiceForm = () => {
         issue_date: new Date(formData.issue_date).toISOString(),
         due_date: formData.due_date ? new Date(formData.due_date).toISOString() : null
       };
-      const response = await api.post('/invoices', payload);
+      const response = await api.post('/factura/invoices', payload);
       toast.success('Factură creată cu succes!');
       navigate(`/factura/invoices/${response.data.id}`);
     } catch (error) {

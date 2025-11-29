@@ -17,7 +17,7 @@ const Invoices = () => {
 
   const loadInvoices = async () => {
     try {
-      const response = await api.get('/invoices');
+      const response = await api.get('/factura/invoices');
       setInvoices(response.data);
     } catch (error) {
       toast.error('Eroare la încărcarea facturilor');
