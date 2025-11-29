@@ -39,6 +39,7 @@ app.include_router(orders.router)
 app.include_router(reviews.router)
 app.include_router(admin.router)
 app.include_router(backup.router)
+app.include_router(facturare.router)
 app.include_router(api_router)
 
 app.add_middleware(
