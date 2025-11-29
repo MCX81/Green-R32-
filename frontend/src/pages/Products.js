@@ -59,6 +59,12 @@ const Products = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!formData.company_id) {
+      toast.error('Selectează o companie');
+      return;
+    }
+    
     try {
       if (editingProduct) {
         await api.put(`/products/${editingProduct.id}`, formData);
