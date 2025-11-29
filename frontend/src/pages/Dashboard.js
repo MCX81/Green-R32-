@@ -166,7 +166,7 @@ const Dashboard = () => {
                 )}
                 {recentInvoices.length > 0 && (
                   <Link
-                    to="/invoices"
+                    to="/facturare/invoices"
                     className="block text-center text-sm text-primary hover:underline py-2"
                   >
                     Vezi toate facturile
