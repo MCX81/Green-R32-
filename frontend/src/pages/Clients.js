@@ -34,7 +34,7 @@ const Clients = () => {
   const loadData = async () => {
     try {
       const [clientsRes, companiesRes] = await Promise.all([
-        api.get('/clients'),
+        api.get('/factura/clients'),
         api.get('/companies')
       ]);
       setClients(clientsRes.data);
@@ -74,7 +74,7 @@ const Clients = () => {
         await api.put(`/clients/${editingClient.id}`, formData);
         toast.success('Client actualizat');
       } else {
-        await api.post('/clients', formData);
+        await api.post('/factura/clients', formData);
         toast.success('Client adăugat');
       }
       loadData();

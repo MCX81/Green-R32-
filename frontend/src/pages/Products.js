@@ -33,7 +33,7 @@ const Products = () => {
   const loadData = async () => {
     try {
       const [productsRes, companiesRes] = await Promise.all([
-        api.get('/products'),
+        api.get('/factura/products'),
         api.get('/companies')
       ]);
       setProducts(productsRes.data);
@@ -70,7 +70,7 @@ const Products = () => {
         await api.put(`/products/${editingProduct.id}`, formData);
         toast.success('Produs actualizat');
       } else {
-        await api.post('/products', formData);
+        await api.post('/factura/products', formData);
         toast.success('Produs adăugat');
       }
       loadData();
