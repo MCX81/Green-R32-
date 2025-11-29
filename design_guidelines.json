@@ -1,0 +1,167 @@
+{
+  "identity": {
+    "name": "E1",
+    "persona": "The Anti-AI Designer",
+    "principles": [
+      "Fusion over Imitation",
+      "Emotion First",
+      "Content is king",
+      "Zoom in",
+      "Negative Space",
+      "Contrast"
+    ]
+  },
+  "project_context": {
+    "app_name": "FinRo SaaS",
+    "app_type": "SaaS Dashboard",
+    "target_audience": "Romanian SMB owners, accountants, freelancers",
+    "theme_preference": "Light Mode (Modern Minimal)",
+    "key_goal": "Streamlined invoicing with multi-company support and e-Factura integration"
+  },
+  "typography": {
+    "font_family_headings": "Manrope, sans-serif",
+    "font_family_body": "Public Sans, sans-serif",
+    "font_family_mono": "JetBrains Mono, monospace",
+    "scale": {
+      "h1": "text-4xl md:text-5xl font-bold tracking-tight",
+      "h2": "text-3xl font-semibold tracking-tight",
+      "h3": "text-2xl font-medium",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm text-muted-foreground",
+      "tiny": "text-xs uppercase tracking-wider font-semibold"
+    },
+    "rules": [
+      "Use Manrope for all Headings (h1-h3).",
+      "Use Public Sans for all body text and UI elements.",
+      "Use JetBrains Mono for invoice series, numbers, and fiscal codes (CUI).",
+      "Never use Inter for headings.",
+      "Headings must be tight (tracking-tight)."
+    ]
+  },
+  "colors": {
+    "palette_name": "Swiss High-Contrast (Fintech Edition)",
+    "base": {
+      "background": "#ffffff",
+      "foreground": "#0f172a",
+      "surface": "#f8fafc",
+      "surface_highlight": "#f1f5f9"
+    },
+    "primary": {
+      "default": "#4f46e5",
+      "hover": "#4338ca",
+      "foreground": "#ffffff",
+      "description": "Deep Indigo - Trustworthy but modern. Use for primary buttons and active states."
+    },
+    "accent": {
+      "default": "#f97316",
+      "foreground": "#ffffff",
+      "description": "Vibrant Orange - Use SPARINGLY for high-priority conversion actions (e.g., 'New Invoice')."
+    },
+    "status": {
+      "success": "#10b981",
+      "warning": "#f59e0b",
+      "error": "#ef4444",
+      "info": "#3b82f6"
+    },
+    "border": {
+      "default": "#e2e8f0",
+      "active": "#cbd5e1"
+    },
+    "rules": [
+      "NO gradients on text.",
+      "NO full-screen gradients.",
+      "Use white cards on light gray (#f8fafc) background for depth.",
+      "Text is never pure black (#000000). Use Slate-900 (#0f172a)."
+    ]
+  },
+  "layout": {
+    "spacing_scale": "Generous (Tailwind p-6, p-8, p-12)",
+    "grid_system": {
+      "dashboard": "Control Room Grid (Dense, Data-focused)",
+      "marketing": "Tetris Grid (Asymmetrical, Visual)"
+    },
+    "container_rules": [
+      "Dashboard content max-width: 1600px (centered).",
+      "Invoice Editor: 'Paper' metaphor - distinct white container with shadow-sm on gray bg.",
+      "Sidebar: Fixed left, collapsible.",
+      "Cards: Flat with 1px border-slate-200. Hover: shadow-md + border-indigo-100."
+    ]
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-6 rounded-full shadow-sm transition-all active:scale-95",
+      "secondary": "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 h-10 px-6 rounded-full transition-all",
+      "ghost": "hover:bg-slate-100 text-slate-600 hover:text-slate-900 rounded-md"
+    },
+    "cards": {
+      "default": "bg-white border border-slate-200 rounded-xl p-6",
+      "interactive": "bg-white border border-slate-200 rounded-xl p-6 hover:border-indigo-200 hover:shadow-lg transition-all duration-300 cursor-pointer"
+    },
+    "inputs": {
+      "default": "h-10 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+    },
+    "tables": {
+      "style": "Clean, row-highlight on hover.",
+      "header": "bg-slate-50 text-slate-500 text-xs uppercase tracking-wider font-semibold h-10"
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": "Use sparingly for sticky headers: bg-white/80 backdrop-blur-md border-b border-slate-200/50.",
+    "shadows": "Soft, diffuse shadows. shadow-[0_2px_8px_rgba(15,23,42,0.08)].",
+    "borders": "Crisp 1px borders. No fuzzy edges.",
+    "micro_interactions": "All interactive elements must have hover/active states. Lists should stagger-fade in."
+  },
+  "image_urls": {
+    "logos": [
+      {
+        "url": "https://images.unsplash.com/photo-1705453168890-6c244eb82942?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMHNoYXBlcyUyMG1pbmltYWwlMjBsb2dvfGVufDB8fHx8MTc2NDQ0ODMwM3ww&ixlib=rb-4.1.0&q=85",
+        "category": "logo_placeholder",
+        "description": "Abstract geometric circle logo"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1729830375022-b0248100c501?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMHNoYXBlcyUyMG1pbmltYWwlMjBsb2dvfGVufDB8fHx8MTc2NDQ0ODMwM3ww&ixlib=rb-4.1.0&q=85",
+        "category": "logo_placeholder",
+        "description": "Minimalist square logo"
+      }
+    ],
+    "context": [
+      {
+        "url": "https://images.unsplash.com/photo-1622579521534-8252f7da47fd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBkZXNrJTIwbWluaW1hbGlzdHxlbnwwfHx8fDE3NjQ0NDgzMDF8MA&ixlib=rb-4.1.0&q=85",
+        "category": "background",
+        "description": "Minimalist white desk with pencils"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1758518732175-5d608ba3abdf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHRlYW0lMjBtZWV0aW5nJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc2NDQ0ODMwNXww&ixlib=rb-4.1.0&q=85",
+        "category": "team",
+        "description": "Business team meeting"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Implement the 'Swiss High-Contrast' palette. Light mode is default.",
+    "Use 'Manrope' for all headings. Import from Google Fonts.",
+    "Use 'Public Sans' for body text. Import from Google Fonts.",
+    "Create a 'DashboardLayout' component that includes the Sidebar and Topbar.",
+    "Use Shadcn UI components but override styles to match the 'Swiss' aesthetic (sharper corners, distinct borders).",
+    "For the Invoice Editor, create a visually distinct 'Paper' container centered on the screen.",
+    "Ensure all inputs and buttons have 'data-testid' attributes.",
+    "Use 'sonner' for all toast notifications.",
+    "Do NOT use gradients for backgrounds. Use solid colors or subtle noise textures.",
+    "Ensure the 'e-Factura' integration panel has a distinct 'Technical/Government' feel (maybe slightly more mono-spaced or bordered)."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Avoid generic 'AI slop' aesthetics. Be bold with whitespace.",
+    "Dark colors look good when used independently without gradients.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) for sticky headers.",
+    "NEVER use transition: all.",
+    "NEVER center align the app container globally.",
+    "Always use modern button styles (pill or sharp).",
+    "NEVER use AI assistant Emoji characters.",
+    "Every interaction needs micro-animations.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Prioritize using pre-existing components from src/components/ui.",
+    "Components MUST use named exports.",
+    "Pages MUST use default exports."
+  ]
+}
