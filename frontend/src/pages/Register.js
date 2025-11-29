@@ -37,7 +37,7 @@ const Register = () => {
     try {
       await register(email, name, password);
       toast.success('Cont creat cu succes!');
-      navigate('/dashboard');
+      navigate('/facturare/dashboard');
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Eroare la înregistrare');
     } finally {
