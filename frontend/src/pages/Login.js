@@ -99,7 +99,7 @@ const Login = () => {
 
           <div className="mt-6 text-center text-sm text-muted-foreground">
             Nu ai cont?{' '}
-            <Link to="/register" className="text-primary hover:underline font-medium">
+            <Link to="/facturare/register" className="text-primary hover:underline font-medium">
               Înregistrează-te
             </Link>
           </div>
