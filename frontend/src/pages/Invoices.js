@@ -116,7 +116,7 @@ const Invoices = () => {
                       )}
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <Link to={`/invoices/${invoice.id}`}>
+                      <Link to={`/facturare/invoices/${invoice.id}`}>
                         <Button variant="outline" size="sm">
                           <Eye size={16} className="mr-2" />
                           Vezi
