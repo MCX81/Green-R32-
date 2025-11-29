@@ -216,7 +216,7 @@ const InvoiceForm = () => {
           </div>
 
           <div className="flex justify-end gap-3">
-            <Button type="button" variant="outline" onClick={() => navigate('/invoices')}>Anulează</Button>
+            <Button type="button" variant="outline" onClick={() => navigate('/facturare/invoices')}>Anulează</Button>
             <Button type="submit" disabled={loading} className="rounded-full">
               {loading ? 'Se salvează...' : 'Creează factură'}
             </Button>
