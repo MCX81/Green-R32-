@@ -145,7 +145,7 @@ const Dashboard = () => {
                   recentInvoices.map((invoice) => (
                     <Link
                       key={invoice.id}
-                      to={`/invoices/${invoice.id}`}
+                      to={`/facturare/invoices/${invoice.id}`}
                       className="block p-3 rounded-lg border border-slate-200 hover:border-primary transition-colors"
                     >
                       <div className="flex justify-between items-start">
