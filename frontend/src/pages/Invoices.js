@@ -54,7 +54,7 @@ const Invoices = () => {
             <h1 className="text-4xl font-bold text-foreground tracking-tight">Facturi</h1>
             <p className="text-muted-foreground mt-1">Gestionează toate facturile emise</p>
           </div>
-          <Link to="/facturare/invoices/new">
+          <Link to="/factura/invoices/new">
             <Button className="rounded-full" data-testid="new-invoice-button">
               <Plus size={20} className="mr-2" />
               Factură nouă
@@ -67,7 +67,7 @@ const Invoices = () => {
             <FileText size={64} className="text-muted-foreground mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-foreground mb-2">Nicio factură emisă</h3>
             <p className="text-muted-foreground mb-6">Emite prima ta factură acum.</p>
-            <Link to="/facturare/invoices/new">
+            <Link to="/factura/invoices/new">
               <Button className="rounded-full">
                 <Plus size={20} className="mr-2" />
                 Creează factură
@@ -116,7 +116,7 @@ const Invoices = () => {
                       )}
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <Link to={`/facturare/invoices/${invoice.id}`}>
+                      <Link to={`/factura/invoices/${invoice.id}`}>
                         <Button variant="outline" size="sm">
                           <Eye size={16} className="mr-2" />
                           Vezi

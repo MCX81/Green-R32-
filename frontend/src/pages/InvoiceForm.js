@@ -84,7 +84,7 @@ const InvoiceForm = () => {
       };
       const response = await api.post('/invoices', payload);
       toast.success('Factură creată cu succes!');
-      navigate(`/facturare/invoices/${response.data.id}`);
+      navigate(`/factura/invoices/${response.data.id}`);
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Eroare la creare');
     } finally {
@@ -216,7 +216,7 @@ const InvoiceForm = () => {
           </div>
 
           <div className="flex justify-end gap-3">
-            <Button type="button" variant="outline" onClick={() => navigate('/facturare/invoices')}>Anulează</Button>
+            <Button type="button" variant="outline" onClick={() => navigate('/factura/invoices')}>Anulează</Button>
             <Button type="submit" disabled={loading} className="rounded-full">
               {loading ? 'Se salvează...' : 'Creează factură'}
             </Button>

@@ -25,7 +25,7 @@ const Login = () => {
     try {
       await login(email, password);
       toast.success('Autentificare reușită!');
-      navigate('/facturare/dashboard');
+      navigate('/factura/dashboard');
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Eroare la autentificare');
     } finally {
@@ -99,7 +99,7 @@ const Login = () => {
 
           <div className="mt-6 text-center text-sm text-muted-foreground">
             Nu ai cont?{' '}
-            <Link to="/facturare/register" className="text-primary hover:underline font-medium">
+            <Link to="/factura/register" className="text-primary hover:underline font-medium">
               Înregistrează-te
             </Link>
           </div>

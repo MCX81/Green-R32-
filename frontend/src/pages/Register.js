@@ -37,7 +37,7 @@ const Register = () => {
     try {
       await register(email, name, password);
       toast.success('Cont creat cu succes!');
-      navigate('/facturare/dashboard');
+      navigate('/factura/dashboard');
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Eroare la înregistrare');
     } finally {
@@ -130,7 +130,7 @@ const Register = () => {
 
           <div className="mt-6 text-center text-sm text-muted-foreground">
             Ai deja cont?{' '}
-            <Link to="/facturare/login" className="text-primary hover:underline font-medium">
+            <Link to="/factura/login" className="text-primary hover:underline font-medium">
               Autentifică-te
             </Link>
           </div>

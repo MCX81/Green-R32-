@@ -145,7 +145,7 @@ const Dashboard = () => {
                   recentInvoices.map((invoice) => (
                     <Link
                       key={invoice.id}
-                      to={`/facturare/invoices/${invoice.id}`}
+                      to={`/factura/invoices/${invoice.id}`}
                       className="block p-3 rounded-lg border border-slate-200 hover:border-primary transition-colors"
                     >
                       <div className="flex justify-between items-start">
@@ -166,7 +166,7 @@ const Dashboard = () => {
                 )}
                 {recentInvoices.length > 0 && (
                   <Link
-                    to="/facturare/invoices"
+                    to="/factura/invoices"
                     className="block text-center text-sm text-primary hover:underline py-2"
                   >
                     Vezi toate facturile

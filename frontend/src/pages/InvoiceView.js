@@ -23,7 +23,7 @@ const InvoiceView = () => {
       setInvoice(response.data);
     } catch (error) {
       toast.error('Eroare la încărcarea facturii');
-      navigate('/facturare/invoices');
+      navigate('/factura/invoices');
     } finally {
       setLoading(false);
     }
@@ -69,7 +69,7 @@ const InvoiceView = () => {
     <DashboardLayout>
       <div className="max-w-5xl mx-auto fade-in">
         <div className="flex justify-between items-center mb-6">
-          <Button variant="outline" onClick={() => navigate('/facturare/invoices')}>
+          <Button variant="outline" onClick={() => navigate('/factura/invoices')}>
             <ArrowLeft size={16} className="mr-2" /> Înapoi
           </Button>
           <Button onClick={downloadPDF} className="rounded-full">
