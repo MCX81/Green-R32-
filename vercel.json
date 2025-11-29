@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "name": "r32-facturare",
+  "builds": [
+    {
+      "src": "backend/server.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/server.py"
+    },
+    {
+      "src": "/factura/(.*)",
+      "dest": "frontend/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
+    }
+  ],
+  "env": {
+    "MONGO_URL": "@mongo_url",
+    "DB_NAME": "@db_name",
+    "JWT_SECRET": "@jwt_secret",
+    "CORS_ORIGINS": "https://r32.ro,https://www.r32.ro",
+    "RESEND_API_KEY": "@resend_api_key"
+  },
+  "build": {
+    "env": {
+      "REACT_APP_BACKEND_URL": "https://r32.ro"
+    }
+  },
+  "regions": ["fra1"]
+}
