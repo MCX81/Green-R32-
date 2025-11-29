@@ -1,84 +1,79 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import Companies from './pages/Companies';
-import Clients from './pages/Clients';
-import Products from './pages/Products';
-import Invoices from './pages/Invoices';
-import InvoiceForm from './pages/InvoiceForm';
-import InvoiceView from './pages/InvoiceView';
-import Reports from './pages/Reports';
-import Settings from './pages/Settings';
-import './App.css';
-
-const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
-
-  return user ? children : <Navigate to="/facturare/login" />;
-};
-
-const PublicRoute = ({ children }) => {
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
-
-  return user ? <Navigate to="/facturare/dashboard" /> : children;
-};
+import React, { useState } from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Catalog from "./pages/Catalog";
+import ProductDetail from "./pages/ProductDetail";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation";
+import Wishlist from "./pages/Wishlist";
+import Account from "./pages/Account";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminLogin from "./pages/admin/AdminLogin";
+import Dashboard from "./pages/admin/Dashboard";
+import Products from "./pages/admin/Products";
+import Categories from "./pages/admin/Categories";
+import Orders from "./pages/admin/Orders";
+import Users from "./pages/admin/Users";
+import Reviews from "./pages/admin/Reviews";
+import Backup from "./pages/admin/Backup";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
+  const [cartCount] = useState(2);
+  const [wishlistCount] = useState(4);
+
   return (
-    <AuthProvider>
+    <div className="App">
       <BrowserRouter>
-        <Routes>
-          {/* Root redirects */}
-          <Route path="/" element={<Navigate to="/facturare/dashboard" />} />
-          
-          {/* Facturare routes */}
-          <Route path="/facturare">
-            <Route index element={<Navigate to="/facturare/dashboard" />} />
-            <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
-            <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
-            <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="companies" element={<ProtectedRoute><Companies /></ProtectedRoute>} />
-            <Route path="clients" element={<ProtectedRoute><Clients /></ProtectedRoute>} />
-            <Route path="products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
-            <Route path="invoices" element={<ProtectedRoute><Invoices /></ProtectedRoute>} />
-            <Route path="invoices/new" element={<ProtectedRoute><InvoiceForm /></ProtectedRoute>} />
-            <Route path="invoices/:id" element={<ProtectedRoute><InvoiceView /></ProtectedRoute>} />
-            <Route path="reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
-            <Route path="settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-          </Route>
-          
-          {/* Legacy routes redirect to /facturare */}
-          <Route path="/login" element={<Navigate to="/facturare/login" replace />} />
-          <Route path="/register" element={<Navigate to="/facturare/register" replace />} />
-          <Route path="/dashboard" element={<Navigate to="/facturare/dashboard" replace />} />
-          <Route path="/companies" element={<Navigate to="/facturare/companies" replace />} />
-          <Route path="/clients" element={<Navigate to="/facturare/clients" replace />} />
-          <Route path="/products" element={<Navigate to="/facturare/products" replace />} />
-          <Route path="/invoices/*" element={<Navigate to={`/facturare/invoices${window.location.pathname.replace('/invoices', '')}`} replace />} />
-          <Route path="/reports" element={<Navigate to="/facturare/reports" replace />} />
-          <Route path="/settings" element={<Navigate to="/facturare/settings" replace />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            {/* Auth routes without header/footer */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            
+            {/* Admin login - separate from regular login */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            
+            {/* Admin routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="products" element={<Products />} />
+              <Route path="categories" element={<Categories />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="users" element={<Users />} />
+              <Route path="reviews" element={<Reviews />} />
+              <Route path="backup" element={<Backup />} />
+            </Route>
+            
+            {/* Main routes with header/footer */}
+            <Route path="/*" element={
+              <>
+                <Header cartCount={cartCount} wishlistCount={wishlistCount} />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/catalog" element={<Catalog />} />
+                  <Route path="/product/:id" element={<ProductDetail />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/order-confirmation" element={<OrderConfirmation />} />
+                  <Route path="/wishlist" element={<Wishlist />} />
+                  <Route path="/account" element={<Account />} />
+                </Routes>
+                <Footer />
+              </>
+            } />
+          </Routes>
+          <Toaster />
+        </AuthProvider>
       </BrowserRouter>
-    </AuthProvider>
+    </div>
   );
 }
 
