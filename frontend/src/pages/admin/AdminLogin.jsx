@@ -53,16 +53,17 @@ const AdminLogin = () => {
       if (data.access_token) {
         localStorage.setItem('token', data.access_token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        navigate('/admin');
+        // Force page reload to /admin
+        window.location.href = '/admin';
       } else {
         setError('Nu s-a putut conecta');
+        setLoading(false);
       }
     } catch (err) {
       console.error('Quick login error:', err);
-      setError('Eroare la conectare rapidă');
+      setError('Eroare la conectare rapidă: ' + err.message);
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
 
   return (
