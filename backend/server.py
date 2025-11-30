@@ -8,7 +8,12 @@ from pathlib import Path
 
 # IMPORTANT: Load environment variables FIRST before importing routers
 ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
+
+# Load environment variables - production takes precedence
+env_file = ROOT_DIR / '.env.production' if (ROOT_DIR / '.env.production').exists() else ROOT_DIR / '.env'
+load_dotenv(env_file)
+logging.basicConfig(level=logging.INFO)
+logging.info(f"Loaded environment from: {env_file}")
 
 # Import routers AFTER loading environment variables
 from routers import auth, products, categories, cart, wishlist, orders, reviews, admin, backup, facturare
