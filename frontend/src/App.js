@@ -63,39 +63,30 @@ function App() {
               <Route path="backup" element={<Backup />} />
             </Route>
 
-            {/* Facturare routes - BEFORE main routes */}
-            <Route path="/factura/*" element={
-              <Routes>
-                <Route index element={<FacturareDashboard />} />
-                <Route path="dashboard" element={<FacturareDashboard />} />
-                <Route path="companies" element={<Companies />} />
-                <Route path="clients" element={<Clients />} />
-                <Route path="products" element={<FacturareProducts />} />
-                <Route path="invoices" element={<Invoices />} />
-                <Route path="invoices/new" element={<InvoiceForm />} />
-                <Route path="invoices/:id" element={<InvoiceView />} />
-                <Route path="reports" element={<Reports />} />
-                <Route path="settings" element={<Settings />} />
-              </Routes>
-            } />
+            {/* Facturare routes - standalone without header/footer */}
+            <Route path="/factura" element={<FacturareDashboard />} />
+            <Route path="/factura/dashboard" element={<FacturareDashboard />} />
+            <Route path="/factura/companies" element={<Companies />} />
+            <Route path="/factura/clients" element={<Clients />} />
+            <Route path="/factura/products" element={<FacturareProducts />} />
+            <Route path="/factura/invoices" element={<Invoices />} />
+            <Route path="/factura/invoices/new" element={<InvoiceForm />} />
+            <Route path="/factura/invoices/:id" element={<InvoiceView />} />
+            <Route path="/factura/reports" element={<Reports />} />
+            <Route path="/factura/settings" element={<Settings />} />
             
             {/* Main routes with header/footer */}
-            <Route path="/*" element={
-              <>
-                <Header cartCount={cartCount} wishlistCount={wishlistCount} />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/catalog" element={<Catalog />} />
-                  <Route path="/product/:id" element={<ProductDetail />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/order-confirmation" element={<OrderConfirmation />} />
-                  <Route path="/wishlist" element={<Wishlist />} />
-                  <Route path="/account" element={<Account />} />
-                </Routes>
-                <Footer />
-              </>
-            } />
+            <Route path="/" element={<Home />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/order-confirmation" element={<OrderConfirmation />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<Home />} />
           </Routes>
           <Toaster />
         </AuthProvider>
