@@ -13,7 +13,8 @@ import io
 import base64
 import resend
 import secrets
-from weasyprint import HTML
+# Lazy import for weasyprint to avoid startup issues
+# from weasyprint import HTML
 
 router = APIRouter(prefix="/api/factura", tags=["Facturare"])
 
