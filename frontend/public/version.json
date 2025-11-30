@@ -1,0 +1,6 @@
+{
+  "version": "2.0.0",
+  "buildDate": "2024-11-30T15:50:00Z",
+  "features": ["factura-routing-fixed", "admin-login-fixed"],
+  "appJsHash": "e6a8a4ff"
+}
