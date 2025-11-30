@@ -19,7 +19,11 @@ def get_mongodb_client(mongo_url: Optional[str] = None) -> AsyncIOMotorClient:
     Returns:
         AsyncIOMotorClient configured for production use with Atlas
     """
-    url = mongo_url or os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+    url = mongo_url or os.environ.get('MONGO_URL')
+    
+    if not url:
+        logger.warning("MONGO_URL not set in environment, using localhost:27017 for development")
+        url = 'mongodb://localhost:27017'
     
     # Production-ready configuration for MongoDB Atlas
     client = AsyncIOMotorClient(
