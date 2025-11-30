@@ -36,9 +36,8 @@ const AdminLogin = () => {
       } else {
         setError('Email sau parolă incorectă');
       }
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
 
   const handleQuickLogin = async () => {
