@@ -406,9 +406,17 @@ async def get_invoice_pdf(invoice_id: str, user: dict = Depends(get_current_user
     client = await db.factura_clients.find_one({"id": invoice['client_id']}, {"_id": 0})
     
     html_content = generate_invoice_html(invoice, company, client)
-    pdf_bytes = HTML(string=html_content).write_pdf()
     
-    return {"pdf": base64.b64encode(pdf_bytes).decode('utf-8')}
+    # Lazy import weasyprint
+    try:
+        from weasyprint import HTML
+        pdf_bytes = HTML(string=html_content).write_pdf()
+        return {"pdf": base64.b64encode(pdf_bytes).decode('utf-8')}
+    except ImportError:
+        raise HTTPException(
+            status_code=500, 
+            detail="Generarea PDF nu este disponibilă. Dependințele lipsesc."
+        )
 
 def generate_invoice_html(invoice: dict, company: dict, client: dict) -> str:
     # Similar implementation as before
