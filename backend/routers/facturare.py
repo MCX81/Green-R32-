@@ -26,7 +26,7 @@ from utils.mongodb import get_mongodb_client
 
 ROOT_DIR = Path(__file__).parent.parent
 client = get_mongodb_client()
-db = client[os.environ['DB_NAME']]
+db = client[os.environ.get('DB_NAME', 'r32_database')]
 
 # JWT Configuration
 SECRET_KEY = os.environ.get('JWT_SECRET', 'your-secret-key-change-in-production')
