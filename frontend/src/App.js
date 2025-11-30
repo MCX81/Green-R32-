@@ -63,17 +63,21 @@ function App() {
               <Route path="backup" element={<Backup />} />
             </Route>
 
-            {/* Facturare routes */}
-            <Route path="/factura" element={<FacturareDashboard />} />
-            <Route path="/factura/dashboard" element={<FacturareDashboard />} />
-            <Route path="/factura/companies" element={<Companies />} />
-            <Route path="/factura/clients" element={<Clients />} />
-            <Route path="/factura/products" element={<FacturareProducts />} />
-            <Route path="/factura/invoices" element={<Invoices />} />
-            <Route path="/factura/invoices/new" element={<InvoiceForm />} />
-            <Route path="/factura/invoices/:id" element={<InvoiceView />} />
-            <Route path="/factura/reports" element={<Reports />} />
-            <Route path="/factura/settings" element={<Settings />} />
+            {/* Facturare routes - BEFORE main routes */}
+            <Route path="/factura/*" element={
+              <Routes>
+                <Route index element={<FacturareDashboard />} />
+                <Route path="dashboard" element={<FacturareDashboard />} />
+                <Route path="companies" element={<Companies />} />
+                <Route path="clients" element={<Clients />} />
+                <Route path="products" element={<FacturareProducts />} />
+                <Route path="invoices" element={<Invoices />} />
+                <Route path="invoices/new" element={<InvoiceForm />} />
+                <Route path="invoices/:id" element={<InvoiceView />} />
+                <Route path="reports" element={<Reports />} />
+                <Route path="settings" element={<Settings />} />
+              </Routes>
+            } />
             
             {/* Main routes with header/footer */}
             <Route path="/*" element={
