@@ -5,7 +5,7 @@ from typing import Optional
 import os
 
 # JWT Configuration
-SECRET_KEY = os.environ["JWT_SECRET_KEY"]
+SECRET_KEY = os.environ.get("JWT_SECRET", os.environ.get("JWT_SECRET_KEY", "fallback-secret-key-for-development"))
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
 
