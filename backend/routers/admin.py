@@ -65,6 +65,26 @@ async def setup_admin():
             detail=f"Failed to create admin user: {str(e)}"
         )
 
+@router.get("/quick-login")
+async def quick_admin_login():
+    """Quick admin login for development - returns token directly"""
+    user = await db.users.find_one({"email": "admin@r32.ro"}, {"_id": 0})
+    if not user:
+        # Create admin if doesn't exist
+        await setup_admin()
+        user = await db.users.find_one({"email": "admin@r32.ro"}, {"_id": 0})
+    
+    access_token = create_access_token(data={"sub": user["id"]})
+    return {
+        "access_token": access_token,
+        "token_type": "bearer",
+        "user": {
+            "id": user["id"],
+            "name": user["name"],
+            "email": user["email"],
+            "role": user["role"]
+        }
+    }
 @router.post("/login", response_model=Token)
 async def admin_login(credentials: UserLogin):
     """Admin login - ONLY for admin users"""
