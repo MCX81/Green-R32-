@@ -85,6 +85,7 @@ async def quick_admin_login():
             "role": user["role"]
         }
     }
+
 @router.post("/login", response_model=Token)
 async def admin_login(credentials: UserLogin):
     """Admin login - ONLY for admin users"""
