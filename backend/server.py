@@ -14,9 +14,9 @@ load_dotenv(ROOT_DIR / '.env')
 from routers import auth, products, categories, cart, wishlist, orders, reviews, admin, backup, facturare
 
 # MongoDB connection
-mongo_url = os.environ['MONGO_URL']
+mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db = client[os.environ.get('DB_NAME', 'r32_database')]
 
 # Create the main app without a prefix
 app = FastAPI(title="R32 E-Commerce API", version="1.0.0")
