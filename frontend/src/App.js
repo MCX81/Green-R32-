@@ -45,10 +45,6 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            {/* Auth routes without header/footer */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            
             {/* Admin login - separate from regular login */}
             <Route path="/admin/login" element={<AdminLogin />} />
             
@@ -75,18 +71,25 @@ function App() {
             <Route path="/factura/reports" element={<Reports />} />
             <Route path="/factura/settings" element={<Settings />} />
             
-            {/* Main routes with header/footer */}
-            <Route path="/" element={<Home />} />
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/order-confirmation" element={<OrderConfirmation />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="*" element={<Home />} />
+            {/* Main routes with header/footer - wrapped */}
+            <Route path="/*" element={
+              <>
+                <Header cartCount={cartCount} wishlistCount={wishlistCount} />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/catalog" element={<Catalog />} />
+                  <Route path="/product/:id" element={<ProductDetail />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/order-confirmation" element={<OrderConfirmation />} />
+                  <Route path="/wishlist" element={<Wishlist />} />
+                  <Route path="/account" element={<Account />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                </Routes>
+                <Footer />
+              </>
+            } />
           </Routes>
           <Toaster />
         </AuthProvider>
