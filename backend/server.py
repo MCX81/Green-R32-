@@ -13,9 +13,21 @@ load_dotenv(ROOT_DIR / '.env')
 # Import routers AFTER loading environment variables
 from routers import auth, products, categories, cart, wishlist, orders, reviews, admin, backup, facturare
 
-# MongoDB connection
+# MongoDB connection with production-ready settings
 mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
-client = AsyncIOMotorClient(mongo_url)
+
+# Configure AsyncIOMotorClient with Atlas-compatible settings
+client = AsyncIOMotorClient(
+    mongo_url,
+    serverSelectionTimeoutMS=30000,  # 30 seconds for server selection
+    connectTimeoutMS=30000,           # 30 seconds for connection
+    socketTimeoutMS=30000,            # 30 seconds for socket operations
+    maxPoolSize=50,                   # Increased pool size for production
+    retryWrites=True,                 # Enable retry writes for Atlas
+    w='majority',                     # Write concern for durability
+    readPreference='primaryPreferred' # Try primary, fallback to secondary
+)
+
 db = client[os.environ.get('DB_NAME', 'r32_database')]
 
 # Create the main app without a prefix
