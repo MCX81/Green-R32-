@@ -15,7 +15,7 @@ const AdminLogin = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setLoading(true);
     setError('');
     
@@ -36,6 +36,30 @@ const AdminLogin = () => {
       } else {
         setError('Email sau parolă incorectă');
       }
+    }
+    
+    setLoading(false);
+  };
+
+  const handleQuickLogin = async () => {
+    setLoading(true);
+    setError('');
+    
+    try {
+      // Call quick-login endpoint
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/admin/quick-login`);
+      const data = await response.json();
+      
+      if (data.access_token) {
+        localStorage.setItem('token', data.access_token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        navigate('/admin');
+      } else {
+        setError('Nu s-a putut conecta');
+      }
+    } catch (err) {
+      console.error('Quick login error:', err);
+      setError('Eroare la conectare rapidă');
     }
     
     setLoading(false);
