@@ -6,7 +6,6 @@ import api from '../lib/api';
 import { formatCurrency, formatDate } from '../lib/utils';
 import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
