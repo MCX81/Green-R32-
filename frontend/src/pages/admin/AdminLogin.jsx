@@ -120,15 +120,16 @@ const AdminLogin = () => {
         </form>
         
         <div className="mt-4 pt-4 border-t border-gray-200">
-          <p className="text-xs text-gray-500 text-center mb-2">Debug: Quick Login</p>
+          <p className="text-xs text-gray-500 text-center mb-2">Quick Access</p>
           <Button
             type="button"
             variant="outline"
-            className="w-full"
-            onClick={handleSubmit}
+            className="w-full bg-blue-50 hover:bg-blue-100 border-blue-200"
+            onClick={handleQuickLogin}
+            disabled={loading}
             data-testid="quick-login-button"
           >
-            🔧 Quick Admin Login (Debug)
+            {loading ? '⏳ Se conectează...' : '⚡ Login Rapid Admin'}
           </Button>
         </div>
 
