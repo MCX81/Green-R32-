@@ -89,10 +89,24 @@ const AdminLogin = () => {
             type="submit"
             disabled={loading}
             className="w-full bg-green-600 hover:bg-green-700 text-white rounded-xl py-6 text-lg font-semibold"
+            data-testid="admin-login-submit"
           >
             {loading ? 'Se verifică...' : 'Autentificare Admin'}
           </Button>
         </form>
+        
+        <div className="mt-4 pt-4 border-t border-gray-200">
+          <p className="text-xs text-gray-500 text-center mb-2">Debug: Quick Login</p>
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full"
+            onClick={handleSubmit}
+            data-testid="quick-login-button"
+          >
+            🔧 Quick Admin Login (Debug)
+          </Button>
+        </div>
 
         <div className="mt-6 p-4 bg-blue-50 rounded-xl">
           <p className="text-sm text-blue-900 font-semibold mb-1">Credențiale admin:</p>
