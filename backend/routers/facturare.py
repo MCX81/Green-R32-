@@ -22,7 +22,19 @@ router = APIRouter(prefix="/api/factura", tags=["Facturare"])
 from pathlib import Path
 ROOT_DIR = Path(__file__).parent.parent
 mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
+
+# Configure AsyncIOMotorClient with Atlas-compatible settings
+client = AsyncIOMotorClient(
+    mongo_url,
+    serverSelectionTimeoutMS=30000,
+    connectTimeoutMS=30000,
+    socketTimeoutMS=30000,
+    maxPoolSize=50,
+    retryWrites=True,
+    w='majority',
+    readPreference='primaryPreferred'
+)
+
 db = client[os.environ['DB_NAME']]
 
 # JWT Configuration
