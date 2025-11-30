@@ -74,6 +74,11 @@ logger = logging.getLogger(__name__)
 async def create_admin_user():
     """Create default admin user if not exists"""
     try:
+        # Test MongoDB connection first
+        logger.info("Testing MongoDB connection...")
+        await client.admin.command('ping')
+        logger.info("✅ MongoDB connection successful!")
+        
         from utils.auth import get_password_hash
         from datetime import datetime
         import uuid
