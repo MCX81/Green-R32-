@@ -68,18 +68,18 @@ async def setup_admin():
 @router.get("/quick-login")
 async def quick_admin_login():
     """Quick admin login for development - returns token directly"""
-    user = await db.users.find_one({"email": "admin@r32.ro"}, {"_id": 0})
+    user = await db.users.find_one({"email": "admin@r32.ro"})
     if not user:
         # Create admin if doesn't exist
         await setup_admin()
-        user = await db.users.find_one({"email": "admin@r32.ro"}, {"_id": 0})
+        user = await db.users.find_one({"email": "admin@r32.ro"})
     
-    access_token = create_access_token(data={"sub": user["id"]})
+    access_token = create_access_token(data={"sub": str(user["_id"])})
     return {
         "access_token": access_token,
         "token_type": "bearer",
         "user": {
-            "id": user["id"],
+            "id": str(user["_id"]),
             "name": user["name"],
             "email": user["email"],
             "role": user["role"]
