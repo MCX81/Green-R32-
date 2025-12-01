@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+// Use same domain in production (avoids CORS), env var in development
+const BACKEND_URL = process.env.NODE_ENV === 'production' 
+  ? window.location.origin 
+  : process.env.REACT_APP_BACKEND_URL;
 const API_BASE = `${BACKEND_URL}/api`;
 
 // Create axios instance
