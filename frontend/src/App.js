@@ -90,8 +90,7 @@ function AppRoutes() {
             } />
           </Routes>
           <Toaster />
-    </Routes>
-  );
+    );
 }
 
 function App() {
