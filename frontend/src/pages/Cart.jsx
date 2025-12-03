@@ -1,29 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { useToast } from '../hooks/use-toast';
+import { cartAPI } from '../services/api';
 
 const Cart = () => {
   const { toast } = useToast();
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Samsung Galaxy S24 Ultra 256GB',
-      price: 5499,
-      quantity: 1,
-      image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=200&q=80'
-    },
-    {
-      id: 2,
-      name: 'MacBook Pro 16" M3 Pro 512GB',
-      price: 13999,
-      quantity: 1,
-      image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=200&q=80'
-    }
-  ]);
+  const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const updateQuantity = (id, newQuantity) => {
     if (newQuantity < 1) return;
