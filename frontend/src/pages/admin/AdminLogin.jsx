@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -12,6 +13,7 @@ const AdminLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { setUser } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,8 +28,11 @@ const AdminLogin = () => {
       localStorage.setItem('token', response.data.access_token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       
+      // Update auth context
+      setUser(response.data.user);
+      
       // Admin login successful - redirect to admin dashboard
-      window.location.href = '/admin';
+      navigate('/admin');
     } catch (err) {
       console.error('Admin login error:', err);
       if (err.response?.status === 403) {
