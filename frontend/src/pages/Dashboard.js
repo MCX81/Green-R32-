@@ -25,7 +25,11 @@ const Dashboard = () => {
       setStats(statsRes.data);
       setRecentInvoices(invoicesRes.data);
     } catch (error) {
-      toast.error('Eroare la încărcarea datelor');
+      // Only show error if not an auth issue (403)
+      if (error.response?.status !== 403) {
+        toast.error('Eroare la încărcarea datelor');
+      }
+      // For 403, just show empty state (user not logged in)
     } finally {
       setLoading(false);
     }
