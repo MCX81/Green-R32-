@@ -201,7 +201,7 @@ sudo dscacheutil -flushcache
 - Nu încerca să linkezi un domeniu fără să-l unlink mai întâi
 - Nu șterge vechiul deployment ÎNAINTE să migrezi domeniul
 - Nu aștepți ca domeniul să "se mute singur" - nu o va face
-- Nu creezi deployments noi pe fiecare fork dacă poți folosi "replace"
+- **NU presupune că "Replace deployment" transferă automat domeniul - NU o face!**
 
 ---
 
