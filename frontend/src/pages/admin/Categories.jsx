@@ -172,8 +172,22 @@ const Categories = () => {
             <Button
               size="sm"
               variant="outline"
+              onClick={() => {
+                resetForm();
+                setFormData({ name: '', slug: '', icon: '', description: '', parentId: category._id });
+                setIsDialogOpen(true);
+              }}
+              className="rounded-xl bg-white text-green-600 hover:bg-green-50"
+              title="Adaugă subcategorie"
+            >
+              <Plus className="h-4 w-4" />
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
               onClick={() => handleEdit(category)}
               className="rounded-xl bg-white"
+              title="Editează"
             >
               <Edit className="h-4 w-4" />
             </Button>
@@ -182,6 +196,7 @@ const Categories = () => {
               variant="outline"
               onClick={() => handleDelete(category._id)}
               className="rounded-xl bg-white text-red-600 hover:bg-red-50"
+              title="Șterge"
             >
               <Trash2 className="h-4 w-4" />
             </Button>
