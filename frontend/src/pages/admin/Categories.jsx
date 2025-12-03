@@ -122,6 +122,82 @@ const Categories = () => {
     return categories.filter(cat => cat.parentId === parentId);
   };
 
+  const renderCategoryHierarchy = (category, level = 0) => {
+    const subcats = getSubcategories(category._id);
+    const isExpanded = expandedCategories.has(category._id);
+    const bgColor = level === 0 ? 'bg-green-50' : level === 1 ? 'bg-blue-50' : 'bg-purple-50';
+    const borderColor = level === 0 ? 'border-green-200' : level === 1 ? 'border-blue-200' : 'border-purple-200';
+    const tagColor = level === 0 ? 'bg-green-100 text-green-700' : level === 1 ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700';
+    const levelLabel = level === 0 ? 'Principală' : level === 1 ? 'Subcategorie' : `Nivel ${level + 1}`;
+    
+    return (
+      <div key={category._id} className={`border-2 ${borderColor} rounded-xl overflow-hidden`}>
+        {/* Category Row */}
+        <div className={`${bgColor} p-4 flex items-center justify-between`}>
+          <div className="flex-1 flex items-center space-x-3">
+            {subcats.length > 0 && (
+              <button
+                onClick={() => toggleCategory(category._id)}
+                className="text-gray-600 hover:text-gray-800"
+              >
+                <svg
+                  className={`w-5 h-5 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            )}
+            {subcats.length === 0 && <div className="w-5" />}
+            <div>
+              <div className="flex items-center space-x-2">
+                <span className="font-bold text-lg">{category.name}</span>
+                <span className={`px-2 py-1 text-xs rounded-lg font-semibold ${tagColor}`}>
+                  {levelLabel}
+                </span>
+                {subcats.length > 0 && (
+                  <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-lg">
+                    {subcats.length} sub
+                  </span>
+                )}
+              </div>
+              <div className="text-sm text-gray-600 mt-1">
+                {category.slug} {category.icon && `• ${category.icon}`}
+              </div>
+            </div>
+          </div>
+          <div className="flex space-x-2">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => handleEdit(category)}
+              className="rounded-xl bg-white"
+            >
+              <Edit className="h-4 w-4" />
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => handleDelete(category._id)}
+              className="rounded-xl bg-white text-red-600 hover:bg-red-50"
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Subcategories (recursive) */}
+        {isExpanded && subcats.length > 0 && (
+          <div className="bg-white p-4 pl-8 space-y-3">
+            {subcats.map((subCat) => renderCategoryHierarchy(subCat, level + 1))}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   const getFilteredCategories = () => {
     if (filterType === 'main') {
       return categories.filter(cat => !cat.parentId);
