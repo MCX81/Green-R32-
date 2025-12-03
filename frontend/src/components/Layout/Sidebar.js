@@ -21,8 +21,8 @@ const Sidebar = () => {
   return (
     <div className="w-64 h-screen bg-white border-r border-slate-200 flex flex-col fixed left-0 top-0" data-testid="sidebar">
       <div className="p-6 border-b border-slate-200">
-        <h1 className="text-2xl font-bold text-primary tracking-tight">FinRo</h1>
-        <p className="text-sm text-muted-foreground mt-1">Facturare inteligentă</p>
+        <h1 className="text-2xl font-bold text-green-600 tracking-tight">R32</h1>
+        <p className="text-sm text-muted-foreground mt-1">Facturare și Gestiune</p>
       </div>
 
       <nav className="flex-1 p-4 space-y-1">
