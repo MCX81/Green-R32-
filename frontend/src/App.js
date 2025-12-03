@@ -37,18 +37,12 @@ import InvoiceView from "./pages/InvoiceView";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 
-function App() {
-  const [cartCount] = useState(2);
-  const [wishlistCount] = useState(4);
+// Inner component to access CartContext
+function AppRoutes() {
+  const { cartCount, wishlistCount } = useCart();
   
-  // Force cache invalidation - v2.0.2 - Admin login fix
-  console.log('App version: 2.0.2 - Admin login fixed');
-
   return (
-    <div className="App">
-      <BrowserRouter>
-        <AuthProvider>
-          <Routes>
+    <Routes>
             {/* Admin login - separate from regular login */}
             <Route path="/admin/login" element={<AdminLogin />} />
             
