@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, ShoppingCart } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
-import { products } from '../mock/mockData';
 import { useToast } from '../hooks/use-toast';
+import { wishlistAPI, cartAPI } from '../services/api';
 
 const Wishlist = () => {
   const { toast } = useToast();
-  const [wishlistProducts] = useState(products.slice(0, 4));
+  const [wishlistProducts, setWishlistProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadWishlist();
+  }, []);
+
+  const loadWishlist = async () => {
+    try {
+      const response = await wishlistAPI.get();
+      setWishlistProducts(response.data || []);
+    } catch (error) {
+      console.error('Error loading wishlist:', error);
+      setWishlistProducts([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleAddToCart = (product) => {
     toast({
