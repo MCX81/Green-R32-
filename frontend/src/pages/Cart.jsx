@@ -39,6 +39,8 @@ const Cart = () => {
       setCartItems(items =>
         items.map(item => item.productId === productId ? { ...item, quantity: newQuantity } : item)
       );
+      // Refresh header counts
+      refreshCounts();
       toast({
         title: 'Cantitate actualizată!',
         description: 'Cantitatea produsului a fost actualizată.',
@@ -57,6 +59,8 @@ const Cart = () => {
     try {
       await cartAPI.removeItem(productId);
       setCartItems(items => items.filter(item => item.productId !== productId));
+      // Refresh header counts
+      refreshCounts();
       toast({
         title: 'Produs eliminat!',
         description: 'Produsul a fost eliminat din coș.',
