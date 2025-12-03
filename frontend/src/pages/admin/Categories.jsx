@@ -190,11 +190,30 @@ const Categories = () => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="">Nicio categorie (categorie principală)</SelectItem>
-                    {categories.filter(cat => !cat.parentId).map(cat => (
-                      <SelectItem key={cat._id} value={cat._id}>{cat.name}</SelectItem>
-                    ))}
+                    {categories
+                      .filter(cat => !cat.parentId && cat._id !== editingCategory?._id)
+                      .map(cat => (
+                        <SelectItem key={cat._id} value={cat._id}>
+                          {cat.name}
+                        </SelectItem>
+                      ))}
+                    {/* Allow selecting subcategories as parent too */}
+                    {categories
+                      .filter(cat => cat.parentId && cat._id !== editingCategory?._id)
+                      .map(cat => {
+                        const parent = categories.find(c => c._id === cat.parentId);
+                        return (
+                          <SelectItem key={cat._id} value={cat._id}>
+                            ↳ {parent?.name} → {cat.name}
+                          </SelectItem>
+                        );
+                      })}
                   </SelectContent>
                 </Select>
+                <p className="text-xs text-gray-500 mt-1">
+                  Poți selecta o categorie principală sau o subcategorie ca părinte. 
+                  Aceasta va crea o ierarhie pe mai multe niveluri.
+                </p>
               </div>
 
               <div>
