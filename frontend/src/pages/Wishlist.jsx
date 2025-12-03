@@ -33,6 +33,8 @@ const Wishlist = () => {
   const handleAddToCart = async (product) => {
     try {
       await cartAPI.addItem({ productId: product._id, quantity: 1 });
+      // Refresh header counts
+      refreshCounts();
       toast({
         title: 'Produs adăugat în coș!',
         description: `${product.name} a fost adăugat în coșul tău.`,
@@ -51,6 +53,8 @@ const Wishlist = () => {
     try {
       await wishlistAPI.remove(product._id);
       setWishlistProducts(products => products.filter(p => p._id !== product._id));
+      // Refresh header counts
+      refreshCounts();
       toast({
         title: 'Eliminat din favorite!',
         description: `${product.name} a fost eliminat din lista de dorințe.`,
