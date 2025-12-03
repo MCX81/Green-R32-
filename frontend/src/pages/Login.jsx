@@ -17,14 +17,16 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     
-    const result = await login(email, password);
-    
-    if (result.success) {
-      // Force reload to clear all cached state
-      window.location.href = '/';
+    try {
+      await login(email, password);
+      // Login successful - redirect to homepage
+      navigate('/');
+    } catch (error) {
+      console.error('Login error:', error);
+      // Error handling - AuthContext will show the error
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
 
   return (
