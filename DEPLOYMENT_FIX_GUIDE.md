@@ -55,7 +55,7 @@ Dacă trebuie să faci deploy manual:
 
 Fișierul `.env.production` există deja și este configurat corect pentru producție:
 ```
-REACT_APP_BACKEND_URL=https://invoice-hub-86.preview.emergentagent.com
+REACT_APP_BACKEND_URL=https://invoice-system-60.preview.emergentagent.com
 ```
 
 NU modifica acest fișier! Build-ul de producție va folosi automat acest `.env.production`.

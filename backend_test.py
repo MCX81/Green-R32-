@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import uuid
 
 class FinRoAPITester:
-    def __init__(self, base_url="https://invoice-hub-86.preview.emergentagent.com"):
+    def __init__(self, base_url="https://invoice-system-60.preview.emergentagent.com"):
         self.base_url = base_url
         self.token = None
         self.user_id = None
