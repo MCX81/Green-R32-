@@ -79,12 +79,6 @@ const Login = () => {
             </Link>
           </p>
         </div>
-
-        <div className="mt-4 p-4 bg-blue-50 rounded-xl">
-          <p className="text-sm text-blue-900 font-semibold mb-2">Conturi demo:</p>
-          <p className="text-xs text-blue-800">Admin: admin@r32.ro / admin123</p>
-          <p className="text-xs text-blue-800">User: ion@test.ro / test123</p>
-        </div>
       </Card>
     </div>
   );
