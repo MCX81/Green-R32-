@@ -6,7 +6,15 @@ Domeniul **r32.ro** este blocat pe vechiul fork după ce ai dat "replace deploym
 
 ---
 
-## 🔧 REZOLVARE IMEDIATĂ (Pentru Fork-ul Curent)
+## ⚠️ AVERTISMENT IMPORTANT
+
+**"REPLACE DEPLOYMENT" NU TRANSFERĂ AUTOMAT DOMENIUL!**
+
+Chiar dacă folosești "Replace deployment", domeniul rămâne legat de vechiul fork și TREBUIE transferat manual. Aceasta este o limitare a platformei Emergent.
+
+---
+
+## ✅ Soluție IMEDIATĂ (Pentru Fork-ul Curent)
 
 ### Pasul 1: UNLINK domeniul de la vechiul fork
 
