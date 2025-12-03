@@ -362,96 +362,10 @@ const Categories = () => {
       <Card className="rounded-2xl border-2 border-gray-100">
         <div className="p-6 space-y-4">
           {filterType === 'all' ? (
-            // Hierarchical view
-            getMainCategories().map((mainCat) => {
-              const subcats = getSubcategories(mainCat._id);
-              const isExpanded = expandedCategories.has(mainCat._id);
-              
-              return (
-                <div key={mainCat._id} className="border-2 border-gray-100 rounded-xl overflow-hidden">
-                  {/* Main Category */}
-                  <div className="bg-green-50 p-4 flex items-center justify-between">
-                    <div className="flex-1 flex items-center space-x-3">
-                      <button
-                        onClick={() => toggleCategory(mainCat._id)}
-                        className="text-green-600 hover:text-green-700"
-                      >
-                        <svg
-                          className={`w-5 h-5 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
-                      <div>
-                        <div className="font-bold text-lg">{mainCat.name}</div>
-                        <div className="text-sm text-gray-600">
-                          {mainCat.slug} • {mainCat.icon || 'Fără icon'} • {subcats.length} subcategorii
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex space-x-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleEdit(mainCat)}
-                        className="rounded-xl bg-white"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleDelete(mainCat._id)}
-                        className="rounded-xl bg-white text-red-600 hover:bg-red-50"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Subcategories */}
-                  {isExpanded && subcats.length > 0 && (
-                    <div className="bg-white divide-y divide-gray-100">
-                      {subcats.map((subCat) => (
-                        <div key={subCat._id} className="p-4 pl-12 flex items-center justify-between hover:bg-gray-50">
-                          <div className="flex-1">
-                            <div className="flex items-center space-x-2">
-                              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                              </svg>
-                              <span className="font-semibold">{subCat.name}</span>
-                              <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-lg">Subcategorie</span>
-                            </div>
-                            <div className="text-sm text-gray-500 mt-1 ml-6">{subCat.slug}</div>
-                          </div>
-                          <div className="flex space-x-2">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => handleEdit(subCat)}
-                              className="rounded-xl"
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => handleDelete(subCat._id)}
-                              className="rounded-xl text-red-600 hover:bg-red-50"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })
+            // Hierarchical view with recursive rendering
+            <div className="space-y-4">
+              {getMainCategories().map((mainCat) => renderCategoryHierarchy(mainCat, 0))}
+            </div>
           ) : (
             // Flat view for filtered results
             <div className="space-y-2">
