@@ -6,9 +6,11 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { useToast } from '../hooks/use-toast';
 import { wishlistAPI, cartAPI } from '../services/api';
+import { useCart } from '../context/CartContext';
 
 const Wishlist = () => {
   const { toast } = useToast();
+  const { refreshCounts } = useCart();
   const [wishlistProducts, setWishlistProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
