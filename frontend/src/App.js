@@ -40,8 +40,8 @@ function App() {
   const [cartCount] = useState(2);
   const [wishlistCount] = useState(4);
   
-  // Force cache invalidation - v2.0.1
-  console.log('App version: 2.0.1 - Routing fixed');
+  // Force cache invalidation - v2.0.2 - Admin login fix
+  console.log('App version: 2.0.2 - Admin login fixed');
 
   return (
     <div className="App">
