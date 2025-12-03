@@ -90,6 +90,21 @@ function AppRoutes() {
             } />
           </Routes>
           <Toaster />
+    </Routes>
+  );
+}
+
+function App() {
+  // Force cache invalidation - v2.0.3 - Cart/Wishlist fix
+  console.log('App version: 2.0.3 - Cart/Wishlist + Login fixed');
+
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <AuthProvider>
+          <CartProvider>
+            <AppRoutes />
+          </CartProvider>
         </AuthProvider>
       </BrowserRouter>
     </div>
