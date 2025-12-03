@@ -12,19 +12,61 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    setCartItems(items =>
-      items.map(item => item.id === id ? { ...item, quantity: newQuantity } : item)
-    );
+  useEffect(() => {
+    loadCart();
+  }, []);
+
+  const loadCart = async () => {
+    try {
+      const response = await cartAPI.get();
+      setCartItems(response.data.items || []);
+    } catch (error) {
+      console.error('Error loading cart:', error);
+      setCartItems([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const removeItem = (id) => {
-    setCartItems(items => items.filter(item => item.id !== id));
-    toast({
-      title: 'Produs eliminat!',
-      description: 'Produsul a fost eliminat din coș.',
-    });
+  const updateQuantity = async (productId, newQuantity) => {
+    if (newQuantity < 1) return;
+    
+    try {
+      await cartAPI.updateItem(productId, { quantity: newQuantity });
+      // Update local state
+      setCartItems(items =>
+        items.map(item => item.productId === productId ? { ...item, quantity: newQuantity } : item)
+      );
+      toast({
+        title: 'Cantitate actualizată!',
+        description: 'Cantitatea produsului a fost actualizată.',
+      });
+    } catch (error) {
+      console.error('Error updating quantity:', error);
+      toast({
+        title: 'Eroare!',
+        description: 'Nu s-a putut actualiza cantitatea.',
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const removeItem = async (productId) => {
+    try {
+      await cartAPI.removeItem(productId);
+      setCartItems(items => items.filter(item => item.productId !== productId));
+      toast({
+        title: 'Produs eliminat!',
+        description: 'Produsul a fost eliminat din coș.',
+      });
+    } catch (error) {
+      console.error('Error removing item:', error);
+      toast({
+        title: 'Eroare!',
+        description: 'Nu s-a putut elimina produsul.',
+        variant: 'destructive',
+      });
+    }
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
