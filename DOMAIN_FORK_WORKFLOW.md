@@ -195,7 +195,7 @@ sudo dscacheutil -flushcache
 - Unlink întotdeauna domeniul ÎNAINTE de a-l linka la alt deployment
 - Ține un jurnal/notițe cu ce domenii sunt pe ce deployment
 - Testează domeniile după fiecare migrare
-- Folosește deployment replacement când este posibil (economisește bani)
+- **IMPORTANT:** Chiar dacă folosești "Replace deployment", tot trebuie să faci UNLINK → LINK manual
 
 ### ❌ DON'T:
 - Nu încerca să linkezi un domeniu fără să-l unlink mai întâi
