@@ -17,14 +17,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setLocalError('');
     
     try {
       await login(email, password);
       // Login successful - redirect to homepage
       navigate('/');
     } catch (error) {
-      console.error('Login error:', error);
-      // Error handling - AuthContext will show the error
+      setLocalError(error.message || 'A apărut o eroare. Te rugăm să încerci din nou.');
     } finally {
       setLoading(false);
     }
