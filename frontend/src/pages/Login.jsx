@@ -38,6 +38,12 @@ const Login = () => {
           <p className="text-gray-600">Intră în contul tău R32</p>
         </div>
 
+        {localError && (
+          <div className="mb-6 p-4 bg-red-50 border-2 border-red-200 rounded-xl">
+            <p className="text-sm text-red-800 text-center font-medium">{localError}</p>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <Label htmlFor="email">Email</Label>
