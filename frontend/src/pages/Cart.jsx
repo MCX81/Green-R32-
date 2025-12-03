@@ -6,9 +6,11 @@ import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { useToast } from '../hooks/use-toast';
 import { cartAPI } from '../services/api';
+import { useCart } from '../context/CartContext';
 
 const Cart = () => {
   const { toast } = useToast();
+  const { refreshCounts } = useCart();
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
