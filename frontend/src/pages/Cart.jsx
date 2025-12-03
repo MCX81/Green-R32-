@@ -101,15 +101,15 @@ const Cart = () => {
             {/* Cart Items */}
             <div className="lg:col-span-2 space-y-4">
               {cartItems.map(item => (
-                <Card key={item.id} className="p-6 rounded-2xl border-2 border-gray-100">
+                <Card key={item.productId} className="p-6 rounded-2xl border-2 border-gray-100">
                   <div className="flex items-center space-x-4">
                     <img
-                      src={item.image}
+                      src={item.image || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80'}
                       alt={item.name}
                       className="w-24 h-24 object-cover rounded-xl"
                     />
                     <div className="flex-1">
-                      <Link to={`/product/${item.id}`}>
+                      <Link to={`/product/${item.productId}`}>
                         <h3 className="font-semibold text-lg mb-2 hover:text-green-600 transition-colors">
                           {item.name}
                         </h3>
@@ -122,7 +122,7 @@ const Cart = () => {
                         <Button
                           variant="ghost"
                           size="icon"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() => updateQuantity(item.productId, item.quantity - 1)}
                           className="rounded-l-xl"
                         >
                           <Minus className="h-4 w-4" />
@@ -131,7 +131,7 @@ const Cart = () => {
                         <Button
                           variant="ghost"
                           size="icon"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() => updateQuantity(item.productId, item.quantity + 1)}
                           className="rounded-r-xl"
                         >
                           <Plus className="h-4 w-4" />
@@ -141,7 +141,7 @@ const Cart = () => {
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => removeItem(item.id)}
+                        onClick={() => removeItem(item.productId)}
                         className="text-red-500 hover:text-red-700 hover:bg-red-50 rounded-xl"
                       >
                         <Trash2 className="h-5 w-5" />
