@@ -28,19 +28,48 @@ const Wishlist = () => {
     }
   };
 
-  const handleAddToCart = (product) => {
-    toast({
-      title: 'Produs adăugat în coș!',
-      description: `${product.name} a fost adăugat în coșul tău.`,
-    });
+  const handleAddToCart = async (product) => {
+    try {
+      await cartAPI.addItem({ productId: product._id, quantity: 1 });
+      toast({
+        title: 'Produs adăugat în coș!',
+        description: `${product.name} a fost adăugat în coșul tău.`,
+      });
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      toast({
+        title: 'Eroare!',
+        description: 'Nu s-a putut adăuga produsul în coș.',
+        variant: 'destructive',
+      });
+    }
   };
 
-  const handleRemoveFromWishlist = (product) => {
-    toast({
-      title: 'Eliminat din favorite!',
-      description: `${product.name} a fost eliminat din lista de dorințe.`,
-    });
+  const handleRemoveFromWishlist = async (product) => {
+    try {
+      await wishlistAPI.remove(product._id);
+      setWishlistProducts(products => products.filter(p => p._id !== product._id));
+      toast({
+        title: 'Eliminat din favorite!',
+        description: `${product.name} a fost eliminat din lista de dorințe.`,
+      });
+    } catch (error) {
+      console.error('Error removing from wishlist:', error);
+      toast({
+        title: 'Eroare!',
+        description: 'Nu s-a putut elimina produsul.',
+        variant: 'destructive',
+      });
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
