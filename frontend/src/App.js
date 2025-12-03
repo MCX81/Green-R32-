@@ -42,55 +42,57 @@ function AppRoutes() {
   const { cartCount, wishlistCount } = useCart();
   
   return (
-    <Routes>
-            {/* Admin login - separate from regular login */}
-            <Route path="/admin/login" element={<AdminLogin />} />
-            
-            {/* Admin routes */}
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<AdminDashboard />} />
-              <Route path="products" element={<AdminProducts />} />
-              <Route path="categories" element={<Categories />} />
-              <Route path="orders" element={<Orders />} />
-              <Route path="users" element={<Users />} />
-              <Route path="reviews" element={<Reviews />} />
-              <Route path="backup" element={<Backup />} />
-            </Route>
+    <>
+      <Routes>
+        {/* Admin login - separate from regular login */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        
+        {/* Admin routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="products" element={<AdminProducts />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="users" element={<Users />} />
+          <Route path="reviews" element={<Reviews />} />
+          <Route path="backup" element={<Backup />} />
+        </Route>
 
-            {/* Facturare routes - standalone without header/footer */}
-            <Route path="/factura" element={<FacturareDashboard />} />
-            <Route path="/factura/dashboard" element={<FacturareDashboard />} />
-            <Route path="/factura/companies" element={<Companies />} />
-            <Route path="/factura/clients" element={<Clients />} />
-            <Route path="/factura/products" element={<FacturareProducts />} />
-            <Route path="/factura/invoices" element={<Invoices />} />
-            <Route path="/factura/invoices/new" element={<InvoiceForm />} />
-            <Route path="/factura/invoices/:id" element={<InvoiceView />} />
-            <Route path="/factura/reports" element={<Reports />} />
-            <Route path="/factura/settings" element={<Settings />} />
-            
-            {/* Main routes with header/footer - wrapped */}
-            <Route path="/*" element={
-              <>
-                <Header cartCount={cartCount} wishlistCount={wishlistCount} />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/catalog" element={<Catalog />} />
-                  <Route path="/product/:id" element={<ProductDetail />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/order-confirmation" element={<OrderConfirmation />} />
-                  <Route path="/wishlist" element={<Wishlist />} />
-                  <Route path="/account" element={<Account />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                </Routes>
-                <Footer />
-              </>
-            } />
-          </Routes>
-          <Toaster />
-    );
+        {/* Facturare routes - standalone without header/footer */}
+        <Route path="/factura" element={<FacturareDashboard />} />
+        <Route path="/factura/dashboard" element={<FacturareDashboard />} />
+        <Route path="/factura/companies" element={<Companies />} />
+        <Route path="/factura/clients" element={<Clients />} />
+        <Route path="/factura/products" element={<FacturareProducts />} />
+        <Route path="/factura/invoices" element={<Invoices />} />
+        <Route path="/factura/invoices/new" element={<InvoiceForm />} />
+        <Route path="/factura/invoices/:id" element={<InvoiceView />} />
+        <Route path="/factura/reports" element={<Reports />} />
+        <Route path="/factura/settings" element={<Settings />} />
+        
+        {/* Main routes with header/footer - wrapped */}
+        <Route path="/*" element={
+          <>
+            <Header cartCount={cartCount} wishlistCount={wishlistCount} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/order-confirmation" element={<OrderConfirmation />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+            <Footer />
+          </>
+        } />
+      </Routes>
+      <Toaster />
+    </>
+  );
 }
 
 function App() {
