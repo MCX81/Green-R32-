@@ -40,8 +40,16 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
+  const isAdmin = () => {
+    return user?.role === 'admin';
+  };
+
+  const isAuthenticated = () => {
+    return !!user && !!localStorage.getItem('token');
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ user, setUser, login, register, logout, loading, isAdmin, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
