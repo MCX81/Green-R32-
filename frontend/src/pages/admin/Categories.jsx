@@ -293,13 +293,16 @@ const Categories = () => {
               </div>
 
               <div>
-                <Label>Icon (Lucide React) - doar pentru categorii principale</Label>
+                <Label>Icon (Lucide React) - recomandat pentru categorii principale</Label>
                 <Input
                   value={formData.icon}
                   onChange={(e) => setFormData({...formData, icon: e.target.value})}
-                  placeholder="ex: Smartphone, Laptop"
+                  placeholder="ex: Smartphone, Laptop, Monitor"
                   className="rounded-xl mt-2"
                 />
+                <p className="text-xs text-gray-500 mt-1">
+                  Icon-ul este opțional. Se afișează doar pentru categoriile principale pe site.
+                </p>
               </div>
 
               <div>
