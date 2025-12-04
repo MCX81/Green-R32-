@@ -135,10 +135,12 @@ const Header = ({ cartCount = 0, wishlistCount = 0 }) => {
       <nav className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center space-x-1 py-3 overflow-x-auto">
-            <Button variant="ghost" className="rounded-xl text-sm hover:bg-gray-100">
-              <Menu className="h-4 w-4 mr-2" />
-              Toate Categoriile
-            </Button>
+            <Link to="/catalog">
+              <Button variant="ghost" className="rounded-xl text-sm hover:bg-gray-100">
+                <Menu className="h-4 w-4 mr-2" />
+                Toate Categoriile
+              </Button>
+            </Link>
             <Link to="/catalog?filter=oferte">
               <Button variant="ghost" className="rounded-xl text-sm hover:bg-gray-100 text-red-600 font-semibold">
                 Oferte
