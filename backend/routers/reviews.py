@@ -187,16 +187,26 @@ async def delete_review(
     
     await db.reviews.delete_one({"_id": ObjectId(review_id)})
     
-    # Update product rating and review count
-    all_reviews = await db.reviews.find({"productId": review["productId"]}).to_list(length=1000)
-    if all_reviews:
-        avg_rating = sum(r["rating"] for r in all_reviews) / len(all_reviews)
+    # Update product rating and review count using aggregation
+    rating_pipeline = [
+        {"$match": {"productId": review["productId"]}},
+        {"$group": {
+            "_id": None,
+            "avg_rating": {"$avg": "$rating"},
+            "count": {"$sum": 1}
+        }}
+    ]
+    rating_result = await db.reviews.aggregate(rating_pipeline).to_list(1)
+    
+    if rating_result:
+        avg_rating = rating_result[0]["avg_rating"]
+        review_count = rating_result[0]["count"]
         await db.products.update_one(
             {"_id": ObjectId(review["productId"])},
             {
                 "$set": {
                     "rating": round(avg_rating, 1),
-                    "reviews": len(all_reviews)
+                    "reviews": review_count
                 }
             }
         )
