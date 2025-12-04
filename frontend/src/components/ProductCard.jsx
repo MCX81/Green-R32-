@@ -6,7 +6,7 @@ import { Card } from './ui/card';
 import { Badge } from './ui/badge';
 
 const ProductCard = ({ product, onAddToCart, onAddToWishlist }) => {
-  const { _id, name, price, oldPrice, rating, reviews, image, inStock, isNew, discount } = product;
+  const { _id, name, price, oldPrice, rating, reviews, image, inStock, stock, isNew, discount } = product;
 
   return (
     <Card className="group relative overflow-hidden rounded-2xl border-2 border-gray-100 hover:border-green-500 hover:shadow-xl transition-all duration-300">
