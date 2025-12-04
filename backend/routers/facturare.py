@@ -367,7 +367,7 @@ async def get_invoices(company_id: Optional[str] = None, user: dict = Depends(ge
         company_ids = [c['id'] for c in companies]
         query["company_id"] = {"$in": company_ids}
     
-    invoices = await db.factura_invoices.find(query, {"_id": 0}).sort("issue_date", -1).to_list(1000)
+    invoices = await db.factura_invoices.find(query, {"_id": 0}).sort("issue_date", -1).limit(1000).to_list(1000)
     for inv in invoices:
         if isinstance(inv.get('issue_date'), str):
             inv['issue_date'] = datetime.fromisoformat(inv['issue_date'])
