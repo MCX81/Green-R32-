@@ -148,11 +148,11 @@ async def update_review(
         
         if rating_result:
             avg_rating = rating_result[0]["avg_rating"]
-        
-        await db.products.update_one(
-            {"_id": ObjectId(review["productId"])},
-            {"$set": {"rating": round(avg_rating, 1)}}
-        )
+            
+            await db.products.update_one(
+                {"_id": ObjectId(review["productId"])},
+                {"$set": {"rating": round(avg_rating, 1)}}
+            )
     
     updated_review = await db.reviews.find_one({"_id": ObjectId(review_id)})
     updated_review["_id"] = str(updated_review["_id"])
