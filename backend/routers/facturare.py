@@ -195,7 +195,7 @@ async def create_company(company_data: CompanyCreate, user: dict = Depends(get_c
 
 @router.get("/companies", response_model=List[Company])
 async def get_companies(user: dict = Depends(get_current_user)):
-    companies = await db.factura_companies.find({"user_id": user['id']}, {"_id": 0}).to_list(100)
+    companies = await db.factura_companies.find({"user_id": user['id']}, {"_id": 0}).limit(100).to_list(100)
     for c in companies:
         if isinstance(c.get('created_at'), str):
             c['created_at'] = datetime.fromisoformat(c['created_at'])
