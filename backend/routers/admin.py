@@ -154,8 +154,13 @@ async def get_dashboard_stats(current_admin: dict = Depends(get_current_admin_us
     # Total products
     total_products = await db.products.count_documents({})
     
-    # Products in stock
-    products_in_stock = await db.products.count_documents({"inStock": True})
+    # Products in stock (check both inStock boolean and stock quantity)
+    products_in_stock = await db.products.count_documents({
+        "$or": [
+            {"inStock": True},
+            {"stock": {"$gt": 0}}
+        ]
+    })
     
     # Orders this month
     first_day_of_month = datetime.utcnow().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
