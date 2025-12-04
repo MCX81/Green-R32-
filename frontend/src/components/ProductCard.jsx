@@ -86,7 +86,7 @@ const ProductCard = ({ product, onAddToCart, onAddToWishlist }) => {
             e.preventDefault();
             onAddToCart?.(product);
           }}
-          disabled={!inStock}
+          disabled={!inStock && !(stock && stock > 0)}
           className="w-full bg-green-600 hover:bg-green-700 text-white rounded-xl py-6 font-semibold transition-all disabled:bg-gray-300 disabled:cursor-not-allowed"
         >
           <ShoppingCart className="h-5 w-5 mr-2" />
