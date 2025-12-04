@@ -135,12 +135,18 @@ async def admin_login(credentials: UserLogin):
 @router.get("/stats")
 async def get_dashboard_stats(current_admin: dict = Depends(get_current_admin_user)):
     """Get dashboard statistics"""
-    # Total sales
-    orders = await db.orders.find({"status": {"$ne": "cancelled"}}).to_list(length=10000)
-    total_sales = sum(order.get("total", 0) for order in orders)
-    
-    # Total orders
-    total_orders = len(orders)
+    # Total sales and orders using aggregation
+    sales_pipeline = [
+        {"$match": {"status": {"$ne": "cancelled"}}},
+        {"$group": {
+            "_id": None,
+            "total_sales": {"$sum": "$total"},
+            "total_orders": {"$sum": 1}
+        }}
+    ]
+    sales_result = await db.orders.aggregate(sales_pipeline).to_list(1)
+    total_sales = sales_result[0]["total_sales"] if sales_result else 0
+    total_orders = sales_result[0]["total_orders"] if sales_result else 0
     
     # Total users
     total_users = await db.users.count_documents({})
@@ -157,43 +163,57 @@ async def get_dashboard_stats(current_admin: dict = Depends(get_current_admin_us
         "createdAt": {"$gte": first_day_of_month}
     })
     
-    # Sales by month (last 6 months)
+    # Sales by month (last 6 months) using aggregation
+    six_months_ago = datetime.utcnow() - timedelta(days=180)
+    monthly_pipeline = [
+        {"$match": {
+            "status": {"$ne": "cancelled"},
+            "createdAt": {"$gte": six_months_ago}
+        }},
+        {"$group": {
+            "_id": {
+                "$dateToString": {"format": "%Y-%m", "date": "$createdAt"}
+            },
+            "sales": {"$sum": "$total"},
+            "orders": {"$sum": 1}
+        }},
+        {"$sort": {"_id": 1}}
+    ]
+    monthly_results = await db.orders.aggregate(monthly_pipeline).to_list(6)
+    
+    # Format monthly results
     sales_by_month = []
-    for i in range(5, -1, -1):
-        month_start = (datetime.utcnow().replace(day=1, hour=0, minute=0, second=0, microsecond=0) - timedelta(days=30 * i))
-        month_end = month_start + timedelta(days=30)
-        
-        month_orders = await db.orders.find({
-            "createdAt": {"$gte": month_start, "$lt": month_end},
-            "status": {"$ne": "cancelled"}
-        }).to_list(length=10000)
-        
-        month_sales = sum(order.get("total", 0) for order in month_orders)
-        
+    for result in monthly_results:
+        month_date = datetime.strptime(result["_id"], "%Y-%m")
         sales_by_month.append({
-            "month": month_start.strftime("%B"),
-            "sales": month_sales,
-            "orders": len(month_orders)
+            "month": month_date.strftime("%B"),
+            "sales": result["sales"],
+            "orders": result["orders"]
         })
     
-    # Top products
-    all_orders = await db.orders.find({"status": {"$ne": "cancelled"}}).to_list(length=10000)
-    product_sales = {}
-    
-    for order in all_orders:
-        for item in order.get("items", []):
-            product_id = item.get("productId")
-            if product_id not in product_sales:
-                product_sales[product_id] = {
-                    "productId": product_id,
-                    "name": item.get("name"),
-                    "quantity": 0,
-                    "revenue": 0
-                }
-            product_sales[product_id]["quantity"] += item.get("quantity", 0)
-            product_sales[product_id]["revenue"] += item.get("price", 0) * item.get("quantity", 0)
-    
-    top_products = sorted(product_sales.values(), key=lambda x: x["revenue"], reverse=True)[:5]
+    # Top products using aggregation
+    top_products_pipeline = [
+        {"$match": {"status": {"$ne": "cancelled"}}},
+        {"$unwind": "$items"},
+        {"$group": {
+            "_id": "$items.productId",
+            "name": {"$first": "$items.name"},
+            "quantity": {"$sum": "$items.quantity"},
+            "revenue": {"$sum": {"$multiply": ["$items.price", "$items.quantity"]}}
+        }},
+        {"$sort": {"revenue": -1}},
+        {"$limit": 5}
+    ]
+    top_products_results = await db.orders.aggregate(top_products_pipeline).to_list(5)
+    top_products = [
+        {
+            "productId": p["_id"],
+            "name": p["name"],
+            "quantity": p["quantity"],
+            "revenue": p["revenue"]
+        }
+        for p in top_products_results
+    ]
     
     # Recent orders
     recent_orders = await db.orders.find().sort("createdAt", -1).limit(5).to_list(length=5)
