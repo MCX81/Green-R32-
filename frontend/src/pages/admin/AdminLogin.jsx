@@ -31,12 +31,16 @@ const AdminLogin = () => {
       // Use admin-specific login endpoint
       const response = await authAPI.adminLogin({ email, password });
       
-      // Store token and user data
-      localStorage.setItem('token', response.data.access_token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
+      // Normalize the token field name (backend sends 'access_token', we store as 'token')
+      const token = response.data.access_token || response.data.token;
+      const userData = response.data.user;
+      
+      // Store using same keys as regular login
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(userData));
       
       // Update auth context
-      setUser(response.data.user);
+      setUser(userData);
       
       // Admin login successful - redirect to admin dashboard
       navigate('/admin');
