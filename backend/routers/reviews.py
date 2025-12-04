@@ -134,10 +134,20 @@ async def update_review(
         {"$set": update_data}
     )
     
-    # Update product rating if rating changed
+    # Update product rating if rating changed using aggregation
     if "rating" in update_data:
-        all_reviews = await db.reviews.find({"productId": review["productId"]}).to_list(length=1000)
-        avg_rating = sum(r["rating"] for r in all_reviews) / len(all_reviews)
+        rating_pipeline = [
+            {"$match": {"productId": review["productId"]}},
+            {"$group": {
+                "_id": None,
+                "avg_rating": {"$avg": "$rating"},
+                "count": {"$sum": 1}
+            }}
+        ]
+        rating_result = await db.reviews.aggregate(rating_pipeline).to_list(1)
+        
+        if rating_result:
+            avg_rating = rating_result[0]["avg_rating"]
         
         await db.products.update_one(
             {"_id": ObjectId(review["productId"])},
