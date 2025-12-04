@@ -84,18 +84,48 @@ const Catalog = () => {
     }
   };
 
-  const handleAddToCart = (product) => {
-    toast({
-      title: 'Produs adăugat în coș!',
-      description: `${product.name} a fost adăugat în coșul tău.`,
-    });
+  const handleAddToCart = async (product) => {
+    try {
+      const { cartAPI } = await import('../services/api');
+      await cartAPI.addItem({ productId: product._id, quantity: 1 });
+      
+      // Refresh cart count
+      window.dispatchEvent(new Event('cartUpdated'));
+      
+      toast({
+        title: 'Produs adăugat în coș!',
+        description: `${product.name} a fost adăugat în coșul tău.`,
+      });
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      toast({
+        title: 'Eroare',
+        description: error.response?.data?.detail || 'Nu s-a putut adăuga produsul în coș.',
+        variant: 'destructive',
+      });
+    }
   };
 
-  const handleAddToWishlist = (product) => {
-    toast({
-      title: 'Adăugat la favorite!',
-      description: `${product.name} a fost adăugat la lista ta de dorințe.`,
-    });
+  const handleAddToWishlist = async (product) => {
+    try {
+      const { wishlistAPI } = await import('../services/api');
+      await wishlistAPI.add(product._id);
+      
+      // Refresh wishlist count
+      window.dispatchEvent(new Event('wishlistUpdated'));
+      
+      toast({
+        title: 'Adăugat la favorite!',
+        description: `${product.name} a fost adăugat la lista ta de dorințe.`,
+      });
+    } catch (error) {
+      console.error('Error adding to wishlist:', error);
+      toast({
+        title: 'Eroare',
+        description: error.response?.data?.detail || 'Nu s-a putut adăuga produsul la favorite.',
+        variant: 'destructive',
+      });
+    }
   };
 
   const handleBrandToggle = (brand) => {
