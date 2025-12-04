@@ -10,6 +10,18 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     loadCounts();
+    
+    // Listen for cart/wishlist updates from other components
+    const handleCartUpdate = () => loadCounts();
+    const handleWishlistUpdate = () => loadCounts();
+    
+    window.addEventListener('cartUpdated', handleCartUpdate);
+    window.addEventListener('wishlistUpdated', handleWishlistUpdate);
+    
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+      window.removeEventListener('wishlistUpdated', handleWishlistUpdate);
+    };
   }, []);
 
   const loadCounts = async () => {
