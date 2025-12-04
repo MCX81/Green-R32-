@@ -65,19 +65,30 @@ async def create_review(
     
     result = await db.reviews.insert_one(review_dict)
     
-    # Update product rating and review count
-    all_reviews = await db.reviews.find({"productId": product_id}).to_list(length=1000)
-    avg_rating = sum(r["rating"] for r in all_reviews) / len(all_reviews)
+    # Update product rating and review count using aggregation
+    rating_pipeline = [
+        {"$match": {"productId": product_id}},
+        {"$group": {
+            "_id": None,
+            "avg_rating": {"$avg": "$rating"},
+            "count": {"$sum": 1}
+        }}
+    ]
+    rating_result = await db.reviews.aggregate(rating_pipeline).to_list(1)
     
-    await db.products.update_one(
-        {"_id": ObjectId(product_id)},
-        {
-            "$set": {
-                "rating": round(avg_rating, 1),
-                "reviews": len(all_reviews)
+    if rating_result:
+        avg_rating = rating_result[0]["avg_rating"]
+        review_count = rating_result[0]["count"]
+        
+        await db.products.update_one(
+            {"_id": ObjectId(product_id)},
+            {
+                "$set": {
+                    "rating": round(avg_rating, 1),
+                    "reviews": review_count
+                }
             }
-        }
-    )
+        )
     
     created_review = await db.reviews.find_one({"_id": result.inserted_id})
     created_review["_id"] = str(created_review["_id"])
