@@ -69,7 +69,7 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
           {/* Back button if we're in subcategories */}
           {currentCategory && subcategories.length > 0 && (
             <Link
-              to="/"
+              to="/catalog"
               className="flex items-center p-4 hover:bg-green-50 transition-colors group"
             >
               <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-green-600 rotate-180 mr-2" />
