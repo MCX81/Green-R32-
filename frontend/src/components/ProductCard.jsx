@@ -90,7 +90,7 @@ const ProductCard = ({ product, onAddToCart, onAddToWishlist }) => {
           className="w-full bg-green-600 hover:bg-green-700 text-white rounded-xl py-6 font-semibold transition-all disabled:bg-gray-300 disabled:cursor-not-allowed"
         >
           <ShoppingCart className="h-5 w-5 mr-2" />
-          {inStock ? 'Adaugă în Coș' : 'Indisponibil'}
+          {(inStock || (stock && stock > 0)) ? 'Adaugă în Coș' : 'Indisponibil'}
         </Button>
       </div>
     </Card>
