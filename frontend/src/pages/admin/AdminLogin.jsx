@@ -13,7 +13,14 @@ const AdminLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { setUser, user, isAdmin } = useAuth();
+
+  // Redirect if already logged in as admin
+  React.useEffect(() => {
+    if (user && isAdmin()) {
+      navigate('/admin');
+    }
+  }, [user, isAdmin, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
