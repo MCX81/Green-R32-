@@ -34,18 +34,30 @@ async def get_products(
     
     # Apply filters
     if category:
-        # Check if category is a parent category slug
+        # Check if category exists
         category_doc = await db.categories.find_one({"slug": category})
         if category_doc:
-            # Get all subcategories for this parent
-            subcategories = await db.categories.find({"parentId": str(category_doc["_id"])}).to_list(length=None)
-            subcategory_slugs = [sub["slug"] for sub in subcategories]
+            # Get ALL subcategories recursively
+            async def get_all_subcategories_recursive(cat_id):
+                """Get all subcategories recursively for a given category"""
+                all_subs = []
+                # Get direct subcategories
+                direct_subs = await db.categories.find({"parentId": cat_id}).to_list(length=None)
+                for sub in direct_subs:
+                    all_subs.append(sub["slug"])
+                    # Recursively get subcategories of this subcategory
+                    nested_subs = await get_all_subcategories_recursive(str(sub["_id"]))
+                    all_subs.extend(nested_subs)
+                return all_subs
             
-            # If it has subcategories, search in both parent and subcategories
-            if subcategory_slugs:
-                query["category"] = {"$in": [category] + subcategory_slugs}
+            # Get all subcategories at all levels
+            all_subcategory_slugs = await get_all_subcategories_recursive(str(category_doc["_id"]))
+            
+            # Search in the selected category AND all its subcategories (at any level)
+            if all_subcategory_slugs:
+                query["category"] = {"$in": [category] + all_subcategory_slugs}
             else:
-                # It's a subcategory or leaf category, just filter by it
+                # It's a leaf category with no subcategories
                 query["category"] = category
         else:
             query["category"] = category
