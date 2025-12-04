@@ -174,7 +174,7 @@ const ProductDetail = () => {
 
               <Button
                 onClick={handleAddToCart}
-                disabled={!product.inStock}
+                disabled={!product.inStock && !(product.stock && product.stock > 0)}
                 className="flex-1 bg-green-600 hover:bg-green-700 text-white rounded-xl py-6 text-lg font-semibold disabled:bg-gray-300"
               >
                 <ShoppingCart className="h-5 w-5 mr-2" />
@@ -184,8 +184,11 @@ const ProductDetail = () => {
 
             {/* Stock Status */}
             <div className="mb-6">
-              {product.inStock ? (
-                <p className="text-green-600 font-semibold">✓ În stoc</p>
+              {(product.inStock || (product.stock && product.stock > 0)) ? (
+                <p className="text-green-600 font-semibold">
+                  ✓ În stoc
+                  {product.stock && <span className="ml-2 text-gray-600">({product.stock} bucăți)</span>}
+                </p>
               ) : (
                 <p className="text-red-600 font-semibold">✗ Stoc epuizat</p>
               )}
