@@ -299,7 +299,7 @@ async def get_products(company_id: Optional[str] = None, user: dict = Depends(ge
         company_ids = [c['id'] for c in companies]
         query["company_id"] = {"$in": company_ids}
     
-    products = await db.factura_products.find(query, {"_id": 0}).to_list(1000)
+    products = await db.factura_products.find(query, {"_id": 0}).limit(1000).to_list(1000)
     for p in products:
         if isinstance(p.get('created_at'), str):
             p['created_at'] = datetime.fromisoformat(p['created_at'])
