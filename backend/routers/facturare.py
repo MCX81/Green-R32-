@@ -245,7 +245,7 @@ async def get_clients(company_id: Optional[str] = None, user: dict = Depends(get
         company_ids = [c['id'] for c in companies]
         query["company_id"] = {"$in": company_ids}
     
-    clients = await db.factura_clients.find(query, {"_id": 0}).to_list(1000)
+    clients = await db.factura_clients.find(query, {"_id": 0}).limit(1000).to_list(1000)
     for c in clients:
         if isinstance(c.get('created_at'), str):
             c['created_at'] = datetime.fromisoformat(c['created_at'])
