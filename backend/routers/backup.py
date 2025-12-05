@@ -185,6 +185,11 @@ async def restore_database(
                 # Convert dates
                 categories = convert_dates(categories)
                 
+                # CRITICAL FIX: Remove _id and parentId fields to let MongoDB generate new ones
+                for cat in categories:
+                    cat.pop("_id", None)  # Remove old _id
+                    cat.pop("parentId", None)  # Remove old parentId references
+                
                 # Batch insert
                 total = await batch_insert(db.categories, categories, "Categories")
                 restored_stats["categories"] = total
