@@ -34,6 +34,7 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
   let subcategories = [];
   let displayCategories = mainCategories;
   let title = 'Toate Categoriile';
+  let parentCategory = null;
   
   if (categorySlug && categories.length > 0) {
     // Find the selected category (can be any level)
@@ -41,6 +42,12 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
     
     if (selectedCat) {
       currentCategory = selectedCat;
+      
+      // Find parent category if exists
+      if (selectedCat.parentId) {
+        parentCategory = categories.find(cat => cat._id === selectedCat.parentId);
+      }
+      
       // Get children of this category
       const children = categories.filter(cat => cat.parentId === selectedCat._id);
       
@@ -50,10 +57,17 @@ const CatalogSidebar = ({ selectedBrands, onBrandToggle, selectedPriceRange, onP
         displayCategories = children;
         title = selectedCat.name;
       } else {
-        // No children - this is a leaf category, show all products from this category
-        // Keep the sidebar showing this category selected
-        displayCategories = mainCategories;
-        title = 'Toate Categoriile';
+        // No children - this is a leaf category
+        // If it has a parent, show siblings (other children of parent)
+        if (parentCategory) {
+          const siblings = categories.filter(cat => cat.parentId === parentCategory._id);
+          displayCategories = siblings;
+          title = parentCategory.name;
+        } else {
+          // It's a root category with no children
+          displayCategories = mainCategories;
+          title = 'Toate Categoriile';
+        }
       }
     }
   }
