@@ -237,9 +237,7 @@ async def restore_database(
                 # Convert dates
                 reviews = convert_dates(reviews)
                 
-                # CRITICAL FIX: Remove _id field to let MongoDB generate new ones
-                for review in reviews:
-                    review.pop("_id", None)  # Remove old _id
+                # DON'T modify _id - preserve UUID strings from backup
                 
                 # Batch insert
                 total = await batch_insert(db.reviews, reviews, "Reviews")
