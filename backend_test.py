@@ -4,7 +4,7 @@ import json
 from datetime import datetime, timezone
 import uuid
 
-class FinRoAPITester:
+class R32APITester:
     def __init__(self, base_url="https://invoicer32.preview.emergentagent.com"):
         self.base_url = base_url
         self.token = None
