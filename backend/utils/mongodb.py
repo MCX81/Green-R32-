@@ -76,3 +76,41 @@ async def test_mongodb_connection(client: AsyncIOMotorClient) -> bool:
     except Exception as e:
         logger.error(f"❌ MongoDB connection test failed: {str(e)}")
         return False
+
+
+def to_object_id(id_value: str) -> Any:
+    """
+    Convert ID to ObjectId if valid, otherwise return as string.
+    Supports both ObjectId format and UUID strings.
+    
+    Args:
+        id_value: String ID (can be ObjectId hex or UUID)
+        
+    Returns:
+        ObjectId if valid ObjectId format, otherwise original string
+    """
+    if ObjectId.is_valid(id_value):
+        return ObjectId(id_value)
+    return id_value
+
+
+async def find_by_id(collection, id_value: str) -> Optional[dict]:
+    """
+    Find document by _id, supporting both ObjectId and UUID string formats.
+    
+    Args:
+        collection: MongoDB collection
+        id_value: ID to search for (ObjectId hex or UUID string)
+        
+    Returns:
+        Document if found, None otherwise
+    """
+    # Try as ObjectId first
+    if ObjectId.is_valid(id_value):
+        doc = await collection.find_one({"_id": ObjectId(id_value)})
+        if doc:
+            return doc
+    
+    # Try as string (UUID or other string-based IDs)
+    return await collection.find_one({"_id": id_value})
+
