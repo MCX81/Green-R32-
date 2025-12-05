@@ -257,9 +257,7 @@ async def restore_database(
                 
                 orders = convert_dates(orders)
                 
-                # CRITICAL FIX: Remove _id field from all orders
-                for order in orders:
-                    order.pop("_id", None)  # Remove old _id
+                # DON'T modify _id for orders either - preserve UUIDs
                 
                 # OPTIMIZATION: Get all order IDs in ONE query instead of looping
                 order_ids_from_backup = [order.get("orderId") for order in orders if order.get("orderId")]
