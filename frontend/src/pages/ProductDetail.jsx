@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Star, Heart, ShoppingCart, Truck, Shield, RotateCcw, ChevronRight, Minus, Plus } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -6,15 +6,56 @@ import { Card } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import ProductCard from '../components/ProductCard';
-import { products } from '../mock/mockData';
 import { useToast } from '../hooks/use-toast';
+import api from '../lib/api';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const { toast } = useToast();
-  const product = products.find(p => p.id === parseInt(id));
+  const [product, setProduct] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+
+  useEffect(() => {
+    loadProduct();
+  }, [id]);
+
+  const loadProduct = async () => {
+    try {
+      setLoading(true);
+      // Load product by ID
+      const response = await api.get(`/products/${id}`);
+      setProduct(response.data);
+      
+      // Load related products from same category
+      if (response.data.category) {
+        const relatedResponse = await api.get('/products', {
+          params: { category: response.data.category, limit: 5 }
+        });
+        // Filter out current product
+        setRelatedProducts(relatedResponse.data.filter(p => p._id !== id).slice(0, 4));
+      }
+    } catch (error) {
+      console.error('Error loading product:', error);
+      toast({
+        title: 'Eroare',
+        description: 'Nu s-a putut încărca produsul.',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -30,10 +71,6 @@ const ProductDetail = () => {
       </div>
     );
   }
-
-  const relatedProducts = products.filter(
-    p => p.category === product.category && p.id !== product.id
-  ).slice(0, 4);
 
   const handleAddToCart = () => {
     toast({
