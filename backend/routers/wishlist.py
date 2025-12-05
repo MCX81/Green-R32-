@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from models.wishlist import Wishlist, WishlistAdd
 from utils.dependencies import db, get_current_user
+from utils.mongodb import find_by_id
 from bson import ObjectId
 from datetime import datetime
 
