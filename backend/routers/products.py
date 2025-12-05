@@ -42,8 +42,8 @@ async def get_products(
             async def get_all_subcategories_recursive(cat_id):
                 """Get all subcategories recursively for a given category"""
                 all_subs = []
-                # Get direct subcategories
-                direct_subs = await db.categories.find({"parentId": cat_id}).to_list(length=None)
+                # Get direct subcategories with reasonable limit
+                direct_subs = await db.categories.find({"parentId": cat_id}).to_list(length=1000)
                 for sub in direct_subs:
                     all_subs.append(sub["slug"])
                     # Recursively get subcategories of this subcategory
