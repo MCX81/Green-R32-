@@ -207,4 +207,4 @@ test_plan:
 
 agent_communication:
     - agent: "testing"
-      message: "CRITICAL BACKEND FAILURE: After backup restore, both /api/products (404) and categories API (500) are failing. Frontend loads correctly but shows 0 products and 0 categories. All e-commerce flows are blocked. Need immediate investigation of: 1) Backend service status, 2) Database connection and data, 3) API route configuration, 4) Backup restore verification."
+      message: "CRITICAL ISSUE IDENTIFIED: Backend APIs work when tested directly (curl shows products and categories loading correctly), BUT fail when accessed through browser (404/500 errors). This indicates Cloudflare protection or browser-specific blocking. Frontend code is correct. Database has data. Issue is NOT with backend code or database restore. Likely causes: 1) Cloudflare security rules blocking API requests from browser, 2) Missing CORS headers for browser requests, 3) Cloudflare bot protection interfering with API calls. RECOMMENDATION: Check Cloudflare settings for r32.ro domain, specifically: API route rules, bot protection settings, and CORS configuration."
