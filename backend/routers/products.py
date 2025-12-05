@@ -106,13 +106,17 @@ async def get_products(
 @router.get("/{product_id}", response_model=Product)
 async def get_product(product_id: str):
     """Get product by ID"""
-    if not ObjectId.is_valid(product_id):
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid product ID"
-        )
+    # Try to find product by _id (supports both ObjectId and UUID strings)
+    product = None
     
-    product = await db.products.find_one({"_id": ObjectId(product_id)})
+    # First try as ObjectId (for new products)
+    if ObjectId.is_valid(product_id):
+        product = await db.products.find_one({"_id": ObjectId(product_id)})
+    
+    # If not found, try as string (for UUID-based products from backup)
+    if not product:
+        product = await db.products.find_one({"_id": product_id})
+    
     if not product:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
