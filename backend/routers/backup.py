@@ -211,9 +211,8 @@ async def restore_database(
                 # Convert dates
                 products = convert_dates(products)
                 
-                # CRITICAL FIX: Remove _id field to let MongoDB generate new ones
-                for prod in products:
-                    prod.pop("_id", None)  # Remove old _id - MongoDB will generate new ones
+                # DON'T modify _id - backup uses UUID strings which are valid
+                # MongoDB accepts strings as _id
                 
                 # Batch insert
                 total = await batch_insert(db.products, products, "Products")
