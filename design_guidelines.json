@@ -12,11 +12,11 @@
     ]
   },
   "project_context": {
-    "app_name": "FinRo SaaS",
-    "app_type": "SaaS Dashboard",
-    "target_audience": "Romanian SMB owners, accountants, freelancers",
+    "app_name": "R32 E-commerce & Invoicing",
+    "app_type": "E-commerce Platform with Invoicing",
+    "target_audience": "Romanian SMB owners, accountants, freelancers, online shoppers",
     "theme_preference": "Light Mode (Modern Minimal)",
-    "key_goal": "Streamlined invoicing with multi-company support and e-Factura integration"
+    "key_goal": "Unified e-commerce platform with integrated invoicing system"
   },
   "typography": {
     "font_family_headings": "Manrope, sans-serif",
