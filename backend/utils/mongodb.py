@@ -2,9 +2,10 @@
 MongoDB connection utilities with production-ready Atlas configuration
 """
 from motor.motor_asyncio import AsyncIOMotorClient
+from bson import ObjectId
 import os
 import logging
-from typing import Optional
+from typing import Optional, Any
 
 logger = logging.getLogger(__name__)
 
