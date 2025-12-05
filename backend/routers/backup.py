@@ -44,21 +44,21 @@ async def export_database(current_user: dict = Depends(get_current_admin_user)):
             return item
 
         # Categories
-        categories = await db.categories.find({}).to_list(length=None)
+        categories = await db.categories.find({}).to_list(length=10000)
         for cat in categories:
             cat["_id"] = str(cat["_id"])
             convert_datetime_fields(cat)
         backup_data["collections"]["categories"] = categories
         
         # Products
-        products = await db.products.find({}).to_list(length=None)
+        products = await db.products.find({}).to_list(length=10000)
         for prod in products:
             prod["_id"] = str(prod["_id"])
             convert_datetime_fields(prod)
         backup_data["collections"]["products"] = products
         
         # Users (exclude passwords for security)
-        users = await db.users.find({}).to_list(length=None)
+        users = await db.users.find({}).to_list(length=10000)
         for user in users:
             user["_id"] = str(user["_id"])
             user.pop("password", None)  # Don't backup passwords
@@ -66,14 +66,14 @@ async def export_database(current_user: dict = Depends(get_current_admin_user)):
         backup_data["collections"]["users"] = users
         
         # Orders
-        orders = await db.orders.find({}).to_list(length=None)
+        orders = await db.orders.find({}).to_list(length=10000)
         for order in orders:
             order["_id"] = str(order["_id"])
             convert_datetime_fields(order)
         backup_data["collections"]["orders"] = orders
         
         # Reviews
-        reviews = await db.reviews.find({}).to_list(length=None)
+        reviews = await db.reviews.find({}).to_list(length=10000)
         for review in reviews:
             review["_id"] = str(review["_id"])
             convert_datetime_fields(review)
