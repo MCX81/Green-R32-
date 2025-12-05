@@ -387,7 +387,7 @@ class R32APITester:
         return self.tests_passed == self.tests_run
 
 def main():
-    tester = FinRoAPITester()
+    tester = R32APITester()
     success = tester.run_all_tests()
     return 0 if success else 1
 
