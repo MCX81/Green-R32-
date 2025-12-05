@@ -101,3 +101,110 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Test complete e-commerce flow after backup restore on r32.ro production site"
+
+backend:
+  - task: "Products API endpoint"
+    implemented: true
+    working: false
+    file: "/app/backend/server.py"
+    stuck_count: 1
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "CRITICAL: /api/products endpoint returning 404 error. No products loading on catalog page. Backend API appears to be misconfigured or not running properly after backup restore."
+  
+  - task: "Categories API endpoint"
+    implemented: true
+    working: false
+    file: "/app/backend/server.py"
+    stuck_count: 1
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "CRITICAL: Categories API returning 500 server error. Sidebar shows but has 0 categories. Database might not be restored correctly or API route is broken."
+
+frontend:
+  - task: "Catalog page rendering"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Catalog.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "Frontend UI loads correctly. Sidebar structure is visible. Error handling works (shows 'Nu s-au putut încărca produsele'). Issue is with backend API, not frontend."
+  
+  - task: "Category navigation"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/components/CatalogSidebar.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "testing"
+          comment: "Cannot test - no categories loaded due to backend API failure. Frontend code appears correct but needs backend to be fixed first."
+  
+  - task: "Product selection and detail page"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/ProductDetail.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "testing"
+          comment: "Cannot test - no products available due to backend API failure. Need to fix backend first."
+  
+  - task: "Add to cart functionality"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/ProductDetail.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "testing"
+          comment: "Cannot test - requires working product page. Backend must be fixed first."
+  
+  - task: "Add to wishlist functionality"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/pages/ProductDetail.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "testing"
+          comment: "Cannot test - requires working product page. Backend must be fixed first."
+
+metadata:
+  created_by: "testing_agent"
+  version: "1.0"
+  test_sequence: 1
+  test_date: "2024-12-05"
+  production_url: "https://r32.ro"
+
+test_plan:
+  current_focus:
+    - "Products API endpoint"
+    - "Categories API endpoint"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "critical_first"
+
+agent_communication:
+    - agent: "testing"
+      message: "CRITICAL BACKEND FAILURE: After backup restore, both /api/products (404) and categories API (500) are failing. Frontend loads correctly but shows 0 products and 0 categories. All e-commerce flows are blocked. Need immediate investigation of: 1) Backend service status, 2) Database connection and data, 3) API route configuration, 4) Backup restore verification."
