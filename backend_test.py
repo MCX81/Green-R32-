@@ -331,7 +331,7 @@ class R32APITester:
 
     def run_all_tests(self):
         """Run all API tests in sequence"""
-        self.log("🚀 Starting FinRo API Tests...")
+        self.log("🚀 Starting R32 API Tests...")
         
         # Authentication tests
         if not self.test_user_registration():
