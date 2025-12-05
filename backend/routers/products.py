@@ -153,12 +153,6 @@ async def update_product(
     current_admin: dict = Depends(get_current_admin_user)
 ):
     """Update product (Admin only)"""
-    if not ObjectId.is_valid(product_id):
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid product ID"
-        )
-    
     update_data = product_update.dict(exclude_unset=True)
     if not update_data:
         raise HTTPException(
@@ -168,8 +162,10 @@ async def update_product(
     
     update_data["updatedAt"] = datetime.utcnow()
     
+    # Support both ObjectId and UUID string
+    id_value = to_object_id(product_id)
     result = await db.products.update_one(
-        {"_id": ObjectId(product_id)},
+        {"_id": id_value},
         {"$set": update_data}
     )
     
@@ -179,7 +175,7 @@ async def update_product(
             detail="Product not found"
         )
     
-    updated_product = await db.products.find_one({"_id": ObjectId(product_id)})
+    updated_product = await db.products.find_one({"_id": id_value})
     updated_product["_id"] = str(updated_product["_id"])
     
     return updated_product
