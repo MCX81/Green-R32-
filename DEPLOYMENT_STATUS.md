@@ -139,9 +139,9 @@ frontend/src/lib/utils.js           → Adăugate formatCurrency, formatDate
 ## 🌐 URLs Deployment
 
 ### Current (Emergent Preview)
-- **Homepage**: https://invoice-system-60.preview.emergentagent.com/
-- **Facturare**: https://invoice-system-60.preview.emergentagent.com/factura
-- **API Docs**: https://invoice-system-60.preview.emergentagent.com/docs
+- **Homepage**: https://invoicer32.preview.emergentagent.com/
+- **Facturare**: https://invoicer32.preview.emergentagent.com/factura
+- **API Docs**: https://invoicer32.preview.emergentagent.com/docs
 
 ### Target (Production)
 - **Homepage**: https://r32.ro/
