@@ -185,42 +185,11 @@ async def restore_database(
                 # Convert dates
                 categories = convert_dates(categories)
                 
-                # STRATEGY: Rebuild category hierarchy with new IDs
-                # 1. Create a mapping from old _id to category data
-                old_id_to_cat = {}
-                for cat in categories:
-                    old_id = cat.pop("_id", None)
-                    if old_id:
-                        old_id_to_cat[old_id] = cat
+                # DON'T modify _id or parentId - MongoDB accepts strings as _id
+                # The backup already has valid UUID strings that should be preserved
                 
-                # 2. Insert root categories first (no parentId)
-                root_categories = [cat for cat in categories if not cat.get("parentId")]
-                old_to_new_id = {}
-                
-                if root_categories:
-                    result = await db.categories.insert_many(root_categories)
-                    # Map old IDs to new MongoDB-generated IDs
-                    for old_cat_data, new_id in zip(root_categories, result.inserted_ids):
-                        # Find the old ID by matching category data
-                        for old_id, cat_data in old_id_to_cat.items():
-                            if cat_data.get("slug") == old_cat_data.get("slug"):
-                                old_to_new_id[old_id] = str(new_id)
-                                break
-                
-                # 3. Insert child categories and update their parentId references
-                child_categories = [cat for cat in categories if cat.get("parentId")]
-                for cat in child_categories:
-                    old_parent_id = cat.get("parentId")
-                    if old_parent_id in old_to_new_id:
-                        cat["parentId"] = old_to_new_id[old_parent_id]
-                    else:
-                        # Parent not found, make it a root category
-                        cat.pop("parentId", None)
-                
-                if child_categories:
-                    await db.categories.insert_many(child_categories)
-                
-                total = len(root_categories) + len(child_categories)
+                # Batch insert
+                total = await batch_insert(db.categories, categories, "Categories")
                 restored_stats["categories"] = total
                 progress_details.append(f"Categories: ✓ Total {total} documente restaurate")
                     
