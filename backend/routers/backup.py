@@ -185,10 +185,10 @@ async def restore_database(
                 # Convert dates
                 categories = convert_dates(categories)
                 
-                # CRITICAL FIX: Remove _id and parentId fields to let MongoDB generate new ones
+                # CRITICAL FIX: Remove only _id field, keep parentId to preserve hierarchy
                 for cat in categories:
-                    cat.pop("_id", None)  # Remove old _id
-                    cat.pop("parentId", None)  # Remove old parentId references
+                    cat.pop("_id", None)  # Remove old _id - MongoDB will generate new ones
+                    # DO NOT remove parentId - it's needed for category hierarchy!
                 
                 # Batch insert
                 total = await batch_insert(db.categories, categories, "Categories")
