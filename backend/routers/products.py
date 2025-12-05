@@ -186,13 +186,9 @@ async def delete_product(
     current_admin: dict = Depends(get_current_admin_user)
 ):
     """Delete product (Admin only)"""
-    if not ObjectId.is_valid(product_id):
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid product ID"
-        )
-    
-    result = await db.products.delete_one({"_id": ObjectId(product_id)})
+    # Support both ObjectId and UUID string
+    id_value = to_object_id(product_id)
+    result = await db.products.delete_one({"_id": id_value})
     
     if result.deleted_count == 0:
         raise HTTPException(
