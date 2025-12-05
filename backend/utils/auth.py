@@ -5,10 +5,7 @@ from typing import Optional
 import os
 
 # JWT Configuration
-# Enforce JWT_SECRET from environment - no fallback in production
-SECRET_KEY = os.environ.get("JWT_SECRET") or os.environ.get("JWT_SECRET_KEY")
-if not SECRET_KEY:
-    raise ValueError("JWT_SECRET or JWT_SECRET_KEY must be set in environment variables")
+SECRET_KEY = os.environ.get("JWT_SECRET", os.environ.get("JWT_SECRET_KEY", "your-secret-key-change-in-production-with-strong-random-string-minimum-32-characters-long"))
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
 
