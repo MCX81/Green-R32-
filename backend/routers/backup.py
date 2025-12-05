@@ -263,10 +263,10 @@ async def restore_database(
                 order_ids_from_backup = [order.get("orderId") for order in orders if order.get("orderId")]
                 
                 if order_ids_from_backup:
-                    # Single query to get all existing orders
+                    # Single query to get all existing orders with limit
                     existing_orders = await db.orders.find(
                         {"orderId": {"$in": order_ids_from_backup}}
-                    ).to_list(length=None)
+                    ).to_list(length=10000)
                     
                     existing_order_ids = {order.get("orderId") for order in existing_orders}
                     progress_details.append(f"Orders: {len(existing_order_ids)} comenzi deja existente")
