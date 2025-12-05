@@ -29,9 +29,7 @@ client = get_mongodb_client()
 db = client[os.environ.get('DB_NAME', 'r32_database')]
 
 # JWT Configuration
-SECRET_KEY = os.environ.get('JWT_SECRET')
-if not SECRET_KEY:
-    raise ValueError("JWT_SECRET must be set in environment variables")
+SECRET_KEY = os.environ.get('JWT_SECRET', 'your-secret-key-change-in-production')
 ALGORITHM = "HS256"
 
 security = HTTPBearer()
