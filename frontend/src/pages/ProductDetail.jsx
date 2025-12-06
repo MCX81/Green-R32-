@@ -317,7 +317,7 @@ const ProductDetail = () => {
                 </div>
                 <div className="flex justify-between py-2 border-b">
                   <span className="font-semibold">Cod produs:</span>
-                  <span>EMG-{product.id.toString().padStart(6, '0')}</span>
+                  <span>R32-{product._id.substring(0, 8).toUpperCase()}</span>
                 </div>
               </div>
             </Card>
