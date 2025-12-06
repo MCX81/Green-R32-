@@ -598,6 +598,80 @@ const Backup = () => {
         )}
       </Card>
 
+
+      {/* Invoice Backup Card - SEPARATE SECTION */}
+      <Card className="rounded-2xl border-2 border-green-100 p-6 mb-6">
+        <div className="flex items-center space-x-3 mb-6">
+          <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+            <Download className="h-6 w-6 text-green-600" />
+          </div>
+          <div>
+            <h2 className="text-xl font-bold">Backup Facturi (Separat)</h2>
+            <p className="text-sm text-gray-600">
+              Export și import doar pentru modulul de facturare
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
+          <div className="flex items-start space-x-3">
+            <Info className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+            <div className="text-sm text-green-800">
+              <p className="font-semibold mb-2">ℹ️ Backup Facturi Include:</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Toate facturile (invoices)</li>
+                <li>Toate companiile (companies)</li>
+                <li>Toți clienții (clients)</li>
+                <li className="font-semibold">NU include: Produse, Categorii, Comenzi, Utilizatori</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Export Invoices */}
+        <div className="mb-6">
+          <h3 className="font-semibold mb-3">1. Descarcă Backup Facturi</h3>
+          <Button
+            onClick={handleBackupInvoices}
+            disabled={loadingInvoices}
+            className="w-full bg-green-600 hover:bg-green-700 text-white rounded-xl py-6 text-lg font-semibold"
+          >
+            <Download className="h-5 w-5 mr-2" />
+            {loadingInvoices ? 'Se generează...' : 'Descarcă Backup Facturi'}
+          </Button>
+        </div>
+
+        {/* Restore Invoices */}
+        <div>
+          <h3 className="font-semibold mb-3">2. Restaurează Backup Facturi</h3>
+          
+          <div className="mb-4">
+            <label className="block text-sm font-semibold mb-2">
+              Selectează fișierul de backup facturi (JSON)
+            </label>
+            <input
+              type="file"
+              accept=".json,application/json"
+              onChange={(e) => setSelectedInvoiceFile(e.target.files[0])}
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 cursor-pointer border-2 border-gray-200 rounded-xl"
+            />
+            {selectedInvoiceFile && (
+              <p className="text-sm text-gray-600 mt-2">
+                Fișier selectat: <strong>{selectedInvoiceFile.name}</strong> ({(selectedInvoiceFile.size / 1024).toFixed(2)} KB)
+              </p>
+            )}
+          </div>
+
+          <Button
+            onClick={handleRestoreInvoices}
+            disabled={!selectedInvoiceFile || restoringInvoices}
+            className="w-full bg-orange-600 hover:bg-orange-700 text-white rounded-xl py-6 text-lg font-semibold disabled:bg-gray-300"
+          >
+            {restoringInvoices ? 'Se restaurează facturi...' : 'Restaurează Facturi'}
+          </Button>
+        </div>
+      </Card>
+
       {/* Instructions Card */}
       <Card className="rounded-2xl border-2 border-gray-100 p-6">
         <div className="flex items-center space-x-3 mb-4">
