@@ -38,21 +38,23 @@ async def get_products(
         # Check if category exists
         category_doc = await db.categories.find_one({"slug": category})
         if category_doc:
-            # Get ALL subcategories recursively
-            async def get_all_subcategories_recursive(cat_id):
-                """Get all subcategories recursively for a given category"""
-                all_subs = []
-                # Get direct subcategories with reasonable limit
-                direct_subs = await db.categories.find({"parentId": cat_id}).to_list(length=1000)
-                for sub in direct_subs:
-                    all_subs.append(sub["slug"])
-                    # Recursively get subcategories of this subcategory
-                    nested_subs = await get_all_subcategories_recursive(str(sub["_id"]))
-                    all_subs.extend(nested_subs)
-                return all_subs
+            # OPTIMIZED: Fetch all categories ONCE instead of recursive queries
+            all_categories = await db.categories.find({}).to_list(length=1000)
             
-            # Get all subcategories at all levels
-            all_subcategory_slugs = await get_all_subcategories_recursive(str(category_doc["_id"]))
+            # Build hierarchy map in memory
+            def get_all_subcategory_slugs(parent_id, cat_list):
+                """Get all subcategory slugs recursively using in-memory data"""
+                slugs = []
+                for cat in cat_list:
+                    if cat.get("parentId") == parent_id:
+                        slugs.append(cat["slug"])
+                        # Recursively get children of this subcategory
+                        child_slugs = get_all_subcategory_slugs(str(cat["_id"]), cat_list)
+                        slugs.extend(child_slugs)
+                return slugs
+            
+            # Get all subcategories at all levels (in-memory operation, no DB calls)
+            all_subcategory_slugs = get_all_subcategory_slugs(str(category_doc["_id"]), all_categories)
             
             # Search in the selected category AND all its subcategories (at any level)
             if all_subcategory_slugs:
