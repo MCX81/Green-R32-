@@ -358,7 +358,7 @@ const ProductDetail = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {relatedProducts.map(product => (
               <ProductCard
-                key={product.id}
+                key={product._id}
                 product={product}
                 onAddToCart={() => handleAddToCart(product)}
                 onAddToWishlist={() => handleAddToWishlist(product)}
