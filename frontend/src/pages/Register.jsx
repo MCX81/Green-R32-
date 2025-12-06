@@ -5,34 +5,129 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card } from '../components/ui/card';
+import { useToast } from '../hooks/use-toast';
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
+    confirmPassword: '',
     phone: '',
     address: '',
   });
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const { register } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const validateName = (name, field) => {
+    // Nu permite cifre în nume
+    if (/\d/.test(name)) {
+      return `${field} nu poate conține cifre`;
+    }
+    // Nu permite o singură literă
+    if (name.trim().length < 2) {
+      return `${field} trebuie să aibă cel puțin 2 caractere`;
+    }
+    // Doar litere, spații și caractere românești
+    if (!/^[a-zA-ZăâîșțĂÂÎȘȚ\s-]+$/.test(name)) {
+      return `${field} poate conține doar litere`;
+    }
+    return null;
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return 'Email invalid';
+    }
+    return null;
+  };
+
+  const validatePassword = (password) => {
+    if (password.length < 6) {
+      return 'Parola trebuie să aibă minim 6 caractere';
+    }
+    return null;
+  };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    
+    // Clear error when user types
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: null
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setErrors({});
     
-    const result = await register(formData);
+    // Validări
+    const newErrors = {};
+    
+    const firstNameError = validateName(formData.firstName, 'Prenumele');
+    if (firstNameError) newErrors.firstName = firstNameError;
+    
+    const lastNameError = validateName(formData.lastName, 'Numele de familie');
+    if (lastNameError) newErrors.lastName = lastNameError;
+    
+    const emailError = validateEmail(formData.email);
+    if (emailError) newErrors.email = emailError;
+    
+    const passwordError = validatePassword(formData.password);
+    if (passwordError) newErrors.password = passwordError;
+    
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Parolele nu se potrivesc';
+    }
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setLoading(false);
+      toast({
+        title: 'Eroare validare',
+        description: 'Te rog corectează câmpurile marcate cu roșu.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    
+    // Combină prenume și nume
+    const fullName = `${formData.firstName.trim()} ${formData.lastName.trim()}`;
+    
+    const result = await register({
+      name: fullName,
+      email: formData.email,
+      password: formData.password,
+      phone: formData.phone,
+      address: formData.address,
+    });
     
     if (result.success) {
+      toast({
+        title: 'Cont creat cu succes!',
+        description: 'Bun venit pe R32!',
+      });
       navigate('/');
+    } else {
+      toast({
+        title: 'Eroare',
+        description: result.error || 'Nu s-a putut crea contul.',
+        variant: 'destructive',
+      });
     }
     
     setLoading(false);
