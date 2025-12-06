@@ -107,27 +107,33 @@ user_problem_statement: "Test complete e-commerce flow after backup restore on r
 backend:
   - task: "Products API endpoint"
     implemented: true
-    working: false
+    working: true
     file: "/app/backend/server.py"
-    stuck_count: 1
+    stuck_count: 0
     priority: "critical"
     needs_retesting: false
     status_history:
         - working: false
           agent: "testing"
           comment: "CRITICAL: API works via curl (returns products correctly) but fails in browser with 404/500 errors. This is NOT a backend code issue. Root cause: Cloudflare protection blocking browser API requests. Backend and database are functioning correctly. Issue is infrastructure/CDN configuration."
+        - working: true
+          agent: "testing"
+          comment: "CONFIRMED WORKING: Products API now works in browser. GET /api/products returns 200 OK with product list. GET /api/products/{id} returns 200 OK with individual product data (tested with ID 64961d50-7ab3-4274-b748-d364dcdfb186). Cloudflare issue has been resolved. Backend and database are functioning correctly."
   
   - task: "Categories API endpoint"
     implemented: true
-    working: false
+    working: true
     file: "/app/backend/server.py"
-    stuck_count: 1
+    stuck_count: 0
     priority: "critical"
     needs_retesting: false
     status_history:
         - working: false
           agent: "testing"
           comment: "CRITICAL: API works via curl (returns 65+ categories correctly) but fails in browser with 500 error. Same root cause as products API - Cloudflare protection blocking browser requests. Backend code and database are working correctly."
+        - working: true
+          agent: "testing"
+          comment: "CONFIRMED WORKING: Categories API now works in browser. GET /api/categories returns 200 OK with 8+ categories. Categories display correctly in sidebar. Cloudflare issue has been resolved."
 
 frontend:
   - task: "Catalog page rendering"
