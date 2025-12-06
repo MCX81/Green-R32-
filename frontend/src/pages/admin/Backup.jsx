@@ -200,6 +200,122 @@ const Backup = () => {
       // Clear progress after 10 seconds
       setTimeout(() => {
         setRestoreProgress(null);
+
+
+  const handleBackupInvoices = async () => {
+    setLoadingInvoices(true);
+    
+    try {
+      const response = await api.get('/admin/backup/export-invoices', {
+        responseType: 'blob'
+      });
+      
+      const blob = new Blob([response.data], { type: 'application/json' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+      const filename = `backup_facturi_${timestamp}.json`;
+      link.setAttribute('download', filename);
+      
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+      
+      toast({
+        title: '✓ Backup facturi descărcat!',
+        description: `Fișier: ${filename}`,
+      });
+    } catch (error) {
+      console.error('Backup invoices error:', error);
+      toast({
+        title: 'Eroare',
+        description: 'Nu s-a putut crea backup-ul pentru facturi.',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoadingInvoices(false);
+    }
+  };
+
+  const handleRestoreInvoices = async () => {
+    if (!selectedInvoiceFile) {
+      toast({
+        title: 'Eroare',
+        description: 'Te rog selectează un fișier de backup facturi.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (!window.confirm('⚠️ ATENȚIE: Restaurarea va ȘTERGE toate facturile, companiile și clienții curenti și îi va înlocui cu datele din backup.\n\nProdusele și categoriile NU vor fi afectate.\n\nSunteți sigur?')) {
+      return;
+    }
+
+    setRestoringInvoices(true);
+    setRestoreProgress({ status: 'processing', message: 'Se restaurează facturi...' });
+
+    try {
+      const fileContent = await selectedInvoiceFile.text();
+      
+      const response = await api.post('/admin/backup/restore-invoices', {
+        backup_file: fileContent
+      }, {
+        timeout: 300000
+      });
+
+      const { restored, errors, message } = response.data;
+      
+      let description = '';
+      if (restored) {
+        const items = Object.entries(restored)
+          .filter(([_, val]) => val > 0)
+          .map(([key, val]) => `${key}: ${val}`)
+          .join(', ');
+        description = `Restaurate: ${items}`;
+      }
+
+      if (errors && errors.length > 0) {
+        toast({
+          title: 'Facturi restaurate cu avertismente',
+          description: `${description}\n\nErori: ${errors.join(', ')}`,
+          variant: 'warning',
+        });
+      } else {
+        toast({
+          title: '✓ Facturi restaurate cu succes!',
+          description: description,
+        });
+      }
+
+      await loadBackupInfo();
+      setSelectedInvoiceFile(null);
+      
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+
+    } catch (error) {
+      console.error('Restore invoices error:', error);
+      
+      let errorMessage = 'Nu s-a putut restaura backup-ul facturi.';
+      if (error.response?.data?.detail) {
+        errorMessage = error.response.data.detail;
+      }
+      
+      toast({
+        title: 'Eroare la restaurare facturi',
+        description: errorMessage,
+        variant: 'destructive',
+      });
+    } finally {
+      setRestoringInvoices(false);
+      setTimeout(() => setRestoreProgress(null), 10000);
+    }
+  };
+
       }, 10000);
     }
   };
