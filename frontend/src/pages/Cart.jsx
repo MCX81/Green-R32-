@@ -109,11 +109,13 @@ const Cart = () => {
               {cartItems.map(item => (
                 <Card key={item.productId} className="p-6 rounded-2xl border-2 border-gray-100">
                   <div className="flex items-center space-x-4">
-                    <img
-                      src={item.image || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80'}
-                      alt={item.name}
-                      className="w-24 h-24 object-cover rounded-xl"
-                    />
+                    <Link to={`/product/${item.productId}`}>
+                      <img
+                        src={item.image || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80'}
+                        alt={item.name}
+                        className="w-24 h-24 object-cover rounded-xl cursor-pointer hover:opacity-80 transition-opacity"
+                      />
+                    </Link>
                     <div className="flex-1">
                       <Link to={`/product/${item.productId}`}>
                         <h3 className="font-semibold text-lg mb-2 hover:text-green-600 transition-colors">
