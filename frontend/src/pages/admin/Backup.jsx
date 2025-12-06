@@ -318,10 +318,6 @@ const Backup = () => {
     }
   };
 
-      }, 10000);
-    }
-  };
-
   if (loadingInfo) {
     return <div className="p-8">Se încarcă...</div>;
   }
