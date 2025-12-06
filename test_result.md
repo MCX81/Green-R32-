@@ -168,9 +168,9 @@ frontend:
   
   - task: "Product selection and detail page"
     implemented: true
-    working: false
+    working: true
     file: "/app/frontend/src/pages/ProductDetail.jsx"
-    stuck_count: 1
+    stuck_count: 0
     priority: "critical"
     needs_retesting: false
     status_history:
@@ -180,6 +180,9 @@ frontend:
         - working: false
           agent: "testing"
           comment: "CRITICAL BUG: Product detail page is COMPLETELY BLANK. API works correctly (GET /api/products/{id} returns 200 OK with valid product data including name, price, images, stock). Product page URL loads (/product/64961d50-7ab3-4274-b748-d364dcdfb186) but renders 0 characters of content. Only 4 visible elements (likely header/footer). No product name, price, image, or buttons visible. React component appears to be rendering but returning empty content. This is NOT an API issue - backend is working. Issue is in ProductDetail.jsx React component rendering logic."
+        - working: true
+          agent: "testing"
+          comment: "CONFIRMED WORKING ON PRODUCTION (https://r32.ro): Product detail page now renders completely. Tested with product ID 252e0282-ce7e-4685-b30a-db6a513e7c5b. Page displays: product name, brand badge, price (2292 Lei), product image, quantity selector, 'Adaugă în Coș' button, stock status (28 bucăți), wishlist button, tabs (Descriere/Specificații/Recenzii), and related products section. All 367 visible elements render correctly. Previous blank page issue has been resolved."
   
   - task: "Add to cart functionality"
     implemented: true
