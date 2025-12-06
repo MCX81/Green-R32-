@@ -220,12 +220,14 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Products API endpoint"
-    - "Categories API endpoint"
-  stuck_tasks: []
+    - "Product selection and detail page"
+  stuck_tasks:
+    - "Product selection and detail page"
   test_all: false
   test_priority: "critical_first"
 
 agent_communication:
     - agent: "testing"
       message: "CRITICAL ISSUE IDENTIFIED: Backend APIs work when tested directly (curl shows products and categories loading correctly), BUT fail when accessed through browser (404/500 errors). This indicates Cloudflare protection or browser-specific blocking. Frontend code is correct. Database has data. Issue is NOT with backend code or database restore. Likely causes: 1) Cloudflare security rules blocking API requests from browser, 2) Missing CORS headers for browser requests, 3) Cloudflare bot protection interfering with API calls. RECOMMENDATION: Check Cloudflare settings for r32.ro domain, specifically: API route rules, bot protection settings, and CORS configuration."
+    - agent: "testing"
+      message: "MAJOR PROGRESS + CRITICAL BUG FOUND: ✅ Backend APIs now working (Cloudflare issue resolved). ✅ Catalog page works perfectly (products display, categories load, navigation works). ✅ Category/subcategory navigation works correctly. ❌ CRITICAL: Product detail page is COMPLETELY BLANK despite API returning valid data (200 OK). The ProductDetail.jsx React component is not rendering any content. API call succeeds but page shows 0 characters. This is a frontend React rendering bug in /app/frontend/src/pages/ProductDetail.jsx. URGENT: Main agent must investigate ProductDetail.jsx component - likely issue with conditional rendering, state management, or component lifecycle."
