@@ -141,30 +141,39 @@ frontend:
         - working: true
           agent: "testing"
           comment: "Frontend UI loads correctly. Sidebar structure is visible. Error handling works (shows 'Nu s-au putut încărca produsele'). Issue is with backend API, not frontend."
+        - working: true
+          agent: "testing"
+          comment: "CONFIRMED WORKING: Catalog page loads correctly with 100 products displayed. Product cards show images, names, prices, and 'Adaugă în Coș' buttons. Sidebar shows categories. All visual elements render properly."
   
   - task: "Category navigation"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/components/CatalogSidebar.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "testing"
           comment: "Cannot test - no categories loaded due to backend API failure. Frontend code appears correct but needs backend to be fixed first."
+        - working: true
+          agent: "testing"
+          comment: "CONFIRMED WORKING: Category navigation works perfectly. Step 1: Clicked 'Telefoane & Tablete' category - sidebar remains visible, URL changes to ?category=telefoane-tablete, products filter correctly. Step 2: Clicked 'Telefoane Mobile' subcategory - sidebar still visible, URL updates, subcategories display. Navigation flow is correct."
   
   - task: "Product selection and detail page"
     implemented: true
-    working: "NA"
+    working: false
     file: "/app/frontend/src/pages/ProductDetail.jsx"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: true
+    stuck_count: 1
+    priority: "critical"
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "testing"
           comment: "Cannot test - no products available due to backend API failure. Need to fix backend first."
+        - working: false
+          agent: "testing"
+          comment: "CRITICAL BUG: Product detail page is COMPLETELY BLANK. API works correctly (GET /api/products/{id} returns 200 OK with valid product data including name, price, images, stock). Product page URL loads (/product/64961d50-7ab3-4274-b748-d364dcdfb186) but renders 0 characters of content. Only 4 visible elements (likely header/footer). No product name, price, image, or buttons visible. React component appears to be rendering but returning empty content. This is NOT an API issue - backend is working. Issue is in ProductDetail.jsx React component rendering logic."
   
   - task: "Add to cart functionality"
     implemented: true
@@ -177,6 +186,9 @@ frontend:
         - working: "NA"
           agent: "testing"
           comment: "Cannot test - requires working product page. Backend must be fixed first."
+        - working: "NA"
+          agent: "testing"
+          comment: "Cannot test - product detail page is blank. Need to fix ProductDetail.jsx rendering issue first before testing add to cart functionality."
   
   - task: "Add to wishlist functionality"
     implemented: true
@@ -189,6 +201,9 @@ frontend:
         - working: "NA"
           agent: "testing"
           comment: "Cannot test - requires working product page. Backend must be fixed first."
+        - working: "NA"
+          agent: "testing"
+          comment: "Cannot test - product detail page is blank. Need to fix ProductDetail.jsx rendering issue first before testing add to wishlist functionality."
 
 metadata:
   created_by: "testing_agent"
