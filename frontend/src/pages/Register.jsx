@@ -143,21 +143,41 @@ const Register = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="name">Nume complet</Label>
+            <Label htmlFor="firstName">Prenume *</Label>
             <Input
-              id="name"
-              name="name"
+              id="firstName"
+              name="firstName"
               type="text"
-              value={formData.name}
+              value={formData.firstName}
               onChange={handleChange}
-              placeholder="Ion Popescu"
+              placeholder="Ion"
               required
-              className="mt-2 rounded-xl border-2"
+              className={`mt-2 rounded-xl border-2 ${errors.firstName ? 'border-red-500' : ''}`}
             />
+            {errors.firstName && (
+              <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+            )}
           </div>
 
           <div>
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="lastName">Nume de familie *</Label>
+            <Input
+              id="lastName"
+              name="lastName"
+              type="text"
+              value={formData.lastName}
+              onChange={handleChange}
+              placeholder="Popescu"
+              required
+              className={`mt-2 rounded-xl border-2 ${errors.lastName ? 'border-red-500' : ''}`}
+            />
+            {errors.lastName && (
+              <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+            )}
+          </div>
+
+          <div>
+            <Label htmlFor="email">Email *</Label>
             <Input
               id="email"
               name="email"
@@ -166,12 +186,15 @@ const Register = () => {
               onChange={handleChange}
               placeholder="email@exemplu.ro"
               required
-              className="mt-2 rounded-xl border-2"
+              className={`mt-2 rounded-xl border-2 ${errors.email ? 'border-red-500' : ''}`}
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
 
           <div>
-            <Label htmlFor="password">Parolă</Label>
+            <Label htmlFor="password">Parolă *</Label>
             <Input
               id="password"
               name="password"
