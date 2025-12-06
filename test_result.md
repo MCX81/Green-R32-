@@ -259,7 +259,7 @@ frontend:
 metadata:
   created_by: "testing_agent"
   version: "1.0"
-  test_sequence: 2
+  test_sequence: 3
   test_date: "2024-12-06"
   production_url: "https://r32.ro"
 
