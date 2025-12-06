@@ -33,13 +33,20 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const register = async (email, name, password) => {
-    const response = await api.post('/auth/register', { email, name, password });
-    const { token, user: userData } = response.data;
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(userData));
-    setUser(userData);
-    return userData;
+  const register = async (userData) => {
+    try {
+      setError(null);
+      const response = await api.post('/auth/register', userData);
+      const { access_token, user: userInfo } = response.data;
+      localStorage.setItem('token', access_token);
+      localStorage.setItem('user', JSON.stringify(userInfo));
+      setUser(userInfo);
+      return { success: true, user: userInfo };
+    } catch (err) {
+      const errorMessage = err.response?.data?.detail || 'Eroare la înregistrare';
+      setError(errorMessage);
+      return { success: false, error: errorMessage };
+    }
   };
 
   const logout = () => {
