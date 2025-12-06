@@ -203,8 +203,30 @@ const Register = () => {
               onChange={handleChange}
               placeholder="••••••••"
               required
-              className="mt-2 rounded-xl border-2"
+              minLength={6}
+              className={`mt-2 rounded-xl border-2 ${errors.password ? 'border-red-500' : ''}`}
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+            )}
+            <p className="text-gray-500 text-xs mt-1">Minim 6 caractere</p>
+          </div>
+
+          <div>
+            <Label htmlFor="confirmPassword">Confirmă Parola *</Label>
+            <Input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="••••••••"
+              required
+              className={`mt-2 rounded-xl border-2 ${errors.confirmPassword ? 'border-red-500' : ''}`}
+            />
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
+            )}
           </div>
 
           <div>
@@ -236,7 +258,7 @@ const Register = () => {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full bg-green-600 hover:bg-green-700 text-white rounded-xl py-6 text-lg font-semibold mt-6"
+            className="w-full bg-green-600 hover:bg-green-700 text-white rounded-xl py-6 text-lg font-semibold mt-6 disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {loading ? 'Se încarcă...' : 'Înregistrează-te'}
           </Button>
