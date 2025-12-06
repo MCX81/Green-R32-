@@ -138,19 +138,13 @@ const Categories = () => {
             {subcats.length > 0 && (
               <button
                 onClick={() => toggleCategory(category._id)}
-                className="text-gray-600 hover:text-gray-800"
+                className="text-gray-700 hover:text-gray-900 font-bold text-xl w-6 h-6 flex items-center justify-center"
+                title={isExpanded ? 'Ascunde subcategorii' : 'Arată subcategorii'}
               >
-                <svg
-                  className={`w-5 h-5 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                {isExpanded ? '−' : '+'}
               </button>
             )}
-            {subcats.length === 0 && <div className="w-5" />}
+            {subcats.length === 0 && <div className="w-6" />}
             <div>
               <div className="flex items-center space-x-2">
                 <span className="font-bold text-lg">{category.name}</span>
@@ -158,13 +152,14 @@ const Categories = () => {
                   {levelLabel}
                 </span>
                 {subcats.length > 0 && (
-                  <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-lg">
-                    {subcats.length} sub
+                  <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-lg font-semibold">
+                    {subcats.length} subcategorii
                   </span>
                 )}
               </div>
               <div className="text-sm text-gray-600 mt-1">
-                {category.slug} {category.icon && `• ${category.icon}`}
+                Slug: <span className="font-mono bg-white px-2 py-0.5 rounded">{category.slug}</span>
+                {category.icon && ` • ${category.icon}`}
               </div>
             </div>
           </div>
@@ -180,7 +175,8 @@ const Categories = () => {
               className="rounded-xl bg-white text-green-600 hover:bg-green-50"
               title="Adaugă subcategorie"
             >
-              <Plus className="h-4 w-4" />
+              <Plus className="h-4 w-4 mr-1" />
+              Sub
             </Button>
             <Button
               size="sm"
