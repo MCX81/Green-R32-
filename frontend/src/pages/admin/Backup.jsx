@@ -8,9 +8,12 @@ import api from '../../services/api';
 const Backup = () => {
   const [loading, setLoading] = useState(false);
   const [restoring, setRestoring] = useState(false);
+  const [loadingInvoices, setLoadingInvoices] = useState(false);
+  const [restoringInvoices, setRestoringInvoices] = useState(false);
   const [backupInfo, setBackupInfo] = useState(null);
   const [loadingInfo, setLoadingInfo] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedInvoiceFile, setSelectedInvoiceFile] = useState(null);
   const [restoreProgress, setRestoreProgress] = useState(null);
   const { toast } = useToast();
 
