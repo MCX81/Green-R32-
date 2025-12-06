@@ -183,11 +183,11 @@ frontend:
   
   - task: "Add to cart functionality"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/frontend/src/pages/ProductDetail.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "testing"
@@ -195,6 +195,9 @@ frontend:
         - working: "NA"
           agent: "testing"
           comment: "Cannot test - product detail page is blank. Need to fix ProductDetail.jsx rendering issue first before testing add to cart functionality."
+        - working: true
+          agent: "testing"
+          comment: "TESTED ON PRODUCTION: Add to cart functionality works correctly. Product detail page displays properly with 'Adaugă în Coș' button. Button is clickable and adds products to cart successfully. Cart icon in header updates with item count. No authentication required for adding to cart."
   
   - task: "Add to wishlist functionality"
     implemented: true
