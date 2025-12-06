@@ -243,6 +243,18 @@ frontend:
         - working: true
           agent: "testing"
           comment: "USER REPORTED ISSUE: Filters from menu don't work. TESTING RESULT: Filters ARE WORKING CORRECTLY. Found 21 Radix UI checkboxes (button[role='checkbox']). All price ranges present: Sub 500 Lei, 500-1000 Lei, 1000-2500 Lei, 2500-5000 Lei, Peste 5000 Lei. All brands present: Samsung, Apple, Lenovo, HP, Dell, Asus, Acer, LG, Sony, Microsoft, Bosch, Whirlpool, Nike, Adidas, Canon, Nikon. TESTED: Clicked 'Sub 500 Lei' filter - products changed from 200 to 0 (correctly filtered out all products above 500 Lei). Filter checkbox shows checked state (green). Product count updates to '0 produse găsite'. Filters are fully functional."
+  
+  - task: "User registration flow"
+    implemented: true
+    working: false
+    file: "/app/frontend/src/pages/Register.jsx"
+    stuck_count: 1
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "CRITICAL BUG IDENTIFIED: Registration form fails with HTTP 422 error. ROOT CAUSE: Frontend is sending incorrectly formatted data to backend API. The form data is being nested under 'email' key instead of being sent as flat object. ACTUAL PAYLOAD SENT: {\"email\": {\"name\": \"Test User\", \"email\": \"test12345@example.com\", \"password\": \"TestPass123!\", \"phone\": \"0712345678\", \"address\": \"Test Address 123\"}}. EXPECTED PAYLOAD: {\"name\": \"Test User\", \"email\": \"test12345@example.com\", \"password\": \"TestPass123!\", \"phone\": \"0712345678\", \"address\": \"Test Address 123\"}. Backend correctly expects UserCreate model with flat structure. API Response: 422 Unprocessable Entity with Pydantic validation errors: 'Field required' for name, password, and 'Input should be a valid string' for email. ADDITIONAL ISSUES: (1) Button stays stuck in 'Se încarcă...' loading state after error, (2) No error toast shown to user despite error occurring, (3) Form appears to hang with no feedback. User experience is broken - no indication of what went wrong. Bug is in frontend data serialization, likely in Register.jsx, AuthContext.jsx, or api.js request transformation."
 
 metadata:
   created_by: "testing_agent"
