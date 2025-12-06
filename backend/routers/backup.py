@@ -408,6 +408,167 @@ async def export_invoices_only(current_user: dict = Depends(get_current_admin_us
             detail=f"Eroare la crearea backup-ului facturi: {str(e)}"
         )
 
+
+@router.post("/restore-invoices")
+async def restore_invoices_only(
+    request: BackupRestoreRequest,
+    current_user: dict = Depends(get_current_admin_user)
+):
+    """Restore ONLY invoices data from backup - doesn't touch products/categories/orders"""
+    try:
+        print(f"📥 Starting invoices restore... File size: {len(request.backup_file)} chars")
+        
+        # Parse JSON
+        backup_data = json.loads(request.backup_file)
+        print(f"✓ JSON parsed successfully")
+        
+        # Validate backup structure
+        if "collections" not in backup_data:
+            raise HTTPException(
+                status_code=400,
+                detail="Format backup invalid. Lipsește secțiunea 'collections'."
+            )
+        
+        # Check if this is an invoices-only backup or full backup
+        backup_type = backup_data.get("backup_type", "full")
+        collections_data = backup_data["collections"]
+        restored_stats = {}
+        errors = []
+        progress_details = []
+        
+        # Batch size for operations
+        BATCH_SIZE = 1000
+        
+        # Helper function to convert datetime strings
+        def convert_dates(items):
+            for item in items:
+                for key in ["createdAt", "updatedAt", "invoiceDate", "dueDate"]:
+                    if key in item and isinstance(item[key], str):
+                        try:
+                            item[key] = datetime.fromisoformat(item[key])
+                        except (ValueError, TypeError):
+                            pass
+            return items
+        
+        # Helper function for batch insert
+        async def batch_insert(collection, items, collection_name):
+            if not items:
+                return 0
+            
+            total_inserted = 0
+            total_items = len(items)
+            
+            for i in range(0, total_items, BATCH_SIZE):
+                batch = items[i:i + BATCH_SIZE]
+                try:
+                    result = await collection.insert_many(batch, ordered=False)
+                    total_inserted += len(result.inserted_ids)
+                    progress_details.append(
+                        f"{collection_name}: Batch {i//BATCH_SIZE + 1} - {len(result.inserted_ids)} documente inserate"
+                    )
+                except Exception as e:
+                    errors.append(f"{collection_name} batch {i//BATCH_SIZE + 1}: {str(e)}")
+            
+            return total_inserted
+        
+        # Restore Companies
+        if "companies" in collections_data and collections_data["companies"]:
+            try:
+                companies = collections_data["companies"]
+                progress_details.append(f"Companies: Se procesează {len(companies)} documente...")
+                
+                # Clear existing companies
+                delete_result = await db.companies.delete_many({})
+                progress_details.append(f"Companies: {delete_result.deleted_count} documente vechi șterse")
+                
+                companies = convert_dates(companies)
+                
+                total = await batch_insert(db.companies, companies, "Companies")
+                restored_stats["companies"] = total
+                progress_details.append(f"Companies: ✓ Total {total} documente restaurate")
+                    
+            except Exception as e:
+                errors.append(f"Companies: {str(e)}")
+                restored_stats["companies"] = 0
+                progress_details.append("Companies: ✗ Eroare")
+        
+        # Restore Clients
+        if "clients" in collections_data and collections_data["clients"]:
+            try:
+                clients = collections_data["clients"]
+                progress_details.append(f"Clients: Se procesează {len(clients)} documente...")
+                
+                # Clear existing clients
+                delete_result = await db.clients.delete_many({})
+                progress_details.append(f"Clients: {delete_result.deleted_count} documente vechi șterse")
+                
+                clients = convert_dates(clients)
+                
+                total = await batch_insert(db.clients, clients, "Clients")
+                restored_stats["clients"] = total
+                progress_details.append(f"Clients: ✓ Total {total} documente restaurate")
+                    
+            except Exception as e:
+                errors.append(f"Clients: {str(e)}")
+                restored_stats["clients"] = 0
+                progress_details.append("Clients: ✗ Eroare")
+        
+        # Restore Invoices
+        if "invoices" in collections_data and collections_data["invoices"]:
+            try:
+                invoices = collections_data["invoices"]
+                progress_details.append(f"Invoices: Se procesează {len(invoices)} documente...")
+                
+                # Clear existing invoices
+                delete_result = await db.invoices.delete_many({})
+                progress_details.append(f"Invoices: {delete_result.deleted_count} documente vechi șterse")
+                
+                invoices = convert_dates(invoices)
+                
+                total = await batch_insert(db.invoices, invoices, "Invoices")
+                restored_stats["invoices"] = total
+                progress_details.append(f"Invoices: ✓ Total {total} documente restaurate")
+                    
+            except Exception as e:
+                errors.append(f"Invoices: {str(e)}")
+                restored_stats["invoices"] = 0
+                progress_details.append("Invoices: ✗ Eroare")
+        
+        # Build response
+        message = "Backup facturi restaurat cu succes!"
+        if errors:
+            message += f" Cu {len(errors)} erori."
+        
+        return {
+            "success": len(errors) == 0,
+            "message": message,
+            "restored": restored_stats,
+            "errors": errors if errors else None,
+            "progress": progress_details,
+            "backup_info": {
+                "timestamp": backup_data.get("timestamp"),
+                "backup_type": backup_type
+            }
+        }
+        
+    except json.JSONDecodeError as e:
+        print(f"❌ JSON Decode Error: {str(e)}")
+        raise HTTPException(
+            status_code=400,
+            detail=f"Fișier JSON invalid: {str(e)}"
+        )
+    except Exception as e:
+        import traceback
+        error_detail = f"Eroare la restaurarea backup-ului facturi: {str(e)}"
+        full_trace = traceback.format_exc()
+        print(f"❌ RESTORE INVOICES ERROR: {error_detail}")
+        print(f"Full trace: {full_trace}")
+        raise HTTPException(
+            status_code=500,
+            detail=error_detail
+        )
+
+
 @router.get("/info")
 async def get_backup_info(current_user: dict = Depends(get_current_admin_user)):
     """Get database statistics for backup info"""
