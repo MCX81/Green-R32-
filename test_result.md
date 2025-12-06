@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test complete e-commerce flow after backup restore on r32.ro production site"
+user_problem_statement: "Test user registration flow on https://r32.ro to identify why it's not working"
 
 backend:
   - task: "Products API endpoint"
