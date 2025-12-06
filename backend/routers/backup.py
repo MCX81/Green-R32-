@@ -327,6 +327,87 @@ async def restore_database(
             detail=error_detail
         )
 
+
+@router.get("/export-invoices")
+async def export_invoices_only(current_user: dict = Depends(get_current_admin_user)):
+    """Export ONLY invoices to JSON format - separate from main backup"""
+    try:
+        # Get current timestamp for filename
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        db_name = os.environ.get("DB_NAME", "r32_ecommerce")
+        filename = f"backup_facturi_{timestamp}.json"
+        
+        # Export only invoices
+        backup_data = {
+            "timestamp": timestamp,
+            "database": db_name,
+            "backup_type": "invoices_only",
+            "collections": {}
+        }
+        
+        # Helper function to convert datetime fields
+        def convert_datetime_fields(item):
+            if isinstance(item, dict):
+                for key, value in item.items():
+                    if hasattr(value, 'isoformat'):
+                        item[key] = value.isoformat()
+                    elif isinstance(value, dict):
+                        convert_datetime_fields(value)
+                    elif isinstance(value, list):
+                        for sub_item in value:
+                            if isinstance(sub_item, dict):
+                                convert_datetime_fields(sub_item)
+            return item
+        
+        # Get invoices
+        invoices = await db.invoices.find({}).to_list(length=10000)
+        for invoice in invoices:
+            invoice["_id"] = str(invoice["_id"])
+            convert_datetime_fields(invoice)
+        backup_data["collections"]["invoices"] = invoices
+        
+        # Get related data needed for invoices
+        # Companies
+        companies = await db.companies.find({}).to_list(length=10000)
+        for company in companies:
+            company["_id"] = str(company["_id"])
+            convert_datetime_fields(company)
+        backup_data["collections"]["companies"] = companies
+        
+        # Clients
+        clients = await db.clients.find({}).to_list(length=10000)
+        for client in clients:
+            client["_id"] = str(client["_id"])
+            convert_datetime_fields(client)
+        backup_data["collections"]["clients"] = clients
+        
+        # Add stats
+        backup_data["stats"] = {
+            "total_invoices": len(invoices),
+            "total_companies": len(companies),
+            "total_clients": len(clients)
+        }
+        
+        # Convert to JSON
+        json_str = json.dumps(backup_data, indent=2, ensure_ascii=False)
+        json_bytes = json_str.encode('utf-8')
+        file_like = io.BytesIO(json_bytes)
+        
+        return StreamingResponse(
+            file_like,
+            media_type="application/json",
+            headers={
+                "Content-Disposition": f"attachment; filename={filename}",
+                "Content-Length": str(len(json_bytes))
+            }
+        )
+        
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Eroare la crearea backup-ului facturi: {str(e)}"
+        )
+
 @router.get("/info")
 async def get_backup_info(current_user: dict = Depends(get_current_admin_user)):
     """Get database statistics for backup info"""
