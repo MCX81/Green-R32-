@@ -200,7 +200,9 @@ const Backup = () => {
       // Clear progress after 10 seconds
       setTimeout(() => {
         setRestoreProgress(null);
-
+      }, 10000);
+    }
+  };
 
   const handleBackupInvoices = async () => {
     setLoadingInvoices(true);
