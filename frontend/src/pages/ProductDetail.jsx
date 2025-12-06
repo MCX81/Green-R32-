@@ -97,7 +97,7 @@ const ProductDetail = () => {
   const handleAddToWishlist = async () => {
     try {
       const { wishlistAPI } = await import('../services/api');
-      await wishlistAPI.add(product._id);
+      await wishlistAPI.add({ productId: product._id });
       
       // Trigger wishlist update event
       window.dispatchEvent(new Event('wishlistUpdated'));
