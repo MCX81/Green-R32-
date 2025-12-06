@@ -692,7 +692,7 @@ const Backup = () => {
             <div>
               <p className="font-semibold">Descarcă fișierul de backup</p>
               <p className="text-sm text-gray-600">
-                Click pe butonul "Descarcă Backup Acum" de mai sus. Fișierul va fi salvat cu format: 
+                Click pe butonul &quot;Descarcă Backup Acum&quot; de mai sus. Fișierul va fi salvat cu format: 
                 <code className="bg-gray-100 px-2 py-1 rounded ml-1">backup_r32_ecommerce_YYYYMMDD_HHMMSS.json</code>
               </p>
             </div>
