@@ -265,7 +265,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Cart product link navigation (requires authentication to fully test)"
+    - "User registration flow (CRITICAL - data serialization bug)"
   stuck_tasks: []
   test_all: false
   test_priority: "critical_first"
