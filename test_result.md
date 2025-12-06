@@ -253,9 +253,8 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Product selection and detail page"
-  stuck_tasks:
-    - "Product selection and detail page"
+    - "Cart product link navigation (requires authentication to fully test)"
+  stuck_tasks: []
   test_all: false
   test_priority: "critical_first"
 
