@@ -109,7 +109,7 @@ const Catalog = () => {
   const handleAddToWishlist = async (product) => {
     try {
       const { wishlistAPI } = await import('../services/api');
-      await wishlistAPI.add(product._id);
+      await wishlistAPI.add({ productId: product._id });
       
       // Refresh wishlist count
       window.dispatchEvent(new Event('wishlistUpdated'));
