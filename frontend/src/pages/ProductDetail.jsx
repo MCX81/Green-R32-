@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import ProductCard from '../components/ProductCard';
 import { useToast } from '../hooks/use-toast';
 import api from '../lib/api';
+import { wishlistAPI } from '../services/api';
 
 const ProductDetail = () => {
   const { id } = useParams();
