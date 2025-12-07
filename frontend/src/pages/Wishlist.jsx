@@ -20,8 +20,36 @@ const Wishlist = () => {
 
   const loadWishlist = async () => {
     try {
-      const response = await wishlistAPI.get();
-      setWishlistProducts(response.data || []);
+      // Get wishlist (returns {_id, userId, products: ['id1', 'id2', ...], updatedAt})
+      const wishlistResponse = await wishlistAPI.get();
+      const productIds = wishlistResponse.data?.products || [];
+      
+      console.log('[WISHLIST] Product IDs:', productIds);
+      
+      if (productIds.length === 0) {
+        setWishlistProducts([]);
+        return;
+      }
+      
+      // Fetch full product details for each ID
+      const productsAPI = (await import('../services/api')).productsAPI;
+      const productDetails = await Promise.all(
+        productIds.map(async (productId) => {
+          try {
+            const response = await productsAPI.getById(productId);
+            return response.data;
+          } catch (error) {
+            console.error(`Failed to fetch product ${productId}:`, error);
+            return null;
+          }
+        })
+      );
+      
+      // Filter out null values (failed fetches)
+      const validProducts = productDetails.filter(p => p !== null);
+      console.log('[WISHLIST] Loaded products:', validProducts.length);
+      setWishlistProducts(validProducts);
+      
     } catch (error) {
       console.error('Error loading wishlist:', error);
       setWishlistProducts([]);
