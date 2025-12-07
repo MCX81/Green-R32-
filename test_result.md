@@ -206,7 +206,7 @@ frontend:
     implemented: true
     working: false
     file: "/app/frontend/src/pages/ProductDetail.jsx"
-    stuck_count: 3
+    stuck_count: 4
     priority: "critical"
     needs_retesting: false
     status_history:
@@ -228,6 +228,9 @@ frontend:
         - working: false
           agent: "testing"
           comment: "ROOT CAUSE IDENTIFIED - USER REPORT CONFIRMED: Products ARE being saved to wishlist (backend works correctly), but Wishlist.jsx does NOT display them. DETAILED FINDINGS: (1) ✓ Admin login works, (2) ✓ Product page loads correctly, (3) ✓ Wishlist button click triggers handleAddToWishlist, (4) ✓ POST /api/wishlist with correct payload {productId: '252e0282-ce7e-4685-b30a-db6a513e7c5b'}, (5) ✓ API returns 200 OK, (6) ✓ Toast shows 'Adăugat la favorite!', (7) ✓ Backend has 4 products in wishlist (verified via API response), (8) ❌ Wishlist page shows 0 products (blank page). BUG LOCATION: /app/frontend/src/pages/Wishlist.jsx line 24 sets wishlistProducts to response.data (Wishlist object) instead of fetching product details. Backend returns {_id, userId, products: ['id1', 'id2', ...], updatedAt} but frontend expects array of product objects. Frontend must: (a) extract product IDs from response.data.products, (b) fetch full product details for each ID, (c) display products. ALSO AFFECTED: /app/frontend/src/context/CartContext.js line 44 tries to get wishlistResponse.data.length but should be wishlistResponse.data.products.length."
+        - working: false
+          agent: "testing"
+          comment: "🎯 EXACT ROOT CAUSE FOUND - USER REPORT VALIDATED: Catalog wishlist WORKS, Product page wishlist DOESN'T WORK. COMPREHENSIVE NETWORK ANALYSIS WITH REACT FIBER INSPECTION: **CATALOG (ProductCard.jsx)**: ✅ Uses regular <button> element (line 41-49), ✅ React Fiber shows Props: ['onClick', 'className', 'children'], ✅ Has onClick: TRUE, ✅ onClick Type: function, ✅ POST /api/wishlist request made with correct payload {productId: '...'}, ✅ Product successfully added to wishlist. **PRODUCT PAGE (ProductDetail.jsx)**: ❌ Uses shadcn <Button> component (line 176-183), ❌ React Fiber shows Props: ['className', 'ref', 'children'], ❌ Has onClick: FALSE, ❌ onClick Type: None, ❌ NO POST request made when clicked, ❌ Only GET requests from CartContext refresh. **EXACT BUG**: The onClick prop is NOT being passed through the shadcn Button component in ProductDetail.jsx. The code shows onClick={handleAddToWishlist} but React Fiber confirms the prop never reaches the DOM element. This is likely a React 19 compatibility issue with the Button component or the {...props} spread is not working correctly. **FIX**: Replace shadcn Button with regular <button> element (like ProductCard does) OR investigate why Button component is not spreading onClick prop. User's report is 100% accurate - catalog works, product page doesn't save."
   
   - task: "Cart product link navigation"
     implemented: true
