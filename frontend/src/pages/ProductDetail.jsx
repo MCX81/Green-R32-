@@ -96,9 +96,11 @@ const ProductDetail = () => {
   };
 
   const handleAddToWishlist = async () => {
+    console.log('[WISHLIST] Button clicked, product._id:', product._id);
     try {
-      const { wishlistAPI } = await import('../services/api');
-      await wishlistAPI.add({ productId: product._id });
+      console.log('[WISHLIST] Calling API...');
+      const result = await wishlistAPI.add({ productId: product._id });
+      console.log('[WISHLIST] API success:', result);
       
       // Trigger wishlist update event
       window.dispatchEvent(new Event('wishlistUpdated'));
@@ -108,7 +110,8 @@ const ProductDetail = () => {
         description: `${product.name} a fost adăugat la lista ta de dorințe.`,
       });
     } catch (error) {
-      console.error('Error adding to wishlist:', error);
+      console.error('[WISHLIST] Error adding to wishlist:', error);
+      console.error('[WISHLIST] Error details:', error.response?.data);
       toast({
         title: 'Eroare',
         description: error.response?.data?.detail || 'Nu s-a putut adăuga produsul la favorite.',
