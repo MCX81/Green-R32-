@@ -173,14 +173,13 @@ const ProductDetail = () => {
                   <Badge className="bg-green-600 text-white rounded-xl ml-2">NOU</Badge>
                 )}
               </div>
-              <Button
-                variant="ghost"
-                size="icon"
+              <button
                 onClick={handleAddToWishlist}
-                className="rounded-xl hover:bg-red-50"
+                className="rounded-xl hover:bg-red-50 p-2 transition-colors"
+                title="Adaugă la favorite"
               >
-                <Heart className="h-6 w-6" />
-              </Button>
+                <Heart className="h-6 w-6 text-gray-600 hover:text-red-500" />
+              </button>
             </div>
 
             <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
