@@ -264,6 +264,18 @@ frontend:
         - working: true
           agent: "testing"
           comment: "VERIFIED WORKING: Registration API works correctly. Successfully created test user 'testwishlist@example.com' with curl. Backend returns 200 OK with access_token and user object. Registration endpoint accepts correct payload format and creates user in database. Previous 422 error issue has been resolved."
+  
+  - task: "User login flow"
+    implemented: true
+    working: false
+    file: "/app/frontend/src/pages/Login.jsx"
+    stuck_count: 0
+    priority: "critical"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "CRITICAL BUG: Login functionality is COMPLETELY BROKEN. Tested with multiple accounts: (1) admin@r32.ro/admin123 - Backend returns 'Admin users must login through admin panel' (expected, admin should use /admin/login), (2) testwishlist@example.com/TestPass123! (newly registered user) - Login form submits but page stays on /login with NO error message shown. User is not authenticated. Token is not stored. No redirect occurs. Login.jsx shows no error handling for failed login attempts. IMPACT: Regular users cannot log in to the application at all. This blocks ALL authenticated features including wishlist, cart, checkout, account management. URGENT FIX REQUIRED."
 
 metadata:
   created_by: "testing_agent"
