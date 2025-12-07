@@ -206,7 +206,7 @@ frontend:
     implemented: true
     working: false
     file: "/app/frontend/src/pages/ProductDetail.jsx"
-    stuck_count: 2
+    stuck_count: 3
     priority: "critical"
     needs_retesting: false
     status_history:
@@ -225,6 +225,9 @@ frontend:
         - working: false
           agent: "testing"
           comment: "COMPREHENSIVE TESTING COMPLETED - TWO DIFFERENT WISHLIST BUGS CONFIRMED: **SCENARIO 1 (ProductCard/Catalog)**: Clicking wishlist heart on catalog page sends WRONG PAYLOAD FORMAT. Network trace shows POST /api/wishlist with payload '252e0282-ce7e-4685-b30a-db6a513e7c5b' (just a string). Backend expects {productId: '...'} object. Returns 401 Unauthorized, redirects to /login. Console error: 'Error adding to wishlist: q'. BUG LOCATION: Catalog.jsx line 112 calls wishlistAPI.add(product._id) - should be wishlistAPI.add({productId: product._id}). **SCENARIO 2 (ProductDetail)**: Clicking wishlist on product page sends CORRECT PAYLOAD FORMAT {productId: '252e0282-ce7e-4685-b30a-db6a513e7c5b'} but still fails with 401. Console shows '[WISHLIST] Error details: {detail: Not authenticated}'. No toast shown. Wishlist remains empty. **ROOT CAUSE FOR BOTH**: LOGIN IS COMPLETELY BROKEN. Tested with both admin@r32.ro/admin123 (backend returns 'Admin users must login through admin panel') AND newly created regular user testwishlist@example.com/TestPass123! (registration succeeds but login fails silently - stays on /login page with no error). CRITICAL: Users cannot log in at all, making wishlist untestable. User's report of 'page goes blank' is actually redirect to /login due to 401 error."
+        - working: false
+          agent: "testing"
+          comment: "ROOT CAUSE IDENTIFIED - USER REPORT CONFIRMED: Products ARE being saved to wishlist (backend works correctly), but Wishlist.jsx does NOT display them. DETAILED FINDINGS: (1) ✓ Admin login works, (2) ✓ Product page loads correctly, (3) ✓ Wishlist button click triggers handleAddToWishlist, (4) ✓ POST /api/wishlist with correct payload {productId: '252e0282-ce7e-4685-b30a-db6a513e7c5b'}, (5) ✓ API returns 200 OK, (6) ✓ Toast shows 'Adăugat la favorite!', (7) ✓ Backend has 4 products in wishlist (verified via API response), (8) ❌ Wishlist page shows 0 products (blank page). BUG LOCATION: /app/frontend/src/pages/Wishlist.jsx line 24 sets wishlistProducts to response.data (Wishlist object) instead of fetching product details. Backend returns {_id, userId, products: ['id1', 'id2', ...], updatedAt} but frontend expects array of product objects. Frontend must: (a) extract product IDs from response.data.products, (b) fetch full product details for each ID, (c) display products. ALSO AFFECTED: /app/frontend/src/context/CartContext.js line 44 tries to get wishlistResponse.data.length but should be wishlistResponse.data.products.length."
   
   - task: "Cart product link navigation"
     implemented: true
