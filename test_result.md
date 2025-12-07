@@ -268,8 +268,10 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Add to wishlist functionality (CRITICAL - onClick handler not firing)"
     - "User registration flow (CRITICAL - data serialization bug)"
-  stuck_tasks: []
+  stuck_tasks:
+    - "Add to wishlist functionality"
   test_all: false
   test_priority: "critical_first"
 
