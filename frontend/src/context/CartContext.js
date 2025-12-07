@@ -41,7 +41,8 @@ export function CartProvider({ children }) {
 
       // Load wishlist count
       const wishlistResponse = await wishlistAPI.get();
-      setWishlistCount(wishlistResponse.data.length || 0);
+      const wishlistProducts = wishlistResponse.data?.products || [];
+      setWishlistCount(wishlistProducts.length);
     } catch (error) {
       console.error('Error loading counts:', error);
       setCartCount(0);
