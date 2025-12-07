@@ -286,10 +286,12 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Add to wishlist functionality (CRITICAL - onClick handler not firing)"
-    - "User registration flow (CRITICAL - data serialization bug)"
+    - "User login flow (CRITICAL - completely broken, blocks all testing)"
+    - "Add to wishlist functionality (CRITICAL - two different bugs in Catalog and ProductDetail)"
+    - "Catalog wishlist payload format bug"
   stuck_tasks:
     - "Add to wishlist functionality"
+    - "User login flow"
   test_all: false
   test_priority: "critical_first"
 
