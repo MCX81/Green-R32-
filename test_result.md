@@ -204,10 +204,10 @@ frontend:
   
   - task: "Add to wishlist functionality"
     implemented: true
-    working: true
+    working: false
     file: "/app/frontend/src/pages/ProductDetail.jsx"
-    stuck_count: 0
-    priority: "high"
+    stuck_count: 1
+    priority: "critical"
     needs_retesting: false
     status_history:
         - working: "NA"
@@ -219,6 +219,9 @@ frontend:
         - working: true
           agent: "testing"
           comment: "TESTED ON PRODUCTION (https://r32.ro): Wishlist functionality is WORKING AS DESIGNED. Product detail page loads correctly. Wishlist button (heart icon) is visible and clickable. When clicked WITHOUT authentication, user is correctly redirected to /login page. This is EXPECTED BEHAVIOR - wishlist requires authentication. The feature is implemented correctly and working. User report may be due to not being logged in."
+        - working: false
+          agent: "testing"
+          comment: "CRITICAL BUG CONFIRMED: Wishlist functionality is COMPLETELY BROKEN even with admin authentication. TESTED WITH ADMIN LOGIN (admin@r32.ro). ROOT CAUSE: The wishlist button on ProductDetail.jsx (lines 172-179) does NOT trigger the handleAddToWishlist function when clicked. Button is visible and clickable, but onClick handler is not executing. EVIDENCE: (1) Clicked heart button at position (1548, 302) on product page, (2) NO POST /api/wishlist request was made, (3) NO success toast notification appeared, (4) Wishlist page remains empty, (5) Only GET /api/wishlist requests occur (from CartContext). BACKEND VERIFIED WORKING: curl test confirms POST /api/wishlist endpoint works correctly and returns 200 OK with proper data. Issue is 100% FRONTEND - the React onClick handler is not firing or failing silently. The handleAddToWishlist async function (lines 97-117) is never executed when button is clicked. User frustration is justified - wishlist has never worked despite previous claims."
   
   - task: "Cart product link navigation"
     implemented: true
